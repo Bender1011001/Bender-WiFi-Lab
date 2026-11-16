@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-14",
+  "local_tests": 14,
+  "failures": 0,
+  "skips": 0,
+  "radio_operations": 0,
+  "handset_access": false,
+  "inspector_sha256": "462c1a1c923420cc98b4ed40412333a15d199ca359cb1f2d613942fd8a1f9963",
+  "captures": [
+    {
+      "label": "roku",
+      "pcap_sha256": "21a590d22b4ff2ba8a1f65e4a564564dc929e5b9931e167d3cc3798c3e793cb6",
+      "frames": 385,
+      "advertised_pmf_counts": {
+        "capable": 1
+      },
+      "association_attempts": 0,
+      "unmatched_association_requests": 0,
+      "management_formats": {},
+      "sa_query_pairs": 0,
+      "eapol_exchanges": 0,
+      "enforcement": "not_tested",
+      "pmf_bypass": "not_established"
+    },
+    {
+      "label": "root",
+      "pcap_sha256": "4e5549833d26fe4e4e5118a960dd8ddb2cab90d4398b40aa9d35f4a1778340fb",
+      "frames": 792,
+      "advertised_pmf_counts": {
+        "disabled": 1
+      },
+      "association_attempts": 0,
+      "unmatched_association_requests": 0,
+      "management_formats": {},
+      "sa_query_pairs": 0,
+      "eapol_exchanges": 0,
+      "enforcement": "not_tested",
+      "pmf_bypass": "not_established"
+    },
+    {
+      "label": "samsung-locked",
+      "pcap_sha256": "d89349fab20a0e066e549b15f21265a5cc29a224fbde1bb547236f058c457d41",
+      "frames": 770,
+      "advertised_pmf_counts": {
+        "disabled": 1
+      },
+      "association_attempts": 0,
+      "unmatched_association_requests": 0,
+      "management_formats": {},
+      "sa_query_pairs": 0,
+      "eapol_exchanges": 0,
+      "enforcement": "not_tested",
+      "pmf_bypass": "not_established"
+    }
+  ],
+  "total_frames": 1947
+}

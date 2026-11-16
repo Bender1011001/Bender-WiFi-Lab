@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "review_date_local": "2026-11-14",
+  "timezone": "America/Los_Angeles",
+  "purpose": "Bounded Qualcomm Wi-Fi prior-art comparison and next experiment selection",
+  "assessment_limits": [
+    "Published source and authors' reported results were inspected; upstream code was not built or executed.",
+    "Repository and branch review was selective, not exhaustive. Search absence does not establish global novelty.",
+    "Phone capability settings came from retained diagnostics; the current read-only refresh failed.",
+    "No new vulnerability, functional dual-STA test, CFR sample or spectral sample was established on this OnePlus."
+  ],
+  "sources": [
+    {
+      "id": "ours-router",
+      "kind": "local_experiment_record",
+      "path": "hijacker-qca/docs/ROUTER-CORROBORATED-TESTS.md",
+      "related": "hijacker-qca/evidence/router-corroborated-20261113.json",
+      "note": "Three V61 requests with matching driver ACKs and router corroboration; no over-air recording of those transmissions."
+    },
+    {
+      "id": "ours-pmf",
+      "kind": "local_experiment_record",
+      "path": "bender-wifi-lab/research/pmf/CONTROLLED-TEST-RESULTS.md",
+      "note": "Four counters stayed zero; receipt and rejection unestablished."
+    },
+    {
+      "id": "ours-dual-sta",
+      "kind": "saved_device_configuration",
+      "path": "bender-wifi-lab/research/novelty-20261114/dual-sta-capability-evidence.json",
+      "note": "Reported STA+STA support and configuration; no two-association functional test."
+    },
+    {
+      "id": "avium",
+      "kind": "primary_repository",
+      "url": "https://github.com/spiral009/aviumui-wlan-tools/tree/228527778139acd2333593ff1c0982c30a597a3d",
+      "commit": "228527778139acd2333593ff1c0982c30a597a3d",
+      "artifact": "upstream/avium-README.md",
+      "note": "Author-reported monitor capture and unsuccessful monitor TX path on OnePlus SM8750."
+    },
+    {
+      "id": "loukious-march",
+      "kind": "primary_code",
+      "url": "https://github.com/Loukious/android_kernel_xiaomi_sm8150/commit/65c6a05ecd9b25ebf0742d39987c6a8a042227f1",
+      "commit": "65c6a05ecd9b25ebf0742d39987c6a8a042227f1",
+      "artifact": "upstream/old_patch.json",
+      "note": "Published monitor injection implementation; not reproduced here."
+    },
+    {
+      "id": "loukious-article",
+      "kind": "primary_author_account",
+      "url": "https://medium.com/h7w/they-said-packet-injection-on-qcacld-3-0-was-impossible-i-proved-them-wrong-588fa55ee702",
+      "note": "March 2026 account describes Snapdragon 855 and a hidden station/helper approach; not universal to every later branch."
+    },
+    {
+      "id": "loukious-july",
+      "kind": "primary_code",
+      "url": "https://github.com/Loukious/vendor_qcom_opensource_wlan/commit/25875eb1a65e94fae404c6e9188c7a1fe679e0f5",
+      "commit": "25875eb1a65e94fae404c6e9188c7a1fe679e0f5",
+      "artifacts": [
+        "upstream/loukious-25875eb.json",
+        "upstream/loukious-25875eb.diff"
+      ],
+      "note": "Inspected helper AP-vdev creation, firmware/DP peers and raw exception TX path. Aggregate saved diff has its own line numbers."
+    },
+    {
+      "id": "loukious-direct-dp",
+      "kind": "primary_code",
+      "url": "https://github.com/Loukious/vendor_qcom_opensource_wlan/commit/5d1e9c0361deeece30fbeed37e527eb169a35f97",
+      "commit": "5d1e9c0361deeece30fbeed37e527eb169a35f97",
+      "artifact": "upstream/direct_dp_head.json",
+      "note": "Sniffer TX handling change in selected direct-DP branch."
+    },
+    {
+      "id": "loukious-cfr",
+      "kind": "primary_code",
+      "url": "https://github.com/Loukious/vendor_qcom_opensource_wlan/commit/db9f9f8e85843c2cab452affc23d23b2ed885427",
+      "commit": "db9f9f8e85843c2cab452affc23d23b2ed885427",
+      "artifact": "upstream/cfr_head.json",
+      "note": "CFR relay configuration enablement is source evidence, not a working capture measurement."
+    },
+    {
+      "id": "hcxdumptool-discussion",
+      "kind": "primary_author_discussion",
+      "url": "https://github.com/ZerBea/hcxdumptool/discussions/531",
+      "note": "OnePlus 13 frame-family limitations and references to alternate driver patches; differing builds and claims are not a controlled comparison."
+    },
+    {
+      "id": "qca-spectral",
+      "kind": "primary_repository",
+      "url": "https://github.com/zlab-pub/qca_spectral_scan/tree/0429043aa7a0cfaa695b9d24e774183ddd2f2063",
+      "commit": "0429043aa7a0cfaa695b9d24e774183ddd2f2063",
+      "reviewed_file": "README.md",
+      "note": "Existing rooted Qualcomm phone spectral analyzer with hotspot-based workflow; author's Pixel 5 result is not a OnePlus result."
+    },
+    {
+      "id": "qca-spectral-paper",
+      "kind": "primary_paper",
+      "url": "https://yangzhice.com/docforweb/SpectralScan/SpectralScan.pdf",
+      "title": "Enabling Radio Spectrum Scan with Smartphones",
+      "note": "Read for platform and spectral acquisition prior art; no transfer of measured performance to this handset."
+    },
+    {
+      "id": "marble-cfr",
+      "kind": "primary_repository",
+      "url": "https://github.com/kruonos/android_kernel_xiaomi_marble/tree/b1adc4dd68d2fbc7b9c10cd38c584be24a1b0b5d",
+      "commit": "b1adc4dd68d2fbc7b9c10cd38c584be24a1b0b5d",
+      "branch": "CSI/CFR-PATCH",
+      "reviewed_file": "README.md",
+      "note": "Author-reported QCA6490 CFR transport validation. Calibrated CSI reconstruction and physical antenna mapping remain unimplemented/unverified in the reviewed README."
+    },
+    {
+      "id": "android-dual-sta",
+      "kind": "primary_documentation",
+      "url": "https://source.android.com/docs/core/connect/wifi-sta-sta-concurrency",
+      "note": "Optional concurrency use cases, per-network callbacks, band-only multi-internet requests and per-interface behavior."
+    },
+    {
+      "id": "android-multi-ap-api",
+      "kind": "primary_documentation",
+      "url": "https://developer.android.com/reference/android/net/wifi/WifiManager#WIFI_MULTI_INTERNET_MODE_MULTI_AP",
+      "note": "Interpretation of mode 2; setting value is not proof of a live connection pair."
+    },
+    {
+      "id": "cisco-dual-wifi",
+      "kind": "primary_vendor_study",
+      "url": "https://www.cisco.com/c/en/us/td/docs/wireless/technology/dual-wi-fi/b-impact-of-dual-wi-fi-acceleration-on-enterprise-networks.html",
+      "published": "2023-10-06",
+      "note": "Existing dual-connection identity correlation, quarantine and accounting concerns."
+    },
+    {
+      "id": "airsnitch",
+      "kind": "primary_research_site",
+      "url": "https://www.airsnitchattacks.com/",
+      "paper": "https://www.ndss-symposium.org/wp-content/uploads/2026-f1282-paper.pdf",
+      "note": "Prior isolation research across encryption, routing and switching; proposed tool is not credited with those attack discoveries."
+    }
+  ],
+  "search_scope": {
+    "queries": [
+      "single phone client isolation Wi-Fi",
+      "dual STA security test Wi-Fi isolation",
+      "dual Wi-Fi security testing",
+      "STA STA PMF concurrency security Qualcomm"
+    ],
+    "examined_project_families": [
+      "AviumUI",
+      "Loukious QCACLD variants",
+      "QCA Spectral Scan",
+      "Marble QCA6490 CFR"
+    ],
+    "branch_limit": "Only selected branches/commits inspected; retained Loukious branch enumeration is page 1, not an exhaustive inventory.",
+    "inaccessible": [
+      {
+        "url": "https://github.com/drygdryg/qualcomm_android_monitor_mode",
+        "outcome": "Connected repository reader returned not found; not substantively assessed."
+      }
+    ],
+    "conclusion": "No matching complete single-phone, independently calibrated two-endpoint isolation workflow identified in this bounded review. No global first claim."
+  }
+}

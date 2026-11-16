@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "date_local": "2026-11-14",
+  "result": "unresolved_no_counter_increment_observed",
+  "pmf_application_submissions": 1,
+  "sender_accepted_bytes": 38,
+  "baseline_samples": 6,
+  "observation_samples": 19,
+  "counters_min_max": {
+    "bip_mic_error_count": [
+      0,
+      0
+    ],
+    "bip_replay_count": [
+      0,
+      0
+    ],
+    "beacon_mic_error_count": [
+      0,
+      0
+    ],
+    "beacon_replay_count": [
+      0,
+      0
+    ]
+  },
+  "sampled_window_seconds_phone_clock": 13.754680395126343,
+  "phone_process_exit": 0,
+  "capture_process_exit": 0,
+  "same_peer_and_frequency_after_trial": true,
+  "gateway_ping_exit": 0,
+  "phone_receipt": "unverified",
+  "phone_pmf_rejection": "unverified",
+  "capture_is_independent_receiver": false,
+  "no_automatic_transmission_retry": true,
+  "first_attempt": "aborted_before_submission_readiness_timing_check",
+  "local_start": "2026-11-14T18:29:24.932456-08:00",
+  "local_finish": "2026-11-14T18:29:40.642913-08:00",
+  "local_matching_capture_records": [
+    {
+      "frame_number": 38,
+      "radiotap_bytes": 12,
+      "mpdu_bytes": 26
+    },
+    {
+      "frame_number": 39,
+      "radiotap_bytes": 13,
+      "mpdu_bytes": 26
+    }
+  ],
+  "model": "CPH2655",
+  "android": "16",
+  "driver_version": "5.2.1.119O",
+  "receiver_interface": "internal_wlan0_managed",
+  "sender": "AWUS036ACS_RTL8811AU",
+  "frequency_mhz": 5805,
+  "association": {
+    "akm": 8,
+    "mfpc": true,
+    "mfpr": false,
+    "response_status": 0,
+    "android_sae_completed": true
+  },
+  "sampler_complete": true,
+  "gateway_ping_transmitted": 3,
+  "gateway_ping_received": 3,
+  "gateway_packet_loss_percent": 0,
+  "phone_archive_transfer_hash_verified": true,
+  "counter_increment_accuracy": "unresolved",
+  "counter_freshness": "unresolved",
+  "counter_reset_semantics": "unresolved",
+  "pmf_enforcement": "unresolved",
+  "pmf_bypass": "not_established",
+  "source_to_phone_binary_equivalence": "not_established",
+  "restoration": {
+    "alfa_interface_name_address_restored": true,
+    "alfa_usb_state": "Shared_not_attached_to_WSL",
+    "relevant_linux_module_set_restored": true,
+    "firmware_search_path_empty": true,
+    "capture_processes_stopped": true,
+    "guest_network_still_enabled": true,
+    "phone_still_on_guest": true,
+    "builds_and_compiler_packages_retained": true,
+    "kernel_taint": 4096
+  },
+  "evidence_files_sha256": {
+    "trial-02/result.private.json": "b125ac99d318d6fa741b5efbd2294fd5a8690d0b930a206845d587931e4be070",
+    "trial-02/tx-intent.private.json": "aed2f98069800c5397e568e0e3e49e39bceec57a224bb59817e4dd698326ef82",
+    "trial-02/tx-result.private.json": "8f67e93bfe314f4031eba4126380f8aa3eefa64acb35db2599a71d1c623f835c",
+    "trial-02/capture.private.pcap": "4cfd718d18a4d91abf123b659ac35f3ed4d52a1e512d35329cc1e6f2bc1ffa6e",
+    "association-05.private.pcap": "673db693a57b23385440ff146314f17098bd10c051769d89c5052c17f4b5b930",
+    "phone-evidence.private.tar": "7947870c2f820a757c938da9c885bef4b36d05fd6c1ae510bd5c88e80229facd"
+  },
+  "limits": [
+    "No independent observation of the test frame arriving at the phone",
+    "No phone-side rejection reason",
+    "Short frame may take a rejection path before MIC checking",
+    "Replay and beacon-protection counters were read but their conditions were not exercised",
+    "Sampled association checks do not exclude transitions between checks"
+  ]
+}

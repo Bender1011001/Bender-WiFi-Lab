@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/Loukious/vendor_qcom_opensource_wlan/commit/5d1e9c0361deeece30fbeed37e527eb169a35f97",
+  "sha": "5d1e9c0361deeece30fbeed37e527eb169a35f97",
+  "date": "2026-07-14T23:30:39Z",
+  "title": "wlan: mark direct injection as standalone sniffer TX",
+  "files": [
+    {
+      "filename": "qcacld-3.0/core/wma/src/wma_data.c",
+      "patch": "@@ -96,7 +96,7 @@\n #define WMA_INJECTION_DESC_MASK 0x0fff\n #define WMA_INJECTION_SLOT_COUNT 256\n #define WMA_INJECTION_INFLIGHT_LIMIT 1\n-#define WMA_INJECTION_DP_INFLIGHT_LIMIT 8\n+#define WMA_INJECTION_DP_INFLIGHT_LIMIT 1\n #define WMA_INJECTION_QUEUE_LIMIT 256\n #define WMA_INJECTION_TIMEOUT (2 * HZ)\n \n@@ -442,10 +442,12 @@ wma_injection_send(tp_wma_handle wma, qdf_nbuf_t nbuf,\n \t\ttx_exc.tid = CDP_INVALID_TID;\n \t\ttx_exc.tx_encap_type = htt_cmn_pkt_type_raw;\n \t\ttx_exc.sec_type = CDP_INVALID_SEC_TYPE;\n+\t\ttx_exc.is_tx_sniffer = 1;\n+\t\ttx_exc.ppdu_cookie = desc_id;\n \t\tunsent = soc ? cdp_tx_send_exc(soc, params.vdev_id, nbuf,\n \t\t\t\t\t       &tx_exc) : nbuf;\n \t\tif (trace)\n-\t\t\tpr_err(\"qca_inject: wifi3 raw send monitor=%u desc=%u accepted=%u\\n\",\n+\t\t\tpr_err(\"qca_inject: wifi3 standalone raw send monitor=%u desc=%u accepted=%u\\n\",\n \t\t\t       params.vdev_id, desc_id, !unsent);\n \t\tif (unsent) {\n \t\t\tstatus = QDF_STATUS_E_BUSY;"
+    }
+  ]
+}

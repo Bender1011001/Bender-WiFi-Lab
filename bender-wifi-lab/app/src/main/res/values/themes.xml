@@ -1,0 +1,11 @@
+<resources>
+    <style name="Theme.BenderWifi" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:statusBarColor">#111512</item>
+        <item name="android:navigationBarColor">#1D241F</item>
+        <item name="android:windowBackground">#111512</item>
+        <item name="android:colorAccent">#C6F35B</item>
+    </style>
+</resources>

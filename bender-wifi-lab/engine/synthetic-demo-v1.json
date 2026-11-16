@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "demo_only": true,
+  "source": {"artifact_sha256": "synthetic-no-capture", "decoder": "synthetic-demo"},
+  "networks": [{
+    "id": "ap:02:00:00:00:00:01", "bssid": "02:00:00:00:00:01",
+    "ssid_hex": "53594e5448455449432044454d4f", "ssid_display": "SYNTHETIC DEMO",
+    "frequency_mhz": 2437, "channel": 6, "signal_dbm": -55,
+    "first_seen": 0, "last_seen": 0, "security": "PSK/SAE",
+    "advertised_akms": [{"oui": "00:0f:ac", "type": 2, "name": "PSK"}, {"oui": "00:0f:ac", "type": 8, "name": "SAE"}],
+    "pmf_advertised": "capable", "negotiated_security": "unknown", "negotiated_pmf": "unknown",
+    "wps": null, "mlo": null,
+    "synthetic": true
+  }],
+  "clients": [], "handshakes": [],
+  "observations": [{"kind": "synthetic_demo", "message": "Illustration only; no capture, discovery or live authorization"}],
+  "limits": ["SYNTHETIC DEMO ONLY: never automatically import as discovered inventory"]
+}

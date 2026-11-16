@@ -1,0 +1,12 @@
+{
+  "url": "https://github.com/Loukious/vendor_qcom_opensource_wlan/commit/db9f9f8e85843c2cab452affc23d23b2ed885427",
+  "sha": "db9f9f8e85843c2cab452affc23d23b2ed885427",
+  "date": "2026-09-18T21:16:26Z",
+  "title": "wlan: enable CFR relay stream export for WCN7750",
+  "files": [
+    {
+      "filename": "qcacld-3.0/configs/sun_gki_wcn7750_defconfig",
+      "patch": "@@ -181,6 +181,7 @@ CONFIG_WIFI_POS_CONVERGED=y\n CONFIG_WLAN_BMISS=y\n CONFIG_WLAN_CE_INTERRUPT_THRESHOLD_CONFIG=y\n CONFIG_WLAN_CFR_ENABLE=y\n+CONFIG_WLAN_STREAMFS=y\n CONFIG_WLAN_CLD_DEV_PM_QOS=y\n CONFIG_WLAN_CLD_PM_QOS=y\n CONFIG_WLAN_CONV_SPECTRAL_ENABLE=y"
+    }
+  ]
+}

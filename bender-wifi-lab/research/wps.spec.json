@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "status": "awaiting_evidence",
+  "live_authorized_by_this_record": false,
+  "radio_mutation": "none in offline implementation",
+  "stop_on": [
+    "cancellation",
+    "ownership/recovery ambiguity",
+    "unexpected peer/device",
+    "request duplication",
+    "missing independent attribution"
+  ],
+  "limits": [
+    "Host simulation and static artifacts do not qualify APK, handset or RF behavior."
+  ],
+  "objective": "Classify structured WPS transcripts without exposing credentials to logs.",
+  "required": [
+    "Decoded allowlisted event names",
+    "In-memory credential sink bound to encrypted vault integration",
+    "No raw transcript/secret diagnostics"
+  ],
+  "success": "State classification and credential count; DONE alone never proves association.",
+  "stop_gate": "No active PIN/PBC exchange enabled; missing events retain uncertainty."
+}

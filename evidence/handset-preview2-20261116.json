@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-11-16T16:17:22.740381+00:00",
+  "scope": "In-place installation, root/runtime readiness, one 120-second passive survey, inventory persistence and UI count checks. No active transmission test.",
+  "app": {
+    "package": "dev.sir.benderwifi",
+    "version_name": "0.5.2-device-count-preview2",
+    "version_code": 15,
+    "installed_apk_sha256": "812fd140e9368a19ea7b67517f428bce7e2c43393f61eccb604c50fa10877425",
+    "matches_prepared_apk": true
+  },
+  "checks": {
+    "in_place_install": true,
+    "runtime_ready": true,
+    "scan_success": true,
+    "managed_mode": true,
+    "saved_state_restoration_verified": true,
+    "privacy_state_restored": true,
+    "no_saved_recovery_pending": true,
+    "same_baseline_connection": true,
+    "gateway_3_of_3": true,
+    "prior_inventory_ids_preserved": true,
+    "prior_sessions_and_experiments_unchanged": true,
+    "ui_unknown_total_with_two_identified": true,
+    "ui_explicit_zero_report": true,
+    "look_for_devices_available_with_and_without_saved_addresses": true
+  },
+  "survey": {
+    "duration_seconds": 120,
+    "frames": 7072,
+    "legacy_summary_addresses": 3,
+    "analyzed_ap_records": 15,
+    "analyzed_client_addresses": 9,
+    "aps_with_bss_load_counts": 6,
+    "handshakes": 0,
+    "planned_frequencies": 94,
+    "reported_frequency_set_failures": 0,
+    "received_radiotap_frequency_values": 23
+  },
+  "device": {
+    "model": "CPH2655",
+    "android": "16",
+    "build": "CPH2655_16.0.8.301(EX01)",
+    "rooted": true
+  },
+  "limits": [
+    "One handset and one full passive survey; not exhaustive qualification.",
+    "AP reports and observed addresses are not independently verified physical-device totals.",
+    "No deauth, WPS, PMF-bypass, general-injection or Bluetooth test in this run.",
+    "Cancellation, process death and timeout were not exercised.",
+    "Raw logs, captures, screenshots and databases remain private."
+  ]
+}

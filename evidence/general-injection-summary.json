@@ -1,0 +1,44 @@
+{
+  "date_local": "2026-11-15",
+  "provenance": "Maintainer-derived summary of retained private ACTIVE-RESULT records; no new experiment for publication.",
+  "configuration": "Archived V60 experimental driver module unchanged; separate from stock-driver V61 trials.",
+  "first_attempt": "5220 MHz receive gate failed before any send; stock restored.",
+  "active_attempt": {
+    "frequency_mhz": 5805,
+    "userspace_requests": 1,
+    "bytes": 26,
+    "host_tx_increment": 1,
+    "host_drops": 0,
+    "matching_callback_ack": false,
+    "peer_type": 1,
+    "tid": 17,
+    "descriptor": 63,
+    "wal_vdev": 2,
+    "error": "0x0badba13",
+    "status": 7,
+    "completion": "DISCARD(1)"
+  },
+  "receive_gates_passed": 4,
+  "pcap_complete_records": 61,
+  "firmware_logging": {
+    "records": 282,
+    "decoded_messages": 13260,
+    "cumulative_drop_count": 1
+  },
+  "restoration": {
+    "stock_module_and_ini_hashes_verified": true,
+    "boot_unchanged": true,
+    "experimental_interface_parameter_and_lock_absent": true,
+    "firmware_override_empty": true,
+    "gateway_sent": 3,
+    "gateway_received": 3
+  },
+  "limits": [
+    "General injection not established",
+    "Exact first rejecting branch unresolved",
+    "Local TX capture is not independent RF evidence",
+    "Trace not claimed lossless",
+    "Peer-context flag and management-TID lookup remain candidates, not proven causes",
+    "No driver behavior or firmware byte changed in this diagnostic"
+  ]
+}

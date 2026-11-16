@@ -1,0 +1,95 @@
+{
+  "commit": "25875eb1a65e94fae404c6e9188c7a1fe679e0f5",
+  "url": "https://github.com/Loukious/vendor_qcom_opensource_wlan/commit/25875eb1a65e94fae404c6e9188c7a1fe679e0f5",
+  "title": "wlan: add monitor mode and direct packet injection",
+  "created_at": "2026-07-16T19:40:20Z",
+  "files": [
+    {
+      "path": "qca-wifi-host-cmn/dp/inc/cdp_txrx_mon.h"
+    },
+    {
+      "path": "qca-wifi-host-cmn/dp/inc/cdp_txrx_ops.h"
+    },
+    {
+      "path": "qca-wifi-host-cmn/dp/wifi3.0/dp_tx.c"
+    },
+    {
+      "path": "qca-wifi-host-cmn/dp/wifi3.0/monitor/1.0/dp_mon_filter_1.0.c"
+    },
+    {
+      "path": "qca-wifi-host-cmn/dp/wifi3.0/monitor/dp_mon.c"
+    },
+    {
+      "path": "qcacld-3.0/Kbuild"
+    },
+    {
+      "path": "qcacld-3.0/components/mlme/dispatcher/src/wlan_mlme_api.c"
+    },
+    {
+      "path": "qcacld-3.0/configs/default_defconfig"
+    },
+    {
+      "path": "qcacld-3.0/configs/pineapple_gki_wcn7750_defconfig"
+    },
+    {
+      "path": "qcacld-3.0/configs/sun_consolidate_wcn7750_defconfig"
+    },
+    {
+      "path": "qcacld-3.0/configs/sun_gki_wcn7750_defconfig"
+    },
+    {
+      "path": "qcacld-3.0/configs/wcn7750_defconfig"
+    },
+    {
+      "path": "qcacld-3.0/core/dp/txrx/ol_tx_desc.c"
+    },
+    {
+      "path": "qcacld-3.0/core/dp/txrx/ol_txrx.c"
+    },
+    {
+      "path": "qcacld-3.0/core/dp/txrx/ol_txrx_flow_control.c"
+    },
+    {
+      "path": "qcacld-3.0/core/hdd/inc/wlan_hdd_main.h"
+    },
+    {
+      "path": "qcacld-3.0/core/hdd/inc/wlan_hdd_p2p.h"
+    },
+    {
+      "path": "qcacld-3.0/core/hdd/src/wlan_hdd_cfg80211.c"
+    },
+    {
+      "path": "qcacld-3.0/core/hdd/src/wlan_hdd_main.c"
+    },
+    {
+      "path": "qcacld-3.0/core/hdd/src/wlan_hdd_p2p.c"
+    },
+    {
+      "path": "qcacld-3.0/core/hdd/src/wlan_hdd_rx_monitor.c"
+    },
+    {
+      "path": "qcacld-3.0/core/hdd/src/wlan_hdd_tx_rx.c"
+    },
+    {
+      "path": "qcacld-3.0/core/hdd/src/wlan_hdd_wext.c"
+    },
+    {
+      "path": "qcacld-3.0/core/mac/src/pe/lim/lim_process_sme_req_messages.c"
+    },
+    {
+      "path": "qcacld-3.0/core/sme/src/common/sme_api.c"
+    },
+    {
+      "path": "qcacld-3.0/core/sme/src/csr/csr_api_roam.c"
+    },
+    {
+      "path": "qcacld-3.0/core/wma/inc/wma_api.h"
+    },
+    {
+      "path": "qcacld-3.0/core/wma/src/wma_data.c"
+    },
+    {
+      "path": "qcacld-3.0/core/wma/src/wma_mgmt.c"
+    }
+  ]
+}

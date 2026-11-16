@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status": "awaiting_evidence",
+  "live_authorized_by_this_record": false,
+  "radio_mutation": "none in offline implementation",
+  "stop_on": [
+    "cancellation",
+    "ownership/recovery ambiguity",
+    "unexpected peer/device",
+    "request duplication",
+    "missing independent attribution"
+  ],
+  "limits": [
+    "Host simulation and static artifacts do not qualify APK, handset or RF behavior."
+  ],
+  "objective": "Controlled endpoint nonce round-trip over ordinary UDP with bounded single request.",
+  "required": [
+    "Two owned endpoints and documented endpoint IPs",
+    "Receiver starts first using same fresh 256-bit nonce",
+    "Timeout <=10 seconds, one send per invocation",
+    "Record route tables, interface identifiers, AP topology and forwarding evidence separately"
+  ],
+  "success": "Matching nonce proves endpoint round-trip; silence is unknown and never proves isolation.",
+  "stop_gate": "No direct-versus-forwarded classification without independent route/AP evidence; harness always returns path unknown."
+}

@@ -1,0 +1,286 @@
+{
+  "schema_version": 1,
+  "actions": [
+    {
+      "id": "probe",
+      "title": "Device readiness",
+      "target_types": [
+        "global"
+      ],
+      "status": "experimental",
+      "description": "Read-only device/interface diagnostics.",
+      "blocker": "New APK handset lifecycle, receive and recovery qualification pending.",
+      "operation": "probe"
+    },
+    {
+      "id": "identity",
+      "title": "Privacy preflight",
+      "target_types": [
+        "global"
+      ],
+      "status": "experimental",
+      "description": "Read-only privacy facts; active transmission requires current passing privileged checks.",
+      "blocker": "Unknown or failed checks block active transmission. Handset qualification pending.",
+      "operation": "identity"
+    },
+    {
+      "id": "prepare",
+      "title": "Prepare private lab",
+      "target_types": [
+        "global"
+      ],
+      "status": "experimental",
+      "description": "Save settings, disable cellular/Bluetooth, enable airplane mode and install verified IP egress locks. Explicit restore required.",
+      "blocker": "Requires bounded privileged Android commands. Unknown facts remain blocked; handset qualification pending.",
+      "operation": "prepare"
+    },
+    {
+      "id": "privacy_restore",
+      "title": "Restore privacy settings",
+      "target_types": [
+        "global"
+      ],
+      "status": "experimental",
+      "description": "Restore the separately journaled connectivity settings and remove owned IP egress locks; radio firmware recovery remains separate.",
+      "blocker": "Requires bounded privileged Android commands. Unknown facts remain blocked; handset qualification pending.",
+      "operation": "privacy_restore"
+    },
+    {
+      "id": "privacy_status",
+      "title": "Privacy settings status",
+      "target_types": [
+        "global"
+      ],
+      "status": "experimental",
+      "description": "Read current privacy settings and recovery journal. Manual fallback: airplane mode on, cellular/Bluetooth off, no IP egress, randomized local WLAN address.",
+      "blocker": "Requires bounded privileged Android commands. Unknown facts remain blocked; handset qualification pending.",
+      "operation": "privacy_status"
+    },
+    {
+      "id": "capture",
+      "title": "Passive capture",
+      "target_types": [
+        "global",
+        "ap"
+      ],
+      "status": "experimental",
+      "description": "Bounded passive capture with restored radio before analysis.",
+      "blocker": "New APK handset lifecycle, receive and recovery qualification pending.",
+      "operation": "capture"
+    },
+    {
+      "id": "lab",
+      "title": "Deauth selected client",
+      "target_types": [
+        "client"
+      ],
+      "status": "experimental",
+      "description": "One explicit request to the selected AP/client and frequency; no automatic retry. Saved and imported targets are usable. Current privileged privacy and channel checks apply.",
+      "blocker": "New APK handset lifecycle, receive and recovery qualification pending.",
+      "operation": "lab",
+      "requires_private_context": true
+    },
+    {
+      "id": "restore",
+      "title": "Restore Wi-Fi",
+      "target_types": [
+        "global"
+      ],
+      "status": "experimental",
+      "description": "Reconcile shared radio recovery state.",
+      "blocker": "New APK handset lifecycle, receive and recovery qualification pending.",
+      "operation": "restore"
+    },
+    {
+      "id": "analyze",
+      "title": "Analyze PCAP",
+      "target_types": [
+        "global"
+      ],
+      "status": "experimental",
+      "description": "Offline protocol evidence; no transmission.",
+      "blocker": "Bundled decoder availability required.",
+      "operation": "analyze"
+    },
+    {
+      "id": "wps",
+      "title": "WPS transcript analysis",
+      "target_types": [
+        "ap"
+      ],
+      "status": "awaiting_evidence",
+      "description": "Offline structured WPS events and terminal states; credentials routed separately.",
+      "blocker": "Active WPS protocol implementation and owned-device qualification absent.",
+      "operation": null
+    },
+    {
+      "id": "wps-pixie",
+      "title": "WPS \u00b7 Pixie Dust",
+      "target_types": [
+        "ap"
+      ],
+      "status": "experimental",
+      "description": "Collect one exchange on the internal radio or import one, run Pixiewps locally and save verified results in Vault.",
+      "blocker": "Live collection and credential retrieval are experimental until qualified on this phone and AP; a recovered PIN is not a network password.",
+      "operation": "wps_pixie"
+    },
+    {
+      "id": "isolation",
+      "title": "Client isolation experiment",
+      "target_types": [
+        "ap",
+        "client"
+      ],
+      "status": "awaiting_evidence",
+      "description": "Bounded ordinary-socket nonce proof between controlled endpoints.",
+      "blocker": "Topology and route evidence required before direct-versus-forwarded classification.",
+      "operation": null
+    },
+    {
+      "id": "management-txrx",
+      "title": "Management TX/RX experiment",
+      "target_types": [
+        "ap",
+        "client"
+      ],
+      "status": "awaiting_evidence",
+      "description": "Correlate request cookie, response and independent receive evidence.",
+      "blocker": "No general injection proof; previous peer retry failed.",
+      "operation": null
+    },
+    {
+      "id": "pmf",
+      "title": "PMF experiment",
+      "target_types": [
+        "ap",
+        "client"
+      ],
+      "status": "awaiting_evidence",
+      "description": "Separate advertised policy from negotiated protection.",
+      "blocker": "Association transcript and authorized independent receiver required.",
+      "operation": null
+    },
+    {
+      "id": "softap",
+      "title": "SoftAP experiment",
+      "target_types": [
+        "global"
+      ],
+      "status": "awaiting_evidence",
+      "description": "Observe controlled AP lifecycle, association and restore.",
+      "blocker": "Firmware/driver capability and recovery not qualified.",
+      "operation": null
+    },
+    {
+      "id": "mlo",
+      "title": "MLO experiment",
+      "target_types": [
+        "ap"
+      ],
+      "status": "awaiting_evidence",
+      "description": "Decode advertised links without claiming negotiated multi-link operation.",
+      "blocker": "Negotiated link evidence and supported firmware path absent.",
+      "operation": null
+    },
+    {
+      "id": "firmware",
+      "title": "Firmware static audit",
+      "target_types": [
+        "global"
+      ],
+      "status": "awaiting_evidence",
+      "description": "Pinned static artifact audit, no patching or loading.",
+      "blocker": "ROM omissions and runtime context predicates unresolved.",
+      "operation": null
+    },
+    {
+      "id": "wps-enrollment",
+      "title": "WPS PIN / push-button enrollment",
+      "target_types": [
+        "ap"
+      ],
+      "status": "unavailable",
+      "description": "Enroll with a known PIN or push-button window and save verified credentials in the vault.",
+      "blocker": "Managed-mode WPS transport, cancellation, expiry and credential handoff are not implemented or qualified in this app.",
+      "operation": null
+    },
+    {
+      "id": "wps-pin",
+      "title": "Live WPS PIN audit",
+      "target_types": [
+        "ap"
+      ],
+      "status": "unavailable",
+      "description": "Live WPS exchange collection, PIN enrollment and lockout assessment. Imported-exchange analysis is available separately under WPS / Pixie Dust.",
+      "blocker": "No working WPS exchange collector or recovery workflow on this internal radio. Target susceptibility and recovery remain unproven.",
+      "operation": null
+    },
+    {
+      "id": "wpa-wordlist",
+      "title": "WPA / WPA2 password audit",
+      "target_types": [
+        "ap"
+      ],
+      "status": "unavailable",
+      "description": "Check a captured exchange against a user-supplied wordlist; save a verified result to the vault.",
+      "blocker": "The app captures and separates exchanges but has no integrated password-testing backend. A capture alone does not recover a password; WPA3 SAE is not equivalent to a WPA2 dictionary check.",
+      "operation": null
+    },
+    {
+      "id": "pmkid",
+      "title": "PMKID assessment",
+      "target_types": [
+        "ap"
+      ],
+      "status": "unavailable",
+      "description": "Identify a suitable PMKID exchange and evaluate whether offline password verification applies.",
+      "blocker": "A PMKID workflow and supported target configuration have not been qualified. This is not a universal clientless recovery method.",
+      "operation": null
+    },
+    {
+      "id": "wep",
+      "title": "WEP IV collection / analysis",
+      "target_types": [
+        "ap"
+      ],
+      "status": "unavailable",
+      "description": "Legacy WEP capture analysis and key-recovery workflow.",
+      "blocker": "No WEP workflow is integrated. Replay and IV-generation modes additionally require a working injection path.",
+      "operation": null
+    },
+    {
+      "id": "controlled-ap",
+      "title": "Controlled AP / evil-twin comparison",
+      "target_types": [
+        "ap",
+        "client"
+      ],
+      "status": "unavailable",
+      "description": "Compare association, reconnection and security policy against a controlled AP.",
+      "blocker": "SoftAP lifecycle, configuration, station/AP concurrency and recovery need qualification before this workflow can run.",
+      "operation": null
+    },
+    {
+      "id": "availability",
+      "title": "AP availability / authentication load",
+      "target_types": [
+        "ap"
+      ],
+      "status": "unavailable",
+      "description": "Measure an AP\u2019s behavior under a bounded availability test, with recovery observations.",
+      "blocker": "Authentication/frame-generation paths and bounded workload controls are not implemented. Directed client deauth does not establish these capabilities.",
+      "operation": null
+    },
+    {
+      "id": "beacon-probe",
+      "title": "Beacon / probe frame experiments",
+      "target_types": [
+        "ap"
+      ],
+      "status": "unavailable",
+      "description": "Controlled discovery-frame generation and response comparison.",
+      "blocker": "General monitor injection has not been demonstrated on this build. The working managed deauth path cannot be assumed to transmit other frame families.",
+      "operation": null
+    }
+  ]
+}

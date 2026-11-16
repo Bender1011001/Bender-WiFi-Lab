@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-14",
+  "evidence_kind": "live_handset_query",
+  "model": "CPH2655",
+  "android": "16",
+  "build": "CPH2655_16.0.8.301(EX01)",
+  "kernel": "6.6.89-android15-8-g97a9aaefab9a-ab14519050-4k",
+  "driver_version": "5.2.1.119O",
+  "firmware_version_report": "FW:1.0.0.0.32767.127 HW:PEACH_V2 STT:QC_IMAGE_VERSION_STRING=WLAN.GNG.1.0-03342-QCAGNGSWPL_V1.0_V2.0_SILICONZ-1.81206.153",
+  "installed_module_sha256": "d6bd3fac600aaeba858e83292df167bc410457c07e422047c1a181c31d24d3df",
+  "interface": "wlan0",
+  "mode": "managed",
+  "frequency_mhz": 6295,
+  "vendor_subcommand": 186,
+  "request_encoding": "empty_nested_vendor_data",
+  "shared_radio_lock_held": true,
+  "readout_status": "validated_under_tested_conditions",
+  "sample_count": 5,
+  "query_errors": 0,
+  "observed_inter_sample_ms": [
+    406.6,
+    369.1,
+    1028.1,
+    1024.1
+  ],
+  "samples": [
+    {
+      "index": 0,
+      "counters": {
+        "bip_mic_error_count": 0,
+        "bip_replay_count": 0,
+        "beacon_mic_error_count": 0,
+        "beacon_replay_count": 0
+      },
+      "response_attribute_ids": [
+        [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          20,
+          39,
+          40,
+          41,
+          42,
+          50,
+          51,
+          52,
+          55
+        ]
+      ],
+      "query_ms": 49.6
+    },
+    {
+      "index": 1,
+      "counters": {
+        "bip_mic_error_count": 0,
+        "bip_replay_count": 0,
+        "beacon_mic_error_count": 0,
+        "beacon_replay_count": 0
+      },
+      "response_attribute_ids": [
+        [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          20,
+          39,
+          40,
+          41,
+          42,
+          50,
+          51,
+          52,
+          55
+        ]
+      ],
+      "query_ms": 11.6
+    },
+    {
+      "index": 2,
+      "counters": {
+        "bip_mic_error_count": 0,
+        "bip_replay_count": 0,
+        "beacon_mic_error_count": 0,
+        "beacon_replay_count": 0
+      },
+      "response_attribute_ids": [
+        [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          20,
+          39,
+          40,
+          41,
+          42,
+          50,
+          51,
+          52,
+          55
+        ]
+      ],
+      "query_ms": 13.7
+    },
+    {
+      "index": 3,
+      "counters": {
+        "bip_mic_error_count": 0,
+        "bip_replay_count": 0,
+        "beacon_mic_error_count": 0,
+        "beacon_replay_count": 0
+      },
+      "response_attribute_ids": [
+        [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          20,
+          39,
+          40,
+          41,
+          42,
+          50,
+          51,
+          52,
+          55
+        ]
+      ],
+      "query_ms": 10.2
+    },
+    {
+      "index": 4,
+      "counters": {
+        "bip_mic_error_count": 0,
+        "bip_replay_count": 0,
+        "beacon_mic_error_count": 0,
+        "beacon_replay_count": 0
+      },
+      "response_attribute_ids": [
+        [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          20,
+          39,
+          40,
+          41,
+          42,
+          50,
+          51,
+          52,
+          55
+        ]
+      ],
+      "query_ms": 10.1
+    }
+  ],
+  "counter_increment_accuracy": "not_tested",
+  "counter_freshness": "unresolved",
+  "counter_reset_semantics": "unresolved",
+  "negotiated_pmf": "unknown",
+  "beacon_protection_enabled": "unknown",
+  "pmf_enforcement": "not_tested",
+  "pmf_bypass": "not_established",
+  "source_to_loaded_binary_equivalence": "not_established",
+  "setters_sent": 0,
+  "management_frames_submitted": 0,
+  "final_state": {
+    "same_ap": true,
+    "frequency_mhz": 6295,
+    "width_mhz": 160,
+    "power_save_unchanged": true,
+    "gateway_ping_transmitted": 3,
+    "gateway_ping_received": 3,
+    "gateway_loss_percent": 0
+  },
+  "setup_issue": "Initial attempt stopped before vendor queries: missing constants in reused helper subset. Corrected from archived constants; raw failure retained.",
+  "private_evidence_dir": "validation/pmf-20261114/live",
+  "evidence_sha256": {
+    "counter-results.private.json": "5ed19d57374ee2d88abe41765e825e5c066d1c3efa9001d35f0f5d0c481de2e8",
+    "connectivity.private.json": "7f06a05ba6d799366c7a4462a96ff5d9d1d6406ba31b31ae20d65de925eb8762",
+    "counter_probe.py": "a0f168a76c75d8b623144b6e0b00e50c0004645e64894ddfb9a360685ed95703",
+    "connectivity_check.py": "04099ca3e4cc49629581528469dc899c2c4023f259bb1d6bc6e7c1a42a53bc77",
+    "netlink.py": "c4e587ac523a3d7b959ec105864894d8de1ce57b8e52291a1d7fa7e2986fa3f4",
+    "nl80211-constants.json": "08fcb61bd82c0106bfa9466d4fde28e45fb63db1acc9e212c17aa24672682792",
+    "SHA256SUMS": "4819d023511c8bb5b810ef9bddb98feeb59f694f35a6ff5aec33ea8332ed30b7",
+    "run-counter-probe.sh": "f64c9091eab2be7e1acd782e0f20509646232316390201d47aa5f6219aedd1ae",
+    "setup-error.private.json": "5457924f23e3e8120035a0bb855b0b5825e47433f6be042901a8a28f4db162cc",
+    "setup-error.log": "615d507b3167133aaad3bc156b2bd6214b7148f2fa6fc1a02a0eb12e230f1ef9",
+    "run.log": "8539fde27217adccb51e5f9b665419ac8e807341ccba9ef0df38f19bcf30e0be",
+    "connectivity.log": "a8509c93eab0950539dfc28b600686057aa5a3a46b4c94bf7f8b9be8a1a5e5b5"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "checked_at_utc": "2026-11-15T04:04:50.703231+00:00",
+  "status": "pass",
+  "checks": {
+    "json_documents_parsed": 8,
+    "saved_capability_source_sha256_matches": true,
+    "saved_capability_lines_checked": 10,
+    "referenced_artifacts_present": true,
+    "failed_refresh_explicit": true,
+    "new_markdown_identifier_pattern_check": true
+  },
+  "limits": [
+    "Artifact consistency and a narrow identifier pattern check only; not a comprehensive privacy audit.",
+    "No hardware, RF, app build or functional dual-STA validation was performed.",
+    "Hashes identify retained bytes and do not independently authenticate upstream claims."
+  ],
+  "failures": [],
+  "artifacts": [
+    {
+      "path": "CHECKPOINT.md",
+      "bytes": 2210,
+      "sha256": "01056767db2337d1dd1a21f09d66784fa426d52c6e985a2bbd64c4d88d254dc7"
+    },
+    {
+      "path": "COMPARISON.md",
+      "bytes": 10095,
+      "sha256": "3e903b7c26392947e5eedf23de79ea4145cb8a8b4c5d7fe750ae23496d2ebdbd"
+    },
+    {
+      "path": "dual-sta-capability-evidence.json",
+      "bytes": 1622,
+      "sha256": "26f621ca9596a36563b6bedb3822e3bb9413887a1251e7837d0f86b5998b7feb"
+    },
+    {
+      "path": "dual-sta-current-evidence.json",
+      "bytes": 831,
+      "sha256": "d38eb5f021bfffe7808ec5dc1cff0955ce45930883078362161ebbe623b89d3f"
+    },
+    {
+      "path": "FIRST-EXPERIMENT.md",
+      "bytes": 6159,
+      "sha256": "be045f09ed2fad0b6bf99fcef68396b6c8fae5c96ebb9cf5dd0262f650e9946e"
+    },
+    {
+      "path": "SOURCES.json",
+      "bytes": 7776,
+      "sha256": "af0897202a371a562085fe7ecb1cee4a33b30027703d54a2678dd9dd84db61dc"
+    },
+    {
+      "path": "upstream/avium-README.md",
+      "bytes": 3135,
+      "sha256": "82517ee350725a17e349119315a91d993313ccd6fe11496b8a129bed5b8a7d85"
+    },
+    {
+      "path": "upstream/cfr_head.json",
+      "bytes": 645,
+      "sha256": "d617e86a400bf8cc1c8cf3eaaff0cbd8f7c91ff8b64f4d1ab2a22d522a99a2ca"
+    },
+    {
+      "path": "upstream/direct_dp_head.json",
+      "bytes": 1362,
+      "sha256": "6799834820c94d4334b6da51f287e0f882662cfd3952f47e6826f35897a8bfaf"
+    },
+    {
+      "path": "upstream/loukious-25875eb.diff",
+      "bytes": 72303,
+      "sha256": "3b40b81a9831edf1ab3649188bb497127baab877f71419ac1707d9805723d369"
+    },
+    {
+      "path": "upstream/loukious-25875eb.json",
+      "bytes": 2358,
+      "sha256": "acee9312417e83870d1a79159c0822755b32f0b688f1ce24e6c1eb2da00f976e"
+    },
+    {
+      "path": "upstream/loukious-branches-page1.json",
+      "bytes": 22665,
+      "sha256": "92db16bca9251b2702245eb058fe8c9ff1dbdb32f404457cc8e7b1895e851524"
+    },
+    {
+      "path": "upstream/old_patch.json",
+      "bytes": 445036,
+      "sha256": "439d36cda03ae7f1a8d34b4c057d14e3fcd04c7f5d8a7162fdc5b9e6fa8f270c"
+    }
+  ]
+}

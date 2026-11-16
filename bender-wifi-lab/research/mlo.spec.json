@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "status": "awaiting_evidence",
+  "live_authorized_by_this_record": false,
+  "radio_mutation": "none in offline implementation",
+  "stop_on": [
+    "cancellation",
+    "ownership/recovery ambiguity",
+    "unexpected peer/device",
+    "request duplication",
+    "missing independent attribution"
+  ],
+  "limits": [
+    "Host simulation and static artifacts do not qualify APK, handset or RF behavior."
+  ],
+  "objective": "Map advertised MLD/link elements and separately establish negotiated active links.",
+  "required": [
+    "Raw extension elements with frame provenance",
+    "Association and per-link evidence",
+    "Supported device/driver/firmware combination"
+  ],
+  "success": "Malformed, truncated or absent elements stay unknown; advertised links do not prove concurrent active links.",
+  "stop_gate": "Missing negotiation evidence blocks active MLO claim."
+}

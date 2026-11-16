@@ -1,0 +1,11 @@
+# Checkpoint — Qualcomm prior-art comparison
+
+- Objective: compare the OnePlus internal-radio evidence with existing Qualcomm projects and select a credible new contribution.
+- Completed: `COMPARISON.md`, `FIRST-EXPERIMENT.md`, retained upstream diffs/metadata, saved-capability extraction and separately recorded failed refresh. Source provenance and artifact validation accompany this checkpoint.
+- Decision: prioritize qualifying two simultaneous Wi-Fi endpoints, then investigate separation of connection-specific traffic/security state. Tool novelty is a bounded-search candidate; no new vulnerability is established.
+- Existing result preserved: November 13 V61 single submissions against WiZ, Roku and Samsung have matching ACKs and separate router disconnect/reconnect evidence. All at 2437 MHz; no independent over-air TX capture, no PMF bypass, no current Preview 8 live qualification.
+- New feasibility evidence: retained Nov14 Android report says STA+STA supported, multi-internet mode 2, multi-internet concurrency enabled, same-band/same-BSSID pairs disallowed. File and hash: `dual-sta-capability-evidence.json`. Not a functional concurrency test.
+- Prior art: Loukious monitor/helper-vdev injection (March/July implementations differ), AviumUI OnePlus monitor capture, QCA Spectral Scan, POCO F5 CFR transport. Android already supports concurrent STA; Cisco already documented dual-connection quarantine/accounting issues; AirSnitch already studies client isolation failures.
+- Blockers for live work: selected ADB handset unavailable during read-only refresh; Rockspace model, operating mode, supported bands and topology unknown; no independently proven between-interface packet path. User owns Rockspace but would need to retrieve its model, so comparison does not wait on that detail.
+- Scope of this turn: research files only. No new radio test, router configuration change, downloaded code execution, firmware modification, app deployment or publication.
+- Next action when hardware is available: follow `FIRST-EXPERIMENT.md` gates 0–2. Advance to isolation interpretation only after proving the external path and controls. Never infer network separation from two boxes or two SSIDs.

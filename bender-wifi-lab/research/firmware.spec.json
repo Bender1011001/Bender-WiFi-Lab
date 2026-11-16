@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "status": "awaiting_evidence",
+  "live_authorized_by_this_record": false,
+  "radio_mutation": "none in offline implementation",
+  "stop_on": [
+    "cancellation",
+    "ownership/recovery ambiguity",
+    "unexpected peer/device",
+    "request duplication",
+    "missing independent attribution"
+  ],
+  "limits": [
+    "Host simulation and static artifacts do not qualify APK, handset or RF behavior."
+  ],
+  "objective": "Close context initialization and ROM-call contracts offline before another native monitor experiment.",
+  "required": [
+    "Pinned original amss20 and derived ELF hashes",
+    "Nested pointer C=*(P+0x20), not P itself",
+    "C+0x56 bit0 set rejects",
+    "Explicit 0x23c zero belongs to second allocation, not C",
+    "ROM allocator 0x1f468ec and five further unbacked callees unresolved"
+  ],
+  "success": "Static focused predicates and omissions verified; no patch or load authorization.",
+  "stop_gate": "Unknown live bit value, rejecting branch or initializer semantics forbids speculative patching.",
+  "evidence": "firmware-artifacts.json; firmware_audit.py"
+}

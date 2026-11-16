@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status": "awaiting_evidence",
+  "live_authorized_by_this_record": false,
+  "radio_mutation": "none in offline implementation",
+  "stop_on": [
+    "cancellation",
+    "ownership/recovery ambiguity",
+    "unexpected peer/device",
+    "request duplication",
+    "missing independent attribution"
+  ],
+  "limits": [
+    "Host simulation and static artifacts do not qualify APK, handset or RF behavior."
+  ],
+  "objective": "Qualify supported internal-radio SoftAP lifecycle.",
+  "required": [
+    "Documented driver/firmware capability",
+    "Explicit owned station",
+    "Single lifecycle start/associate/stop",
+    "Settings, mode and association recovery verification"
+  ],
+  "success": "Record association, traffic and restoration separately.",
+  "stop_gate": "No command is enabled before firmware/driver capability evidence and recovery plan."
+}

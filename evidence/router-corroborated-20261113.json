@@ -1,0 +1,355 @@
+{
+  "schema_version": 1,
+  "date_local": "2026-11-13",
+  "timezone": "America/Los_Angeles",
+  "provenance": "Sanitized maintainer-derived aggregate of private handset, observer and Verizon CR200A router records; not independent laboratory reproduction. Hashes identify retained inputs, not public authenticity certification.",
+  "environment": {
+    "phone_model": "CPH2655 (OnePlus 13)",
+    "android_build": "CPH2655_16.0.8.301(EX01)",
+    "tested_tool": "Previously staged V61 terminal delivery; not Preview 8",
+    "driver_sha256": "d6bd3fac600aaeba858e83292df167bc410457c07e422047c1a181c31d24d3df",
+    "external_wifi_adapter": false,
+    "router": "Verizon CR200A",
+    "tool_sha256": {
+      "netlink.py": "c4e587ac523a3d7b959ec105864894d8de1ce57b8e52291a1d7fa7e2986fa3f4",
+      "nh-wifi": "4a9be7de213fe90991b119a0cd928eb16f036ade1abd6ec04b7394e3cfa695ee",
+      "nl80211-constants.json": "96ee90b6c4bf7f6d6b6e037095d0ac80cd3e6f395dabbf8a809af832aeef9420",
+      "owned-ap.json": "7f3a63758edd50d0a63fc479838900bb21c9fd2ee83d866d8a91fc6b74431d80",
+      "qca-backend.py": "2ac0fd6bcd9c67f4e93b41eeb1e85bce3b6f9baa9ada18b1d2ac9789ac95bfa4",
+      "qca-runner.sh": "b44c3191056f22badde2cc5a56b6fddf746c28299734f5f110f32b3b3a57e8f0",
+      "qca-scan.py": "08e3d8abe49cfdb41a9be7e43a8c856613e7b13f8599f5388d82c879caff3b7d",
+      "terminal.py": "24c7286937dee6a1a557f007759e05d1fff826996fd479872e08b9b60631e0bf"
+    }
+  },
+  "privacy_transformations": [
+    "Replaced client/AP addresses with aliases",
+    "Removed IP addresses, SSIDs, session IDs, full responses and household names",
+    "Retained aggregate counts, router event semantics, source hashes and documented limitations",
+    "Roku event AP band labels retain the recorded 2.4 GHz to 5 GHz transition without exposing BSS interfaces or AP addresses."
+  ],
+  "trials": [
+    {
+      "id": "wiz",
+      "target": "WiZ bulb",
+      "frequency_mhz": 2437,
+      "userspace_submissions": 1,
+      "matching_driver_ack": true,
+      "status_match": [
+        "sequence_assigned"
+      ],
+      "pre_transmit_capture_frames": 792,
+      "selected_ap_only": true,
+      "application_observation": {
+        "method": "getPilot UDP",
+        "samples": 87,
+        "successful": 79,
+        "failed_sample_indices": [
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63
+        ],
+        "interpretation": "Clean initial baseline, consecutive failed probes, then recovery; probe count is not exact outage duration"
+      },
+      "advertised_pmf": {
+        "capable": false,
+        "required": false,
+        "source": "Selected AP beacon RSN capabilities; client negotiation not separately captured"
+      },
+      "router_events": [
+        {
+          "router_local_time": "2026 Nov 13 13:17:43",
+          "details": "ACTION=Connectivity, SA=AP, DA=CLIENT, STA is disconnected"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:17:43",
+          "details": "ACTION=Authentication, SA=CLIENT, DA=AP, Received with algorithm=0, status=SUCCESS"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:17:43",
+          "details": "ACTION=Authentication, SA=CLIENT, DA=AP, Open System: Authentication OK"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:17:43",
+          "details": "ACTION=Authentication, SA=AP, DA=CLIENT, Authenticated"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:17:43",
+          "details": "ACTION=Association Request, SA=CLIENT, DA=AP"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:17:43",
+          "details": "ACTION=Association Response, SA=AP, DA=CLIENT, Associated, AID=1"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:17:43",
+          "details": "ACTION=EAPoL Handshake, SA=AP, DA=CLIENT, Sending 1/4 msg of 4-Way Handshake"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:17:43",
+          "details": "ACTION=EAPoL Handshake, SA=CLIENT, DA=AP, Received EAPOL-Key frame (2/4 Pairwise)"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:17:43",
+          "details": "ACTION=EAPoL Handshake, SA=AP, DA=CLIENT, Sending 3/4 msg of 4-Way Handshake"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:17:43",
+          "details": "ACTION=EAPoL Handshake, SA=CLIENT, DA=AP, Received EAPOL-Key frame (4/4 Pairwise)"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:17:43",
+          "details": "ACTION=Connectivity, SA=AP, DA=CLIENT, STA is connected"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:17:43",
+          "details": "ACTION=EAPoL Handshake, SA=AP, DA=CLIENT, Pairwise key handshake completed (RSN)"
+        }
+      ],
+      "recovery": {
+        "managed_mode": true,
+        "recovery_pending": false
+      },
+      "source_sha256": {
+        "capture.json": "bc510f53466350971116339383372975063496ea1c64cbc85294a99826e241e6",
+        "capture.tar": "4732ed8889205f3b6d9ab082ee8b6b3b9f669f71b40fa626e47fa4832e2546d4",
+        "directed-test.json": "cd015b7024a3a987e2032b51bfb17559a895c5c58eb45db0fd3ca8633a3835a0",
+        "directed-test.tar": "ebdae84172e3d62a1dbf33fe55d5920c8248034d0d1055ef7c8d98877b7d98c3",
+        "recovery-check.json": "86553d9b4615adc1e12b0c28831cc17c7c28a145df65881d63c09c943276b3da",
+        "clock-samples.json": "b14c8941c9563d5dee16904fbfbf9789b5ec25eb5a0fd59af4a13073b08980ea",
+        "events.json": "8b43128be0211e2e84a8fdc282c229d708e73315038320ff34fb13ec0184e07c",
+        "bulb-observation.jsonl": "dbf4f5dec9f326edc4b4b2fd8153b60d84c4dc172dd9689c267356d12a2dbb81",
+        "observation-summary.json": "3045306ea08dad2079e4d82e1db9100c90f3505b3babce2b35d19103aab33009"
+      },
+      "router_log_sha256": "db6484ac6bf4903440003c5150e0ad9db3d493038988b70b02e2ed449b8f35c5"
+    },
+    {
+      "id": "roku",
+      "target": "Roku Express 4K",
+      "frequency_mhz": 2437,
+      "userspace_submissions": 1,
+      "matching_driver_ack": true,
+      "status_match": [
+        "sequence_assigned"
+      ],
+      "pre_transmit_capture_frames": 385,
+      "selected_ap_only": true,
+      "application_observation": {
+        "method": "ICMP echo",
+        "samples": 82,
+        "successful": 73,
+        "failed_sample_indices": [
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59
+        ],
+        "interpretation": "Clean initial baseline, consecutive failed probes, then recovery; probe count is not exact outage duration"
+      },
+      "advertised_pmf": {
+        "capable": true,
+        "required": false,
+        "source": "Selected AP beacon RSN capabilities; client negotiation not separately captured"
+      },
+      "router_events": [
+        {
+          "router_local_time": "2026 Nov 13 13:22:16",
+          "details": "ACTION=Connectivity, SA=AP, DA=CLIENT, STA is disconnected",
+          "ap_band": "2.4 GHz"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:22:24",
+          "details": "ACTION=Authentication, SA=CLIENT, DA=AP, Received with algorithm=0, status=SUCCESS",
+          "ap_band": "5 GHz"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:22:24",
+          "details": "ACTION=Authentication, SA=CLIENT, DA=AP, Open System: Authentication OK",
+          "ap_band": "5 GHz"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:22:24",
+          "details": "ACTION=Authentication, SA=AP, DA=CLIENT, Authenticated",
+          "ap_band": "5 GHz"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:22:24",
+          "details": "ACTION=Association Request, SA=CLIENT, DA=AP",
+          "ap_band": "5 GHz"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:22:24",
+          "details": "ACTION=Association Response, SA=AP, DA=CLIENT, Associated, AID=1",
+          "ap_band": "5 GHz"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:22:24",
+          "details": "ACTION=EAPoL Handshake, SA=AP, DA=CLIENT, Sending 1/4 msg of 4-Way Handshake",
+          "ap_band": "5 GHz"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:22:24",
+          "details": "ACTION=EAPoL Handshake, SA=CLIENT, DA=AP, Received EAPOL-Key frame (2/4 Pairwise)",
+          "ap_band": "5 GHz"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:22:24",
+          "details": "ACTION=EAPoL Handshake, SA=AP, DA=CLIENT, Sending 3/4 msg of 4-Way Handshake",
+          "ap_band": "5 GHz"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:22:24",
+          "details": "ACTION=EAPoL Handshake, SA=CLIENT, DA=AP, Received EAPOL-Key frame (4/4 Pairwise)",
+          "ap_band": "5 GHz"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:22:24",
+          "details": "ACTION=Connectivity, SA=AP, DA=CLIENT, STA is connected",
+          "ap_band": "5 GHz"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:22:24",
+          "details": "ACTION=EAPoL Handshake, SA=AP, DA=CLIENT, Pairwise key handshake completed (RSN)",
+          "ap_band": "5 GHz"
+        }
+      ],
+      "recovery": {
+        "managed_mode": true,
+        "recovery_pending": false
+      },
+      "source_sha256": {
+        "capture.json": "5c877282e53e8e42850e26887f75f056e1c345b2ab010d456ae93680d3c9b4d9",
+        "capture.tar": "790c1065d6a2920b47e874000a555dc6a7be46cacc5fdb6f04b46ccb47078b6e",
+        "directed-test.json": "c0019c97bf8c8c03de51549cd8dc37085b04d344474f1bb1ae89076d8d88271f",
+        "directed-test.tar": "849ce21ddfed9eb19f7b99db245745292e5bd65c463c6a10ff74f5c7d3bfc586",
+        "recovery-check.json": "a522d47c3b4bf5614e0bd00d94af4c44d7473714fe773985efb5e24827aa0423",
+        "clock-samples.json": "a5931bebfc77c06760fdd8531de8e0d1b47ef3492bdb6ef3f73f82e011df214d",
+        "events.json": "7fe74dedd5a4ddd0da73c0418fb23131761d034b7402e4119df8a9933505a0de",
+        "ping-observation.jsonl": "c28b8023f1cd62fdc7337461c29fe1e4f1f568d099bd16ed3d2740110d941a20",
+        "observation-summary.json": "a9f0d5da4146fe785aeb1335763d1f02a34808922f86ebd4cf6b733c2701885f"
+      },
+      "router_log_sha256": "9b5a5d40c36eea4e28ee0df6b789cb92d6bd123fe038b238a37a1aa382556aef",
+      "ap_band_provenance": "Retained router BSS-to-band mapping in private RESULTS.md; interface names and AP identifiers replaced by band labels."
+    },
+    {
+      "id": "samsung",
+      "target": "Samsung phone (router label: S26 Ultra; exact model unverified)",
+      "frequency_mhz": 2437,
+      "userspace_submissions": 1,
+      "matching_driver_ack": true,
+      "status_match": [
+        "sequence_assigned"
+      ],
+      "pre_transmit_capture_frames": 770,
+      "selected_ap_only": true,
+      "application_observation": {
+        "method": "ICMP echo",
+        "samples": 82,
+        "successful": 77,
+        "failed_sample_indices": [
+          0,
+          61,
+          62,
+          63,
+          64
+        ],
+        "interpretation": "Intermittent before submission; excluded as standalone effect evidence"
+      },
+      "advertised_pmf": {
+        "capable": false,
+        "required": false,
+        "source": "Selected AP beacon RSN capabilities; client negotiation not separately captured"
+      },
+      "router_events": [
+        {
+          "router_local_time": "2026 Nov 13 13:24:06",
+          "details": "ACTION=Connectivity, SA=AP, DA=CLIENT, STA is disconnected"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:24:06",
+          "details": "ACTION=Authentication, SA=CLIENT, DA=AP, Received with algorithm=0, status=SUCCESS, retry"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:24:06",
+          "details": "ACTION=Authentication, SA=CLIENT, DA=AP, Open System: Authentication OK"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:24:06",
+          "details": "ACTION=Authentication, SA=AP, DA=CLIENT, Authenticated"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:24:06",
+          "details": "ACTION=Association Request, SA=CLIENT, DA=AP"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:24:06",
+          "details": "ACTION=Association Response, SA=AP, DA=CLIENT, Associated, AID=2"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:24:06",
+          "details": "ACTION=EAPoL Handshake, SA=AP, DA=CLIENT, Sending 1/4 msg of 4-Way Handshake"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:24:06",
+          "details": "ACTION=EAPoL Handshake, SA=CLIENT, DA=AP, Received EAPOL-Key frame (2/4 Pairwise)"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:24:06",
+          "details": "ACTION=EAPoL Handshake, SA=AP, DA=CLIENT, Sending 3/4 msg of 4-Way Handshake"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:24:06",
+          "details": "ACTION=EAPoL Handshake, SA=CLIENT, DA=AP, Received EAPOL-Key frame (4/4 Pairwise)"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:24:06",
+          "details": "ACTION=Connectivity, SA=AP, DA=CLIENT, STA is connected"
+        },
+        {
+          "router_local_time": "2026 Nov 13 13:24:06",
+          "details": "ACTION=EAPoL Handshake, SA=AP, DA=CLIENT, Pairwise key handshake completed (RSN)"
+        }
+      ],
+      "recovery": {
+        "managed_mode": true,
+        "recovery_pending": false
+      },
+      "source_sha256": {
+        "capture.json": "3b151a1b7535a892c7bf40a0be5300054dd94a717bb120934bd996e988887faa",
+        "capture.tar": "dc9840e3647ad426c9d1a316256ba580c894edc75537314172935480beaea738",
+        "directed-test.json": "535738decb607fcd2f5f41435be1c5238680c10bd1989c0b49e2fbe5fa54303d",
+        "directed-test.tar": "13eee52c8fee6b9354258fe9d82d781fa01ce26eb094153238d1cd846dd26804",
+        "recovery-check.json": "e14411bd66b58032e41719a711d70aa0ceb091c78c98a4a71070176d31fe6c5b",
+        "clock-samples.json": "e78b13c7fab427c5fa35c747e34cd7beebf380ff77d0084f02882fb423779130",
+        "events.json": "73b61c9ddbe109db9c22c015b68b3c28fa710a9873e849610095d88321131deb",
+        "ping-observation.jsonl": "d0e8ec9041b55b1ad0b0a5207395521758f3db335c5d55c8920145765cc30a72",
+        "observation-summary.json": "41de0dca340123f55391185668038456e4d147ed7db954738745b6cc2a4f23e8"
+      },
+      "router_log_sha256": "9b5a5d40c36eea4e28ee0df6b789cb92d6bd123fe038b238a37a1aa382556aef"
+    }
+  ],
+  "timing": "Five host/phone clock brackets per trial retained privately. Router clock uncalibrated and events have one-second resolution. No exact RF timestamp or outage duration claimed.",
+  "samsung_screen": "No unlock action performed by the agent. Physical screen state not independently recorded.",
+  "final_gateway": {
+    "transmitted": 3,
+    "received": 3
+  },
+  "limits": [
+    "One physical transmitting handset/configuration",
+    "Three client trials, one userspace submission each; not success-rate estimates",
+    "All directed trials at 2437 MHz",
+    "No independent over-the-air capture of transmitted frames",
+    "No PMF bypass: IoT BSSID advertised MFPC=False/MFPR=False",
+    "Roku AP advertised PMF capable but optional; this does not establish client-negotiated PMF",
+    "Preview 8 and portable-package clean lifecycle remain handset-unvalidated"
+  ]
+}

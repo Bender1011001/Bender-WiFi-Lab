@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "status": "awaiting_evidence",
+  "live_authorized_by_this_record": false,
+  "radio_mutation": "none in offline implementation",
+  "stop_on": [
+    "cancellation",
+    "ownership/recovery ambiguity",
+    "unexpected peer/device",
+    "request duplication",
+    "missing independent attribution"
+  ],
+  "limits": [
+    "Host simulation and static artifacts do not qualify APK, handset or RF behavior."
+  ],
+  "objective": "Correlate one managed request intent/cookie with response and independent receiver evidence.",
+  "required": [
+    "Fresh AP/client association and explicit frequency",
+    "Owned endpoints and explicit user action",
+    "Single request; no retry",
+    "Cookie matched completion and independent receiver/AP log"
+  ],
+  "success": "Record each boundary separately; no RF success from host acceptance alone.",
+  "stop_gate": "Do not repeat unchanged V60 or add duplicate peers. Missing context initialization or ROM contract blocks native monitor TX.",
+  "prior": "V60 mission-v60-bss-peer-deauth-mgmt1: one 26-byte deauth, 0x7008, vdev2 descriptor63 5220MHz; peer_type1 and WAL vdev2 yet 0x0badba13/status7; DISCARD(1), ACK false. 14,109 decoded messages/308 CLD records; cumulative drop1 and missing mode/frame25674/25673 prevent a complete mode window.",
+  "evidence": "E:/code.projects/oneplus13-build-cache/history-archive-20261113/searchable-notes/build-v60/LIVE_RESULTS.md:7-28"
+}

@@ -1,0 +1,20 @@
+{
+  "source": "https://github.com/wiire-a/pixiewps",
+  "revision": "30c22cf59e09c732682a733227a652cc9fe0685f",
+  "ndk": "27.1.12297006",
+  "outputs": [
+    {
+      "abi": "arm64-v8a",
+      "sha256": "e42241cc4946d6d07b835a75ec71b4c224188d5f1177b1ebb901281a79e661b4",
+      "bytes": 97904
+    },
+    {
+      "abi": "x86_64",
+      "sha256": "8f8dbe8696f088d733c9082feb84bbff9c05aac58f5df76c511216c89e086b1f",
+      "bytes": 99816
+    }
+  ],
+  "license": "GPL-3.0-or-later",
+  "source_path_mapping": "project root replaced by . in compiler-generated file strings",
+  "interface": "six hex fields on stdin; 1 worker; native CPU and app wall deadlines"
+}

@@ -1,0 +1,11 @@
+{
+  "frames": 11290,
+  "previous_identified_addresses": 6,
+  "updated_identified_addresses": 12,
+  "additional_addresses": 6,
+  "aps_with_station_total": 6,
+  "control_frames": 4524,
+  "control_relation_groups": 54,
+  "analysis_bytes": 296325,
+  "live_test": false
+}

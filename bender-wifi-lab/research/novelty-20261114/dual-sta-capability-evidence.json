@@ -1,0 +1,53 @@
+{
+  "source": "bender-wifi-lab/validation/pmf-20261114/controlled/wifi-state.private.log",
+  "sha256": "4c5a2d4072a296c7312223b3a2da9cabe0da9dd829b47768a689281c9c27bc08",
+  "evidence_kind": "retained_Android_capability_configuration_report_2026-11-14",
+  "facts": [
+    {
+      "line": 13,
+      "value": "WifiMultiInternetMode 2"
+    },
+    {
+      "line": 690,
+      "value": "STA + STA Concurrency Supported: true"
+    },
+    {
+      "line": 695,
+      "value": "STA + AP Concurrency Supported: true"
+    },
+    {
+      "line": 5065,
+      "value": "WifiMultiInternet: mStaConcurrencyMultiInternetMode 2"
+    },
+    {
+      "line": 14822,
+      "value": "mIsMultiInternetSameBandConnectionAllowed=false"
+    },
+    {
+      "line": 14823,
+      "value": "mIsMultiInternetSameBssidConnectionAllowed=false"
+    },
+    {
+      "line": 14899,
+      "value": "Resource Name: config_wifiMultiStaMultiInternetConcurrencyEnabled, value: true"
+    },
+    {
+      "line": 14908,
+      "value": "Resource Name: config_wifiAllowMultiInternetConnectDual5GFrequency, value: false"
+    },
+    {
+      "line": 14909,
+      "value": "Resource Name: config_wifiMultiStaRestrictedConcurrencyEnabled, value: true"
+    },
+    {
+      "line": 14927,
+      "value": "Resource Name: config_wifiMultiStaLocalOnlyConcurrencyEnabled, value: false"
+    }
+  ],
+  "limits": [
+    "Not a fresh handset check",
+    "Reported support is not a two-association functional test",
+    "Dual STA is not Wi-Fi 7 MLO",
+    "Different-band restrictions apply; compatible band pairs remain unqualified"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "status": "static_checks_passed",
+  "artifacts": {
+    "firmware": {
+      "sha256": "f89a5348a4076d4db062eb335ac97b5fb028397bd3d21c96a837fb138503d84e",
+      "match": true
+    },
+    "elf": {
+      "sha256": "2c57b38a949df7c2fd2d7e5dfe1c29b7fdb60eb8f1b16aad647f57f371c9f21f",
+      "match": true
+    },
+    "disassembly": {
+      "sha256": "bfb3935dcf8a6576de4dd7d9f7c499008168c63e9f5cd3e08bb00b293abcd486",
+      "match": true
+    }
+  },
+  "predicates": {
+    "nested_context": true,
+    "bit_zero_reject": true,
+    "second_allocation_zeroed": true
+  },
+  "rom_not_file_backed": [
+    "0x1f468ec",
+    "0x1e1951c",
+    "0x1e2d7b8",
+    "0x1e19844",
+    "0x1e1eba8",
+    "0x1e19200"
+  ],
+  "limits": [
+    "Retained pinned disassembly; this run does not regenerate instructions.",
+    "C=*(P+0x20). C+0x56 bit0 set rejects; live value and failing branch remain unknown.",
+    "The explicit zero of 0x23c bytes applies to the second allocation, not C.",
+    "Static predicates do not authorize patching, loading or another unchanged live retry."
+  ]
+}

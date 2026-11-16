@@ -1,0 +1,7 @@
+.gradle/
+**/build/
+**/local.properties
+**/__pycache__/
+*.pyc
+**/runtime-bundle/rootfs.tar.gz
+/downloads/

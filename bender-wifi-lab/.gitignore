@@ -1,0 +1,9 @@
+.gradle/
+build/
+**/build/
+local.properties
+__pycache__/
+*.pyc
+.pytest_cache/
+dist/
+validation/

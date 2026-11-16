@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-11-14",
+  "evidence_kind": "offline_review_of_separate_archived_handset_survey",
+  "handset_access_during_review": false,
+  "radio_operations_during_review": 0,
+  "apk_behavior_changed": false,
+  "archive_directory": "E:\\code.projects\\oneplus13-build-cache\\wifi-command-survey-20261114\\vendor-state",
+  "source_manifest_matches": {
+    "qca-vendor.h": true,
+    "iw-vendor.c": true,
+    "nested-vendor-survey.py": true,
+    "vendor-state-test.py": true,
+    "bandwidth-delayed.py": true
+  },
+  "configuration_query_count": 15,
+  "driver_version_readback": "5.2.1.119O",
+  "state_readbacks": {
+    "roam_reason": {
+      "original": 0,
+      "requested": 1,
+      "set_replies": [],
+      "observed": 1,
+      "restore_replies": [],
+      "restored": 0,
+      "restore_verified": true
+    },
+    "listen_interval": {
+      "original": 0,
+      "requested": 1,
+      "set_replies": [],
+      "observed": 1,
+      "restore_replies": [],
+      "restored": 0,
+      "restore_verified": true
+    },
+    "dynamic_bandwidth": {
+      "original": 0,
+      "requested": 1,
+      "set_replies": [],
+      "observed": 0,
+      "restore_replies": [],
+      "restored": 1,
+      "restore_verified": false
+    }
+  },
+  "bandwidth_followup_zero_readbacks": 4,
+  "bandwidth_delayed_readbacks": {
+    "original": 0,
+    "set": [],
+    "after_set": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "restore": [],
+    "after_restore": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "bandwidth_repeat_sample_spacing_ms": 350,
+  "universal_settling_bound_established": false,
+  "recovery": {
+    "same_initial_final_ap": true,
+    "initial_final_frequency_mhz": 6295,
+    "initial_final_width_mhz": 160,
+    "power_save_on": true,
+    "gateway_packets_sent": 3,
+    "gateway_packets_received": 3,
+    "gateway_loss_percent": 0
+  },
+  "offchannel_acceptance_only": [
+    2437,
+    6295
+  ],
+  "physical_bandwidth_or_dwell_verified": false,
+  "pmf_telemetry_candidate": {
+    "vendor_subcommand": 186,
+    "response_attributes": [
+      39,
+      40,
+      41,
+      42
+    ],
+    "handset_qualification": "not_established",
+    "source_path": "C:\\Users\\admin\\OneDrive\\Documents\\ChatGPT\\oneplus13\\oneplus-modules\\vendor\\qcom\\opensource\\wlan\\qcacld-3.0\\core\\hdd\\src\\wlan_hdd_station_info.c",
+    "source_sha256": "c329b4b9049e19b7cbfd2e066faf95eb71325691280a6884a29e0f924eb01485",
+    "cached_validity_consumed_during_response": true,
+    "counter_reset_semantics": "unresolved",
+    "missing_field_meaning": "unknown",
+    "loaded_binary_equivalence": "not_established"
+  },
+  "inputs": [
+    {
+      "file": "source-sha256.json",
+      "sha256": "e4c0776fd5f64ef660817d9fd0662a4ab08a957b5b79e4324deb85f1e6beb389"
+    },
+    {
+      "file": "qca-vendor.h",
+      "sha256": "c9eefb7202242e342a675d5154421aad7078565de6b06a6931f8b3d6568b547a"
+    },
+    {
+      "file": "iw-vendor.c",
+      "sha256": "fcde82eec62d579db8154c7ad09cced3984fcddbec863fc8cdaab548eb7e6a7a"
+    },
+    {
+      "file": "nested-vendor-survey.py",
+      "sha256": "62c4b8024d6529c72966e0c86b87797fda22e80d96c7b910b143e2b0b0cd581f"
+    },
+    {
+      "file": "vendor-state-test.py",
+      "sha256": "7f66ccadd22a4d7d51f5060328785e25ae01d7f0348a1dadcbc6bc6c3fee84d5"
+    },
+    {
+      "file": "bandwidth-delayed.py",
+      "sha256": "8f3e127f558613f6935d2209ca14031f01ee88d276957eaee34966d6423f8222"
+    },
+    {
+      "file": "RESULTS.md",
+      "sha256": "2a91b7c4b73443a3ca4ab3d83b82d0fd420e8c5d050b2d36a59240d93d3d6342"
+    },
+    {
+      "file": "nested-survey-decoded.json",
+      "sha256": "fbe7f6a8bbcf18f2f87166455b3f488f4719cc45b4b4904d00095ca3c2bb5443"
+    },
+    {
+      "file": "state-test-decoded.json",
+      "sha256": "03fd5e153b4a68d981bff82387b9b5371525a810363dd5ae8ef600398e500bad"
+    },
+    {
+      "file": "verify-bandwidth.log",
+      "sha256": "bd870aa62094a7141e9b652a01c7d2b97696562088fe21227280f2e48df4a8af"
+    },
+    {
+      "file": "bandwidth-delayed-decoded.json",
+      "sha256": "a007a4a4710b96fb77ad95969a8bfe554d67211cebd5c04501111833098a509e"
+    },
+    {
+      "file": "final_link.log",
+      "sha256": "1c598faca09074d2c647abc1964b441c2537dc7919856fa0531f6d1939cc80c5"
+    },
+    {
+      "file": "final_info.log",
+      "sha256": "91e73bbbbfcd2a04162f36286f343dd853fbf39b434982fbcf06baa5d8bd60d7"
+    },
+    {
+      "file": "final_power.log",
+      "sha256": "8760ae9b5f1007ce330da7163d9af817044eda0745f736a17670a68645fe5f03"
+    },
+    {
+      "file": "final-gateway-ping.log",
+      "sha256": "2794cc8fab46afa4c04e0ec83cb39bc0097dc1e96cc6cdea2dcda1a9f17eb2d6"
+    },
+    {
+      "file": "offchannel_2437.log",
+      "sha256": "2095d5302e465922147e220c0389f7a923ea0c1509a23097f04b3c220798aef8"
+    },
+    {
+      "file": "offchannel_6295.log",
+      "sha256": "2095d5302e465922147e220c0389f7a923ea0c1509a23097f04b3c220798aef8"
+    },
+    {
+      "file": "corrected_config_64.stderr",
+      "sha256": "61f876de49ef45d75320a51ca228a2f4fde8a07e6c517254a92edc9b7788a2ae"
+    },
+    {
+      "file": "../link.log",
+      "sha256": "90b33589fbc290c135c17dd1d56c2ea5d53557ddd034b61f3f3b00bb40e3d020"
+    },
+    {
+      "file": "../info.log",
+      "sha256": "db63c96d0fb5cc4d121d46c06bbf5beb53b9d8263458b292e6b06fcc2eacb94d"
+    }
+  ],
+  "pmf_negotiation": "not_established",
+  "pmf_enforcement": "not_tested",
+  "pmf_bypass": "not_established"
+}

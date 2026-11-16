@@ -1,0 +1,49 @@
+{
+  "description": "Sanitized summary of retained Preview 5 handset records; prepared 2026-11-13. No new handset test performed.",
+  "version": "2.0-qca-preview5",
+  "version_code": 44,
+  "session": "20261113_030538_787_capture_3de9dbd1",
+  "cancel_attempt": 1,
+  "cancel_marker": "user",
+  "exit_code": 130,
+  "partial_frames": 72,
+  "managed_restored": true,
+  "initial_gateway_replies": 2,
+  "initial_gateway_sent": 3,
+  "settled_gateway_replies": 3,
+  "settled_gateway_sent": 3,
+  "selected_capture_validation": [
+    {
+      "session": "20261113_030002_840_capture_85b62e30",
+      "decoded_frames": 394,
+      "unrelated_address_frames": 0,
+      "frequencies": [
+        "2437"
+      ],
+      "expected_frequency": 2437
+    },
+    {
+      "session": "20261113_030538_787_capture_3de9dbd1",
+      "decoded_frames": 72,
+      "unrelated_address_frames": 0,
+      "frequencies": [
+        "2437"
+      ],
+      "expected_frequency": 2437
+    }
+  ],
+  "source_sha256": {
+    "CANCEL-DIAGNOSE.json": "0438c909b6327aa949685208e9bb7d4b89bf33bb0eb904d40848bbc1b5ead680",
+    "cancel-tap-diagnostic.json": "dddd2e4570b18e7edcc4d3c7a1f407a71f845643ce12a35bb555fb0dee801a5e",
+    "PCAP-VALIDATION.json": "3905bdbe0befc16c93af537db3b1c46dbad2ed6dc52905f7eac9495d5a4e637e",
+    "gateway-after-cancel-diagnose.txt": "97b6db8941718c58b85ce6e45b4df7b4ae7ab6c83092a02d0b51ba90d261ea12",
+    "gateway-after-cancel-settled.txt": "5d257d572c8397ed27ebdcade68fd6abae8a7c19721ea887a88b0c15a3441809",
+    "after-cancel-diagnose.txt": "34c3d268b9011c0bcb44e93591cae6e1d316627a72b8ce5c2634d45d3b959956"
+  },
+  "limits": [
+    "Raw network identifiers and captures remain private.",
+    "Session identifiers use the original record date; no timezone conversion asserted.",
+    "TShark cross-check is not independent laboratory reproduction.",
+    "Capture and recovery results do not establish deauthentication-induced disassociation."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "hostap_revision": "ab49c33aef291e4d9cabe9a16f535bca40569a10",
+  "libnl_tiny_revision": "40493a655d8caa2ccf5206dde1e733abe2920432",
+  "hostap_source": "https://android.googlesource.com/platform/external/wpa_supplicant_8",
+  "libnl_tiny_source": "https://git.openwrt.org/project/libnl-tiny.git",
+  "ndk": "27.1.12297006",
+  "hooks_sha256": "db94f76fb4af062499db4e3fbeff240b65da6ed1f51b85fd52605bc2544d2e0d",
+  "source_path_mapping": "project root replaced by . in compiler-generated file strings",
+  "builder_sha256": "597c7a5cb4c2e36d9248cec6cc7f097000725667a5ef6248cf7e7770dc1cc906",
+  "outputs": [
+    {
+      "abi": "arm64-v8a",
+      "sha256": "e99088e2a540efda1872e8549f90510350179f0e115159e68cdfcb340d1c7d1c",
+      "bytes": 1016576
+    },
+    {
+      "abi": "x86_64",
+      "sha256": "306b3226f5f3ccfaec75e3b9e11a30c624f57e7c7f63ddcb03c1e1131a4b81ad",
+      "bytes": 1080560
+    }
+  ]
+}

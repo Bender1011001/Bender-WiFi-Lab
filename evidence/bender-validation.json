@@ -1,0 +1,65 @@
+{
+  "version": "0.5.2-device-count-preview2",
+  "version_code": 15,
+  "apk_sha256": "812fd140e9368a19ea7b67517f428bce7e2c43393f61eccb604c50fa10877425",
+  "validation": {
+    "engine_tests": 40,
+    "runtime_tests": 201,
+    "android_unit_tests": 76,
+    "emulator_tests": 54,
+    "arm64_engine_tests": 40,
+    "linux_installer_tests": 17,
+    "failures": 0,
+    "skips_final_set": 0,
+    "retained_checks": [
+      {
+        "log": "linux-installer.log",
+        "retained_from": "validation/phone-preview6-20261115/linux-installer.log",
+        "unchanged_input_hashes": {
+          "runtime/runtime-installer.sh": "9922d5b69fdf456c0fed19853d6b957ecc24e3ef9a269d5611d78cbe368dc63c",
+          "runtime/runtime-root.sh": "51f9abb7515abc02f1283f1d0b8f8d8a965203eea204c79ad64729781e25e2c2",
+          "tests/runtime/test_runtime_installer.py": "55f97716cd143890e67cd159cd3a64257e643b4f32f1610a30655d838d3aa4da",
+          "tests/runtime/test_runtime_mounts.py": "9d1288bf45fe7ada10b05760775f0cbf8ac92b9e51de885134a099aaa8f67b20"
+        },
+        "rerun": false,
+        "scope": "Unchanged platform repeat; fresh host regressions are separate"
+      },
+      {
+        "log": "arm64-engine.log",
+        "retained_from": "validation/device-count-20261115/arm64-engine.log",
+        "unchanged_input_hashes": {
+          "engine/bender_engine/analysis.py": "b083a141e08e5b39c5c275b74a547a49f269d1b8721de4eccef076aa7a9b728e",
+          "engine/bender_engine/__init__.py": "78da60447e62dac3a581d036636764730bf464fc9183a4be6bb1050c0428e745",
+          "engine/bender_engine/__main__.py": "e7e9d6a652190b1ae6a0f7fd6336725110063f3fc5eff946699e168c5436074c",
+          "tests/engine/test_device_counts.py": "92aedbd760cc2d505cec40e6ba8fcb8f9aa6d76ba3833e518d0b60cfb0051d81",
+          "tests/engine/test_observations.py": "20a6b55110d54fe59516ca38bed20bd22722a6f3639f7c514b1102b94b4fc973",
+          "tests/engine/test_security_integrity.py": "9bec778741aaf86aed1835bb0e095b2979e8936cae4218ec7c54dc2081873e66",
+          "runtime-bundle/manifest.json": "46db6b0350736fa9edbd7812fae5962483576bd21f84570a904b6627921ea2c3"
+        },
+        "rerun": false,
+        "scope": "Same parser and synthetic engine cases; bundled ARM64 runtime unchanged. No phone access or new RF for publication preview2."
+      }
+    ],
+    "handset_tested": false,
+    "radio_tested_this_pass": false
+  },
+  "signing": "Android debug key; personal research preview",
+  "build_passed": true,
+  "lint_passed": true,
+  "package_source_assets_verified": true,
+  "current_apk_phone_install_pending": false,
+  "radio_tested_this_pass": false,
+  "arm64_note": "Retained same 40 synthetic cases on phone CPU from preview1 with unchanged parser/test/runtime hashes; not rerun for preview2. No RF.",
+  "screenshots": "Exact packaged APK, API35 emulator, synthetic database; no radio actions.",
+  "source_publication_copy": {
+    "file": "Bender-WiFi-Lab-0.5.2-device-count-preview2-public-source.zip",
+    "sha256": "d9305d1cb5b06178164ac9c4464622bae841804f8e18312aa7c0c11fec59fb12",
+    "changed_entries": [
+      "bender-wifi-lab/CHECKPOINT.md"
+    ],
+    "added_entries": [],
+    "packaging_regression_tests": 5
+  },
+  "subsequent_handset_validation": "handset-preview2-20261116.json",
+  "validation_scope_note": "The original software-pass fields are retained. Subsequent handset work is recorded separately; no active transmission test was repeated."
+}

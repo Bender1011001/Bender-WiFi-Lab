@@ -1,0 +1,17 @@
+{
+  "observed_utc": "2026-11-15T03:51:38.387558+00:00",
+  "exit_code": 1,
+  "source": "bender-wifi-lab/validation/novelty-20261114/wifi-capabilities-current.private.log",
+  "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "evidence_kind": "failed_read_only_Android_capability_refresh_attempt",
+  "status": "failed_device_not_available",
+  "error_source": "bender-wifi-lab/validation/novelty-20261114/wifi-capabilities-current.stderr.log",
+  "facts": [],
+  "limits": [
+    "ADB could not find the selected handset; this attempt establishes no current handset capability",
+    "Reported support is not a two-association functional test",
+    "Dual STA is not Wi-Fi 7 MLO",
+    "Compatible band pairs remain unqualified",
+    "No connection changes or test frames were requested"
+  ]
+}

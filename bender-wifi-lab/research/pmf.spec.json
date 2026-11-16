@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "status": "awaiting_evidence",
+  "live_authorized_by_this_record": false,
+  "radio_mutation": "none in offline implementation",
+  "stop_on": [
+    "cancellation",
+    "ownership/recovery ambiguity",
+    "unexpected peer/device",
+    "request duplication",
+    "missing independent attribution"
+  ],
+  "limits": [
+    "Host simulation and static artifacts do not qualify APK, handset or RF behavior."
+  ],
+  "objective": "Separate advertised PMF from negotiated and observed protection.",
+  "required": [
+    "RSN capabilities with frame provenance",
+    "Association request/response and negotiated AKM",
+    "Protected management frame or rejection evidence from authorized controlled setup"
+  ],
+  "success": "Advertised only remains advertised; negotiated policy unknown without association evidence.",
+  "stop_gate": "Missing key/association evidence blocks negotiated PMF classification."
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "app_runtime_changed": false,
+  "loaded_binary_equivalence": "not_established",
+  "sources": [
+    {
+      "role": "managed_tx",
+      "path": "C:\\Users\\admin\\OneDrive\\Documents\\ChatGPT\\oneplus13\\oneplus-modules\\vendor\\qcom\\opensource\\wlan\\qcacld-3.0\\core\\wma\\src\\wma_data.c",
+      "sha256": "7a368b7806531919c2cbb8000d19c257bc0cd0f4707a199281d4712e8bedc4d7"
+    },
+    {
+      "role": "managed_rx",
+      "path": "C:\\Users\\admin\\OneDrive\\Documents\\ChatGPT\\oneplus13\\oneplus-modules\\vendor\\qcom\\opensource\\wlan\\qcacld-3.0\\core\\wma\\src\\wma_mgmt.c",
+      "sha256": "e420d146cf546ee618e761a00b4063ab1746254ee48748532feeb1b6d75a0334"
+    }
+  ],
+  "notes": [
+    "Static source is not proof of which firmware/offload branch ran on the phone",
+    "Upper-layer handling of DPU_FEEDBACK_UNPROTECTED_ERROR is absent from the retained source subset"
+  ]
+}
