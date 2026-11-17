@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-17",
+  "status": "passed",
+  "scope": "In-place update, launch/readiness, one 120-second passive survey, saved records, vendor-guess UI and restoration.",
+  "app": {
+    "package": "dev.sir.benderwifi",
+    "version": "0.5.4-device-hints-preview1",
+    "version_code": 17,
+    "apk_sha256": "f5aa6eb977501427773635a13f87a608821f19e397fba58b6e8db1c00aa8f5c2",
+    "installed_hash_matches": true,
+    "upgraded_from": "0.5.3-wps-progress-preview1"
+  },
+  "checks": {
+    "startup": true,
+    "radio_check": true,
+    "passive_survey": true,
+    "new_capture_import": true,
+    "prior_record_ids_preserved": true,
+    "vendor_guess_visible": true,
+    "vendor_limit_explained": true,
+    "same_ap_and_frequency": true,
+    "managed_mode": true,
+    "firmware_override_empty": true,
+    "no_recovery_pending": true,
+    "privacy_restored": true,
+    "runtime_mounts_removed": true,
+    "gateway_3_of_3": true,
+    "no_new_crash_entries": true
+  },
+  "scan": {
+    "requested_seconds": 120,
+    "frames": 2285,
+    "ap_records": 16,
+    "client_addresses": 9,
+    "handshakes": 0,
+    "planned_frequencies": 94,
+    "frequency_request_failures": 0
+  },
+  "inventory": {
+    "networks": {
+      "before": 100,
+      "after": 100,
+      "prior_ids_preserved": true
+    },
+    "clients": {
+      "before": 58,
+      "after": 59,
+      "prior_ids_preserved": true
+    },
+    "experiments": {
+      "before": 31,
+      "after": 33,
+      "prior_ids_preserved": true
+    },
+    "sessions": {
+      "before": 9,
+      "after": 10,
+      "prior_ids_preserved": true
+    },
+    "credentials": {
+      "before": 0,
+      "after": 0,
+      "prior_ids_preserved": true
+    },
+    "network_notes": {
+      "before": 0,
+      "after": 0,
+      "prior_ids_preserved": true
+    },
+    "work_targets": {
+      "before": 205,
+      "after": 221,
+      "prior_ids_preserved": true
+    }
+  },
+  "historical_warning": {
+    "count": 1,
+    "reason": "One older completed capture exceeds the evidence JSON node budget; original evidence retained.",
+    "new_capture_affected": false
+  },
+  "limits": [
+    "No deauth or WPS recovery was tested in this app check.",
+    "Vendor prefix display does not independently verify retail brand or device model.",
+    "No client identity-clue records were produced by this particular passive capture.",
+    "The fresh-boot transmission evidence belongs to the separate terminal experiment.",
+    "One older saved capture still produces an import warning after app restart."
+  ]
+}

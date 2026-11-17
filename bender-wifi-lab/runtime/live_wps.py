@@ -151,6 +151,32 @@ def recover():
     return True
 
 
+FAILURE_CODES = frozenset((
+    'selected_ap_wps_unavailable', 'ap_setup_locked', 'supplicant_unavailable',
+    'autoconnect_control_unavailable', 'scan_rejected', 'wps_request_rejected',
+    'wps_exchange_incomplete', 'wps_exchange_timed_out', 'secondary_interface_in_use',
+    'wps_recovery_pending', 'privacy_session_missing', 'privacy_filter_missing',
+    'random_mac_not_applied', 'primary_interface_changed', 'vault_save_unconfirmed',
+))
+
+
+def failure_code(error):
+    # No formatting of exceptions, native replies, PINs or key material.
+    value = error.args[0] if error.args else None
+    return value if isinstance(value, str) and value in FAILURE_CODES else 'worker_error'
+
+
+def protocol_event(raw):
+    """Only fixed event names cross into the UI; never addresses or event payloads."""
+    match = re.match(rb'^<[0-9]+>([A-Z0-9-]+)(?: |$)', raw)
+    return {
+        b'CTRL-EVENT-CONNECTED': 'associated', b'CTRL-EVENT-DISCONNECTED': 'disconnected',
+        b'CTRL-EVENT-EAP-STARTED': 'eap_started', b'CTRL-EVENT-EAP-METHOD': 'eap_method',
+        b'CTRL-EVENT-EAP-FAILURE': 'eap_failed', b'WPS-FAIL': 'wps_failed',
+        b'WPS-M2D': 'wps_deferred', b'WPS-TIMEOUT': 'wps_timeout', b'WPS-SUCCESS': 'wps_success',
+    }.get(match.group(1)) if match else None
+
+
 class Collector:
     def __init__(self, job):
         self.job = job
@@ -162,13 +188,34 @@ class Collector:
         self.journal = {'schema_version': 1, 'owner': job.name, 'binary': self.native, 'child': None}
         self.bridge = None
         self.phase = 'preflight'
+        self.last_heartbeat = 0
+        self.monitor = None
 
     def check(self):
         if self.cancel.exists() or not (HOST / f'proc/{self.owner}').exists(): raise InterruptedError('cancelled')
+        if self.bridge and time.monotonic() - self.last_heartbeat >= 1:
+            send_message(self.bridge, {'type': 'heartbeat'})
+            self.last_heartbeat = time.monotonic()
+        if self.monitor:
+            # Bound event draining so a chatty worker cannot starve cancellation.
+            for _ in range(16):
+                try: raw = self.monitor.recv(4096)
+                except BlockingIOError: break
+                except OSError:
+                    self.monitor.close(); self.monitor = None
+                    self.detail('monitor_unavailable')
+                    break
+                code = protocol_event(raw)
+                if code: self.detail(code)
 
     def progress(self, phase):
         self.phase = phase
         send_message(self.bridge, {'type': 'phase', 'phase': phase})
+
+    def detail(self, code, remaining_ms=None):
+        message = {'type': 'activity', 'code': code}
+        if remaining_ms is not None: message['remaining_ms'] = remaining_ms
+        send_message(self.bridge, message)
 
     def connect(self):
         name = self.request.get('wps_socket', '')
@@ -237,6 +284,7 @@ class Collector:
         config.write_text('update_config=0\nwps_cred_processing=1\ndevice_name=Bender Wi-Fi Lab\n'
                           'manufacturer=Bender\nmodel_name=Managed WPS research\nmodel_number=1\nserial_number=0\n'
                           f'freq_list={self.frequency}\n', encoding='utf-8')
+        self.detail('starting_supplicant', 45000)
         process = subprocess.Popen(['/usr/sbin/chroot', str(HOST), self.native, '-i', IFACE, '-Dnl80211',
                                     '-c', host_job + '/' + config.name, '-C', control_host, '-q'],
                                    stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
@@ -260,8 +308,24 @@ class Collector:
                 time.sleep(0.1)
             ctrl.connect(str(control / IFACE))
             if query('PING') != 'PONG': raise RuntimeError('supplicant_unavailable')
+            self.detail('control_ready', max(0, int((deadline-time.monotonic())*1000)))
+            # ATTACH on a separate socket: unsolicited events must never be
+            # confused with command replies (especially WPS_REG acknowledgement).
+            monitor = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
+            try:
+                monitor.settimeout(1)
+                monitor.bind('\0bender-wps-events-' + secrets.token_hex(12))
+                monitor.connect(str(control / IFACE))
+                monitor.send(b'ATTACH')
+                if monitor.recv(4096).strip() != b'OK': raise RuntimeError('monitor_attach_failed')
+                monitor.setblocking(False)
+                self.monitor = monitor
+            except (OSError, RuntimeError):
+                monitor.close()
+                self.detail('monitor_unavailable')
             if query('STA_AUTOCONNECT 0') != 'OK': raise RuntimeError('autoconnect_control_unavailable')
             if query('BSS_FLUSH 0') != 'OK' or query(f'SCAN freq={self.frequency}') != 'OK': raise RuntimeError('scan_rejected')
+            self.detail('scanning_ap')
             # This fresh process has an empty BSS cache. Bound the selected BSS lookup.
             bss = ''
             scan_deadline = min(deadline, time.monotonic() + 12)
@@ -274,11 +338,13 @@ class Collector:
                 raise RuntimeError('selected_ap_wps_unavailable')
             if 'wps_ap_setup_locked=1' in bss:
                 raise RuntimeError('ap_setup_locked')
+            self.detail('ap_found')
             self.journal['phase'] = mode + '_requested'
             self.journal['attempt'] = attempt if mode == 'trial' else None
             store_journal(self.journal)
             self.check()
             if query(f'WPS_REG {self.bssid} {pin}') != 'OK': raise RuntimeError('wps_request_rejected')
+            self.detail('wps_requested')
             prefix, expected = ('BENDER_EXCHANGE ', 42) if mode == 'capture' else ('BENDER_CREDENTIAL ', 43)
             found = None
             rejected = None
@@ -300,12 +366,17 @@ class Collector:
                 if process.poll() is not None:
                     # Drain the pipe even if exit arrived before select consumed it.
                     if selector.get_map(): continue
-                    if process.returncode == expected and isinstance(found, dict): return found
+                    if process.returncode == expected and isinstance(found, dict):
+                        self.detail('exchange_collected' if mode == 'capture' else 'credential_received')
+                        return found
                     if mode == 'trial' and process.returncode == 46 and rejected in (1, 2) and found is None:
+                        self.detail('pin_rejected')
                         return {'pin_rejected_half': rejected}
                     raise RuntimeError('wps_exchange_incomplete')
             raise TimeoutError('wps_exchange_timed_out')
         finally:
+            if self.monitor:
+                self.monitor.close(); self.monitor = None
             ctrl.close(); selector.close()
             if process.poll() is None: process.kill()
             process.wait(timeout=3)
@@ -350,9 +421,11 @@ class Collector:
         except InterruptedError:
             result.update(state='cancelled', failed_phase=self.phase)
             return result
-        except Exception:
-            # Never format the exception: it may contain a PIN/native reply.
-            result.update(state='failed', failed_phase=self.phase)
+        except Exception as error:
+            result.update(state='failed', failed_phase=self.phase, error_code=failure_code(error))
+            # The supervisor result remains authoritative if the bridge is gone.
+            try: send_message(self.bridge, {'type': 'failure', 'code': result['error_code']})
+            except Exception: pass
             return result
         finally:
             if self.bridge: self.bridge.close()
@@ -366,6 +439,7 @@ class Collector:
             outcome = self.exchange('trial', pin, index)
             if 'pin_rejected_half' in outcome:
                 if index < len(TRIAL_PINS):
+                    self.detail('candidate_pause', 5000)
                     deadline = time.monotonic() + 5
                     while time.monotonic() < deadline:
                         self.check(); time.sleep(0.2)
@@ -388,8 +462,9 @@ def main():
         except Exception: return 1
     try:
         result = Collector(job).run()
-    except Exception:
-        result = {'ok': False, 'action': 'wps', 'state': 'failed', 'failed_phase': 'preflight', 'replayed': False}
+    except Exception as error:
+        result = {'ok': False, 'action': 'wps', 'state': 'failed', 'failed_phase': 'preflight',
+                  'error_code': failure_code(error), 'replayed': False}
     (job / 'result.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
     return 0 if result.get('ok') else 1
 

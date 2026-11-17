@@ -128,6 +128,7 @@ private fun NetworkPage(
                     "Devices" -> {
                         item {Text("${devices.size} identified address${if(devices.size==1)"" else "es"} · latest saved relationships",fontWeight=FontWeight.Bold)}
                         item {Text("Select a device to see its actions. Addresses may be randomized; this is not a count of physical devices currently connected.",fontSize=12.sp)}
+                        item {Text("Device guesses combine offline vendor prefixes with captured names, models and service clues. Encrypted or quiet traffic may reveal only an address.",fontSize=12.sp)}
                         item {StationCount(network)}
                         item {TargetAction("Look for devices","Listen on this AP’s channel for up to 120 seconds. Quiet devices may need longer to appear.",!busy&&!recovery&&network.frequencyMhz!=null,onCapture)}
                         items(devices.sortedByDescending {it.lastSeen},key={it.id}) {c->DeviceRow(c){onDevice(c.id)}}
@@ -152,10 +153,12 @@ private fun DevicePage(
     onUnavailable:(CatalogAction)->Unit
 ) {
     val linked=network!=null&&device.apId==network.id
+    val guess=rememberDeviceGuess(device.mac,device.rawJson)
     LazyColumn(Modifier.testTag("device-detail-list"),verticalArrangement=Arrangement.spacedBy(12.dp)) {
         item {TextButton(onClick=onBack){Text(if(linked)"‹ Network devices" else "‹ All networks")}}
         item {Text("Device actions",fontWeight=FontWeight.Bold,fontSize=20.sp)}
         item {Text(device.mac,fontFamily=FontFamily.Monospace,fontSize=18.sp)}
+        item {DeviceIdentityCard(guess)}
         item {Text("${if(linked)"Network: ${network!!.ssidDisplay.ifBlank {"Hidden SSID"}} (${network.bssid})" else "Network relationship unknown"}\nLast seen: ${stamp(device.lastSeen)}\n${device.signalDbm?.let {"Signal: $it dBm"}?:"Signal unknown"}",fontSize=12.sp)}
         if(linked) {
             item {TargetAction("Deauth selected device","One directed request to ${device.mac}. Review preparation and frequency before running.",!busy&&!recovery,onDeauth)}
@@ -205,9 +208,12 @@ private fun StationCount(network:NetworkEntity) {
 
 @Composable
 private fun DeviceRow(device:ClientEntity,onClick:()->Unit) {
+    val guess=rememberDeviceGuess(device.mac,device.rawJson)
     Card(Modifier.fillMaxWidth().clickable(onClick=onClick).testTag("device:${device.id}"),colors=CardDefaults.cardColors(containerColor=MaterialTheme.colorScheme.surface)) {
         Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(6.dp)) {
-            Text(device.mac,fontFamily=FontFamily.Monospace,fontWeight=FontWeight.Bold)
+            Text(guess.title,fontWeight=FontWeight.Bold)
+            Text("${guess.type} · ${guess.confidence}",fontSize=12.sp,color=MaterialTheme.colorScheme.primary)
+            Text(device.mac,fontFamily=FontFamily.Monospace,fontSize=12.sp)
             Text("${device.signalDbm?.let {"$it dBm"}?:"Signal unknown"} · Seen ${stamp(device.lastSeen)}",fontSize=12.sp)
             Text("View device actions ›",fontSize=12.sp,color=MaterialTheme.colorScheme.primary)
         }

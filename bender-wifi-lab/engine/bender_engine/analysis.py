@@ -13,6 +13,7 @@ import subprocess
 import tempfile
 import time
 import xml.etree.ElementTree as ET
+from . import identity
 
 # This bounds temporary decoder output, not resident memory: packets are parsed
 # incrementally. A measured 1 MiB / 11,290-frame survey expands above 270 MiB.
@@ -261,6 +262,7 @@ def analyze_pdml(path, artifact_sha256="unknown", max_packets=MAX_PACKETS, max_f
               "limits": ["Passive capture only; missing evidence is unknown", "EAPOL message coverage does not verify MICs or a password", "Negotiated PMF is not inferred from beacon capabilities", "Incomplete/malformed security IEs retain partial evidence but do not qualify security summaries", "One cooperative wall-time deadline covers hash, decode and parse; CLI serialization shares that deadline"]}
     networks, clients, exchanges = {}, {}, []
     controls, ap_frequencies = {}, {}
+    identity_hints = {}
     integrity_counts = {key: 0 for key in ("failed", "verified", "not_flagged", "unknown")}
     count = 0
     pdml_stream = path.open("rb")
@@ -384,6 +386,11 @@ def analyze_pdml(path, artifact_sha256="unknown", max_packets=MAX_PACKETS, max_f
                     group["frame_count"] += 1
                     if stamp >= group["last_seen"]:
                         group.update(last_seen=stamp, frame=frame, signal=signal)
+            if not malformed:
+                transmitter = mac(packet, "wlan.ta")
+                if transmitter and (transmitter in identity_hints or len(identity_hints) < 4096):
+                    clues = identity.extract(packet, subtype, transmitter, mac(packet, "wlan.sa"), provenance)
+                    if clues: identity_hints[transmitter] = identity.merge(identity_hints.get(transmitter, []), clues)
             root.clear()
     except ET.ParseError as error:
         raise ValueError("Malformed/truncated PDML") from error
@@ -408,6 +415,9 @@ def analyze_pdml(path, artifact_sha256="unknown", max_packets=MAX_PACKETS, max_f
     for client in clients.values():
         client.pop("_signal_seen", None)
         client["relations"].sort(key=lambda relation: (relation["time"], relation["frame"]))
+        if client["mac"] in identity_hints: client["identity_hints"] = identity_hints[client["mac"]]
+    for address, network in networks.items():
+        if address in identity_hints: network["identity_hints"] = identity_hints[address]
     result["source"]["frame_count"] = count
     result["source"]["frame_integrity"] = integrity_counts
     result["networks"], result["clients"] = list(networks.values()), list(clients.values())

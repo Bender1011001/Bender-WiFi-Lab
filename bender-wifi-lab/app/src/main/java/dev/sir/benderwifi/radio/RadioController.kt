@@ -6,6 +6,8 @@ import android.net.Uri
 import android.util.AtomicFile
 import dev.sir.benderwifi.data.LabRepository
 import dev.sir.benderwifi.wps.LiveWpsBridge
+import dev.sir.benderwifi.wps.WpsProgressStore
+import dev.sir.benderwifi.wps.WpsMessages
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -156,6 +158,7 @@ object RadioController {
             write(File(job,"journal.json"),JSONObject().put("schema_version",1).put("id",id).put("operation",operation).put("state","prepared").put("created_ms",System.currentTimeMillis()).put("replayed",false).put("supervisor_started",false).put("recovery_required_before",mutable.value.recoveryRequired).put("privacy_pending_before",mutable.value.privacyPending).toString())
             current = job
             queuedOperation = operation
+            if(operation=="wps")WpsProgressStore.begin(id)
             mutable.value = RadioUiState(true,"Preparing $operation",id,mutable.value.recoveryRequired,mutable.value.identityReport,mutable.value.privacyReport,mutable.value.privacyPending,operation,recoveryChecked=mutable.value.recoveryChecked)
             context.startForegroundService(Intent(context,RadioService::class.java))
         } catch (e: Exception) {
@@ -250,6 +253,7 @@ object RadioController {
             val budget=when(operation){"setup"->600L;"capture"->360L;"wps"->420L;else->240L}
             val deadline=timer.schedule({ runCatching { write(File(job,"cancel"),"deadline\n") } },budget,TimeUnit.SECONDS)
             val reader=scope.launch {
+                try {
                 var bytes=0
                 process.inputStream.bufferedReader().useLines { lines ->
                     File(job,"supervisor.log").bufferedWriter().use { log ->
@@ -263,11 +267,18 @@ object RadioController {
                                     if(safe.startsWith("PHASE:Scanning")&&(File(job,"finish").exists()||File(job,"cancel").exists()))return@forEach
                                     val phase=if(request.optString("purpose")=="handshake"&&safe.startsWith("PHASE:Scanning")) "Listening · reconnect your owned client now" else safe.substringAfter(':')
                                     mutable.value=mutable.value.copy(phase=phase,captureReady=operation=="capture"&&safe.startsWith("PHASE:Scanning"))
+                                    if(operation=="wps"&&safe.startsWith("PHASE:"))WpsProgressStore.supervisor(job.name,phase)
                                     RadioService.update(context,mutable.value.phase)
                                 }
                             }
                         }
                     }
+                }
+                }catch(e:CancellationException){throw e}
+                catch(_:java.io.IOException){
+                    // Closing a pipe during cancellation must not crash the app.
+                    // The result and recovery journals still determine completion.
+                    if(process.isAlive && !File(job,"cancel").exists())failure="Supervisor status stream closed unexpectedly; inspect Evidence"
                 }
             }
             try {
@@ -315,15 +326,17 @@ object RadioController {
             val observation=File(job,"observations-v1.json")
             val importFailure=importSavedObservations(job,operation,LabRepository.get(context)::importObservations)
             val request=read(File(job,"request.json"))
-            val evidence=sessionEvidence(job,outcome,importFailure)
             val journal=read(File(job,"journal.json")).put("state",outcome).put("finished_ms",System.currentTimeMillis()).put("supervisor_started",launched).put("recovery_required_after",recovery).put("import_error",importFailure)
-            LabRepository.get(context).recordExperiment(job.name,operation,outcome,evidence.toString(),request)
-            write(File(job,"journal.json"),journal.toString())
             val radioNote=RadioAssessment.radioDescription(radio)
             phase=when {
                 recovery -> "Unresolved radio state · verify / restore Wi-Fi"
                 outcome=="cancelled" -> "Cancelled · $radioNote"
                 outcome=="uncertain" -> "Submission uncertain · no automatic retry"
+                operation=="wps" && outcome!="completed" -> {
+                    val reason=WpsMessages.failures[result.optString("error_code")]?:transport.error?:"WPS did not complete"
+                    val at=WpsMessages.title(result.optString("failed_phase","setup"))
+                    "$reason · stage: $at · $radioNote"
+                }
                 operation=="identity" -> if(identity.opt("allowed")==true) "Strict-profile snapshot passed" else "Strict-profile snapshot · automatic test setup runs when you start"
                 operation in setOf("prepare","privacy_restore","privacy_status") -> privacy.optString("message").ifBlank { "Connectivity profile unverified · check status or use Android settings" }
                 outcome!="completed" -> transport.error ?: "Operation failed · inspect Evidence"
@@ -343,6 +356,10 @@ object RadioController {
                 }
                 else -> "$operation completed · $radioNote"
             }
+            if(operation=="wps")WpsProgressStore.finish(job.name,phase)?.let {write(File(job,"wps-progress.json"),it.json().toString())}
+            val evidence=sessionEvidence(job,outcome,importFailure)
+            LabRepository.get(context).recordExperiment(job.name,operation,outcome,evidence.toString(),request)
+            write(File(job,"journal.json"),journal.toString())
         } catch (_: Exception) {
             recovery=RadioAssessment.recoveryAfter(previousRecovery,operation,launched,read(File(job,"radio-state.json")))
             privacyPending=RadioAssessment.privacyAfter(previousPrivacy,operation,launched,read(File(job,"privacy-state.json")),read(File(job,"radio-state.json")))
@@ -351,6 +368,9 @@ object RadioController {
                 write(File(job,"journal.json"),journal.toString())
             }
         } finally {
+            if(operation=="wps")runCatching {
+                WpsProgressStore.finish(job.name,phase)?.let {write(File(job,"wps-progress.json"),it.json().toString())}
+            }
             // Storage or Room failure must not strand the foreground service or busy latch.
             withContext(Dispatchers.Main.immediate) {
                 runCatching { finishRadioSession(finishService) {
@@ -379,5 +399,6 @@ object RadioController {
             write(File(job,"journal.json"),journal.toString())
         }
         mutable.value=mutable.value.copy(phase="Stopping · waiting for restoration",captureReady=false)
+        if(mutable.value.operation=="wps")WpsProgressStore.event(job.name,"restoring","Cancellation requested; waiting for radio cleanup")
     }
 }

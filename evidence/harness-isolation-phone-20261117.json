@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "date": "2026-11-17",
+  "binary_sha256": "98b810f86ce36fed872e654e3b45fb9723faacf6ef05872853f958827c58b069",
+  "build": "CPH2655_16.0.8.301(EX01)",
+  "cases": [
+    {
+      "mode": "0",
+      "exit_code": 0,
+      "parent_mount_table_unchanged": true,
+      "init_mount_table_unchanged": true,
+      "child_gone": true,
+      "association_unchanged": true
+    },
+    {
+      "mode": "23",
+      "exit_code": 23,
+      "parent_mount_table_unchanged": true,
+      "init_mount_table_unchanged": true,
+      "child_gone": true,
+      "association_unchanged": true
+    },
+    {
+      "mode": "wait",
+      "exit_code": 137,
+      "parent_mount_table_unchanged": true,
+      "init_mount_table_unchanged": true,
+      "child_gone": true,
+      "association_unchanged": true
+    }
+  ],
+  "parent_and_init_mounts_unchanged": true,
+  "gateway": "3/3",
+  "mode": "managed",
+  "firmware_override_empty": true,
+  "limits": [
+    "Tests ran a Python probe, not the original transmit harness.",
+    "No live fault injection into denied mount or unshare syscalls; those branches were tested on the Linux host.",
+    "No APK transmission or WPS recovery was tested."
+  ],
+  "management_frame_requests": 0
+}

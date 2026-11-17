@@ -1,36 +1,27 @@
-# Bender 0.5.2-device-count-preview2
+# Bender 0.5.4-device-hints-preview1
 
-Version code 15. Prepared November 15-16, 2026; installed and checked on the OnePlus on November 16. This preview is supplied alongside a report of earlier V61 radio experiments.
+Version code 17. Built November 16 and installed and checked on the OnePlus on November 17, 2026. This is a new prerelease; the published 0.5.2 artifacts remain unchanged.
 
-## Device-count correction
+## App changes
 
-The previous decoder missed qualified RTS, Block ACK/request and PS-Poll relationships. It now accepts these two-address controls only when exactly one endpoint is a directly advertised AP, excludes bad/malformed or conflicting observations, and groups repetitive provenance. ACK/CTS alone cannot identify a client relationship. Relationship ordering follows observation timestamps.
-
-Complete, directly owned BSS Load station counts are retained, including explicit zero. Missing, malformed, duplicate or nested-only fields stay unknown. The UI separates the AP's timestamped total from identified addresses, keeps discovery available when a list is nonempty, and permits up to 120 seconds of listening with early completion. Replaying the same retained capture changed 6 identified addresses to 12; this is a decoder comparison, not a new live census.
+- WPS collection and solving report their actual stages, elapsed time, deadlines, last activity and stall state. Progress and outcomes remain separate; live password recovery is not established by this release.
+- Device rows and details show the best available manufacturer, reported name/model or qualified type clue, with source fields and uncertainty. The bundled registry has 56,975 vendor prefixes. Local/random addresses do not receive a factory-vendor guess; a prefix owner may be a component manufacturer.
+- Existing network records, device-count distinctions, encrypted storage, recovery behavior and preview-4 policy choices are retained. No new ownership prompt or exact-driver-hash lock is introduced.
 
 ## Validation
 
-| Check | Result | Scope |
-|---|---|---|
-| Host engine | 40 passed | Synthetic protocol inputs and regression cases |
-| Runtime | 201 passed | Host-side runtime regressions |
-| Android JVM | 76 passed | App logic |
-| Android emulator | 54 passed | Final instrumentation set, including legacy vault migration |
-| Earlier bundled ARM64 engine | 40 retained passes | Same synthetic cases and unchanged parser/test/runtime hashes; not rerun for preview2; no RF |
-| Build, lint, packaged source/assets | Passed | Exact APK/source inputs |
-| Earlier Linux installer set | 17 retained passes | Unchanged input hashes; not rerun this pass |
-| Current APK handset installation/passive survey | Passed November 16 | Startup, runtime readiness, one full survey, saved inventory and restoration; [details](HANDSET-VALIDATION.md) |
+The exact APK passed 48 engine, 205 runtime, 91 JVM and 60 API35 emulator tests: **404 passed, zero skipped**. Android lint reported zero errors and 18 warnings. All 1,155 source inputs and 27 packaged assets matched the build manifest. The update certificate matches 0.5.3.
 
-The final set had no failures or skips. Earlier failures are retained in private logs: an initial CPU run used the wrong NetHunter environment, and an emulator assertion assumed a heading would remain visible after returning to a scrolled list. The environment was corrected and the UI test now explicitly scrolls to the heading before asserting it. Feature assertions were retained.
+On the OnePlus, the in-place update, startup, Check radio, a full 120-second passive survey, new-capture import, preservation of previous record IDs, vendor-guess display and restoration passed. The survey recorded 2,285 frames, 16 AP records, 9 client addresses and no handshakes. The phone returned to its original AP/frequency with no recovery pending, runtime mounts removed and gateway replies 3/3. No new crash entries appeared. See [handset validation](HANDSET-VALIDATION-054.md) and the [software record](../evidence/bender-validation-054.json).
 
-The first preview2 emulator run still had synthetic showcase data, causing an empty-inventory screenshot check to skip; PasswordInputTest also encountered a Compose runtime error. The runner was corrected to clear only the verified disposable emulator's app/test data before the full suite. The clean full run passed. The Compose error did not recur in that run; its precise cause is not established. Both the initial and final logs are retained, and no feature assertion was removed.
+One older completed capture still exceeds the evidence JSON node budget and displays an import warning after restart. Its original evidence remains available. This release does not fix that historical import-size issue; the new capture imported successfully.
 
-Existing WPS, Bluetooth, privacy, vault, screenshot and recovery policies are preserved. No new general-injection support, PMF result or live WPS success is added. The maintainer upgraded in place and preserved existing records; other users should also install as an update when signatures match. Install as an upgrade and scan again; old saved records are not silently rewritten to manufacture station totals.
+## Research update
 
-See [machine-readable validation](../evidence/bender-validation.json), [offline replay](../evidence/device-count-replay.json) and [claim boundaries](CLAIMS.md).
+The [consolidated write-up](TECHNICAL-WRITEUP.md) adds a fresh-boot managed-interface transmission, independent Alfa reception, client observations and a two-packet appendix with original lengths, redacted bytes, FCS verification results and timing calculations. The phone transmitted internally; the separate Alfa was a receiver on the PC. Raw captures remain private.
 
-## Publication corrections
+The experimental terminal harness now uses a private mount namespace before creating runtime bind mounts. Its 21 Linux tests passed; phone probes for normal exit, exit 23 and forced termination left both caller and Android-init mount tables unchanged. The helper and its [qualification](../tools/isolated-runtime/README.md) are published separately. This corrects the research harness and is not a change to the APK's runtime implementation.
 
-The publication audit found two build-manifest headers missing from preview1's source ZIP because the packager skipped symlinks. Preview2 includes internal file and directory aliases as ordinary files and verifies every embedded build-input hash. The packager rejects external symlinks and alias cycles, and refuses archives missing a manifest input; five focused packaging tests pass.
+General injection remains unresolved. App-driven deauth, live WPS recovery and Bluetooth interoperability were not tested in this handset pass. The terminal experiment does not transfer those qualifications to the APK.
 
-The audit also found the build machine's workspace path in compiler-generated native error strings. Both helper executables were rebuilt for ARM64 and x86-64 with project-root path mapping. Protocol logic is unchanged, but these are new binaries and a new APK/version code; fresh emulator tests qualify the publication APK. The public source copy differs from the packaged preview2 source only in its sanitized checkpoint document. Use `public-source.zip` for this release. Preview1 artifacts remain retained privately.
+Install as an update when signatures match. See [installation](INSTALL.md), [claim boundaries](CLAIMS.md) and [upstream credit](PRIOR-WORK.md).

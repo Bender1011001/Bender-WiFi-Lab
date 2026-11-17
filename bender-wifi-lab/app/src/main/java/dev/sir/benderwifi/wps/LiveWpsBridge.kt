@@ -5,8 +5,6 @@ import android.net.LocalServerSocket
 import android.net.LocalSocket
 import dev.sir.benderwifi.data.LabRepository
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import org.json.JSONObject
 import java.io.DataInputStream
 import java.io.DataOutputStream
@@ -18,14 +16,6 @@ class LiveWpsBridge(private val context:Context,private val session:String,priva
     val name="bender-wps-${UUID.randomUUID().toString().replace("-", "")}"
     private val server=LocalServerSocket(name)
     @Volatile private var peer:LocalSocket?=null
-    companion object {
-        private val mutable=MutableStateFlow("Ready to collect a live WPS exchange.")
-        val status:StateFlow<String> = mutable
-        private val phases=mapOf("preparing_radio" to "Preparing a private managed interface…",
-            "collecting_exchange" to "Collecting a WPS exchange · up to 45 seconds…",
-            "solving" to "Running Pixie Dust locally · up to 120 seconds…",
-            "requesting_credentials" to "PIN verified and saved · requesting the AP’s settings…")
-    }
     suspend fun run()=withContext(Dispatchers.IO) {
         try {
             server.accept().use { socket ->
@@ -56,16 +46,29 @@ class LiveWpsBridge(private val context:Context,private val session:String,priva
                     when(message.getString("type")) {
                         "phase" -> {
                             val phase=message.optString("phase")
-                            mutable.value=phases[phase]?:Regex("trying_pin_(\\d+)_of_(\\d+)").matchEntire(phase)?.let {
-                                "Checking PIN ${it.groupValues[1]} of ${it.groupValues[2]}…"
-                            }?:"WPS operation in progress…"
+                            require(phase in WpsMessages.stages || Regex("trying_pin_[1-3]_of_3").matches(phase))
+                            WpsProgressStore.event(session,phase,WpsMessages.title(phase))
+                        }
+                        "heartbeat" -> WpsProgressStore.heartbeat(session,"Radio worker")
+                        "activity" -> {
+                            val remaining=if(message.has("remaining_ms"))message.getLong("remaining_ms").also {require(it in 0..45_000)} else null
+                            WpsProgressStore.detail(session,message.getString("code"),remaining)
+                        }
+                        "failure" -> {
+                            val text=WpsMessages.failures[message.optString("code")]?:WpsMessages.failures.getValue("worker_error")
+                            val stage=WpsProgressStore.state.value?.takeIf {it.session==session}?.stage?:"setup"
+                            WpsProgressStore.event(session,stage,text)
                         }
                         "exchange" -> {
                             require(!exchangeSeen);exchangeSeen=true
                             val exchange=PixieProtocol.parse(message.getJSONObject("fields").toString())
-                            val pin=PixieRunner.solve(File(context.applicationInfo.nativeLibraryDir,"libbender_pixie.so"),exchange)
+                            WpsProgressStore.event(session,"solving","Searching the collected exchange locally; no AP traffic during this stage",120_000)
+                            val pin=try {
+                                PixieRunner.solve(File(context.applicationInfo.nativeLibraryDir,"libbender_pixie.so"),exchange,
+                                    onHeartbeat={WpsProgressStore.heartbeat(session,"Local solver process")})
+                            }catch(e:TimeoutCancellationException){WpsProgressStore.detail(session,"solver_timeout");throw e}
                             if(pin.isNullOrEmpty()) {
-                                mutable.value=if(pin==null)"No PIN found in this bounded search." else "Empty PIN matched the transcript; automatic enrollment is unsupported."
+                                WpsProgressStore.detail(session,"not_found")
                                 send(JSONObject().put("type","not_found"))
                                 return@withContext
                             }
@@ -73,19 +76,21 @@ class LiveWpsBridge(private val context:Context,private val session:String,priva
                                 LabRepository.get(context).saveLiveWpsSecret(pin,bssid,session,"pin",JSONObject().put("both_hashes_verified",true))
                             }
                             pinSaved=true
+                            WpsProgressStore.detail(session,"pin_verified")
                             send(JSONObject().put("type","pin").put("pin",pin))
                         }
                         "credential" -> {
                             require(pinSaved)
                             val fields=message.getJSONObject("fields")
                             val secret=LiveWpsProtocol.password(fields)
+                            WpsProgressStore.event(session,"saving","Encrypting authenticated AP settings in Vault")
                             withContext(NonCancellable){
                                 LabRepository.get(context).saveLiveWpsSecret(secret,bssid,session,"password",
                                     JSONObject().put("ssid_hex",fields.getString("ssid_hex")).put("auth_type",fields.getInt("auth_type"))
                                         .put("ap_settings_received",true).put("association_verified",false))
                             }
                             send(JSONObject().put("type","saved"))
-                            mutable.value="PIN and AP-provided password encrypted in Vault. Waiting for radio cleanup…"
+                            WpsProgressStore.detail(session,"credential_saved")
                             return@withContext
                         }
                         "trial_credential" -> {
@@ -94,6 +99,7 @@ class LiveWpsBridge(private val context:Context,private val session:String,priva
                             require(pin in setOf("00000000","12345670","11111115"))
                             val fields=message.getJSONObject("fields")
                             val secret=LiveWpsProtocol.password(fields)
+                            WpsProgressStore.event(session,"saving","Encrypting the verified PIN and AP settings in Vault")
                             withContext(NonCancellable){
                                 val repository=LabRepository.get(context)
                                 repository.saveLiveWpsSecret(pin,bssid,session,"pin",
@@ -104,7 +110,7 @@ class LiveWpsBridge(private val context:Context,private val session:String,priva
                                         .put("association_verified",false))
                             }
                             send(JSONObject().put("type","saved"))
-                            mutable.value="AP supplied settings for a trial PIN. PIN and password encrypted in Vault."
+                            WpsProgressStore.detail(session,"credential_saved")
                             return@withContext
                         }
                         else -> error("Unexpected message")
@@ -112,7 +118,7 @@ class LiveWpsBridge(private val context:Context,private val session:String,priva
                 }
             }
         } catch(e:CancellationException){throw e}
-        catch(_:Exception){mutable.value="Live WPS did not complete. Any PIN already verified remains in Vault; inspect the session result."}
+        catch(_:Exception){WpsProgressStore.detail(session,"bridge_closed")}
         finally{close()}
     }
     override fun close(){runCatching {peer?.close()};runCatching {server.close()}}

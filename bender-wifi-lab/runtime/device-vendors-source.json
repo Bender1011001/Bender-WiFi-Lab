@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "source": "Wireshark compiled manufacturer table; tshark -G manuf",
+  "decoder_version": "TShark (Wireshark) 4.6.6",
+  "snapshot_date": "2026-11-16",
+  "reference": "https://www.wireshark.org/docs/man-pages/tshark",
+  "source_sha256": "474cb1a8f3a9e4d866af3550017067073c88a7c60fe30876b1f29532762caea8",
+  "table_sha256": "22d414a05ad4613afb30f577f0c4277826495565a00d55283e71b03dc738e063",
+  "entries": 56975,
+  "limits": "Registered address-prefix assignee, not confirmed product brand or device model. Locally administered and group prefixes excluded."
+}

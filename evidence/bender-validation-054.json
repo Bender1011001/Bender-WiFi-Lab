@@ -1,0 +1,28 @@
+{
+  "version": "0.5.4-device-hints-preview1",
+  "version_code": 17,
+  "sha256": "f5aa6eb977501427773635a13f87a608821f19e397fba58b6e8db1c00aa8f5c2",
+  "bytes": 212436152,
+  "signer_sha256": "efbaf95d8b014651c1b7480b6e0a424b8a6e904d9313c9abc6e0d11eef1c5fc7",
+  "same_update_signer": true,
+  "source_inputs_verified": 1155,
+  "packaged_assets_verified": 27,
+  "tests": {
+    "runtime": 205,
+    "engine": 48,
+    "jvm": 91,
+    "emulator": 60
+  },
+  "lint_errors": 0,
+  "lint_warnings": 18,
+  "prepared_utc": "2026-11-16T22:56:13.672915+00:00",
+  "phone_installation_verified": true,
+  "live_radio_test_performed": true,
+  "handset_validation": "handset-preview054-20261117.json",
+  "live_radio_scope": "One passive survey and restoration, not deauth or WPS credential recovery.",
+  "historical_warning": {
+    "count": 1,
+    "reason": "One older completed capture exceeds the evidence JSON node budget; original evidence retained.",
+    "new_capture_affected": false
+  }
+}

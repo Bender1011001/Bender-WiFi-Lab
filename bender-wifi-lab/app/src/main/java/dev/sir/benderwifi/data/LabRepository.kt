@@ -45,7 +45,9 @@ class LabRepository internal constructor(private val db:LabDatabase,private val 
                 val previous=dao.network(id)
                 val current=NetworkEntity(id,bssid,n.optString("ssid_display").ifEmpty{"Hidden / unknown SSID"},n.optString("security","unknown"),n.intOrNull("channel"),n.intOrNull("frequency_mhz"),n.intOrNull("signal_dbm"),n.optString("pmf_advertised","unknown"),n.timestamp("first_seen"),n.timestamp("last_seen"),sessionId,n.toString())
                 val first=earliest(previous?.firstSeen,current.firstSeen)
-                dao.putNetwork(if(previous!=null && !preferCurrent(previous.sessionId,previous.lastSeen,sessionId,current.lastSeen)) previous.copy(firstSeen=first) else current.copy(firstSeen=first))
+                val prefer=previous==null || preferCurrent(previous.sessionId,previous.lastSeen,sessionId,current.lastSeen)
+                val merged=IdentityHints.merge(previous?.rawJson,n,sessionId,prefer)
+                dao.putNetwork((if(prefer)current else previous!!).copy(firstSeen=first,rawJson=merged.toString()))
                 dao.putObservation(ObservationEntity(sessionId=sessionId,targetId=id,kind="network",rawJson=n.toString(),recordedAt=now))
                 linkWork(sessionId,id)
             }
@@ -56,7 +58,9 @@ class LabRepository internal constructor(private val db:LabDatabase,private val 
                 val previous=dao.client(id)
                 val current=ClientEntity(id,address,n.nullableString("ap_id"),n.intOrNull("signal_dbm"),n.timestamp("first_seen"),n.timestamp("last_seen"),sessionId,n.toString())
                 val first=earliest(previous?.firstSeen,current.firstSeen)
-                dao.putClient(if(previous!=null && !preferCurrent(previous.sessionId,previous.lastSeen,sessionId,current.lastSeen))previous.copy(firstSeen=first) else current.copy(firstSeen=first))
+                val prefer=previous==null || preferCurrent(previous.sessionId,previous.lastSeen,sessionId,current.lastSeen)
+                val merged=IdentityHints.merge(previous?.rawJson,n,sessionId,prefer)
+                dao.putClient((if(prefer)current else previous!!).copy(firstSeen=first,rawJson=merged.toString()))
                 dao.putObservation(ObservationEntity(sessionId=sessionId,targetId=id,kind="client",rawJson=n.toString(),recordedAt=now))
                 NetworkWork.networkFromObservation("client",n)?.let {linkWork(sessionId,it)}
             }

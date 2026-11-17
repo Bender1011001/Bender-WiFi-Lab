@@ -103,17 +103,6 @@
       "operation": "analyze"
     },
     {
-      "id": "wps",
-      "title": "WPS transcript analysis",
-      "target_types": [
-        "ap"
-      ],
-      "status": "awaiting_evidence",
-      "description": "Offline structured WPS events and terminal states; credentials routed separately.",
-      "blocker": "Active WPS protocol implementation and owned-device qualification absent.",
-      "operation": null
-    },
-    {
       "id": "wps-pixie",
       "title": "WPS \u00b7 Pixie Dust",
       "target_types": [

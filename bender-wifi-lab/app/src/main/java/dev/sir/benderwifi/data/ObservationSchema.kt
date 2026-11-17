@@ -3,8 +3,8 @@ package dev.sir.benderwifi.data
 import org.json.JSONArray
 import org.json.JSONObject
 
-/** Explicit typed projection. Unknown fields and free text cannot enter imported
- * observations or shared evidence. Private SSID fields are intentional. Sharing
+/** Explicit typed projection. Unknown fields and arbitrary free text are dropped.
+ * Private SSIDs and bounded, allowlisted identity hints are intentional. Sharing
  * reprojects old records too, so pre-upgrade imports cannot bypass this policy. */
 internal class ObservationSchema(private val sharing:Boolean=false) {
     private val aliases=linkedMapOf<String,String>()
@@ -31,6 +31,7 @@ internal class ObservationSchema(private val sharing:Boolean=false) {
                 require(value is Number && value.toDouble().isFinite() && value.toDouble()>=0){"Invalid observation timestamp"}
             }
             val clean:Any?=when {
+                key=="identity_hints" -> if(!sharing && value is JSONArray)IdentityHints.clean(value) else null
                 key=="station_count" -> (value as? Number)?.takeIf {it.toDouble().isFinite() && it.toDouble() in 0.0..65535.0 && it.toDouble()==it.toLong().toDouble()}
                 key in numbers -> (value as? Number)?.takeIf {it.toDouble().isFinite()}
                 key in booleans -> value as? Boolean

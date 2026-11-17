@@ -16,6 +16,7 @@ internal fun sessionEvidence(job:File,outcome:String,importError:String?=null):J
         .put("identity",read("identity-state.json")).put("privacy",read("privacy-state.json")).put("privacy_preparation",read("privacy-preparation.json"))
         .put("analysis",read("analysis-state.json"))
         .put("retention",read("retention-state.json"))
+        .put("wps_progress",read("wps-progress.json"))
         .put("transport_error",read("exit.json").opt("error")).put("import_error",importError)
 }
 

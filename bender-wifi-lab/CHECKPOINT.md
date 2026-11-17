@@ -1,3 +1,8 @@
-# Public preview2 snapshot
+# Published source snapshot — 0.5.4-device-hints-preview1
 
-Source and runtime assets correspond to Bender 0.5.2-device-count-preview2. Subsequent handset installation and passive-workflow checks passed on November 16; see [the public report](../docs/HANDSET-VALIDATION.md). Active features retain their separate evidence limits. Raw research and private user data are not included.
+This is the reviewed source for version code 17. All 1,155 source-manifest inputs
+match the installed APK. The large runtime archive is omitted from Git and is
+included in the complete source ZIP. Current claims, installation, validation
+and known issues are in the repository's top-level README and docs directory.
+Historical research documents retain their original scope and pending notes;
+they are not the current release checklist.

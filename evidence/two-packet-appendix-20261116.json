@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "source_capture_sha256": "7979f08c36b420d76b9de15b373fffed1fbaf3cf5986532350bf0954c739dc4a",
+  "source_capture_bytes": 490668,
+  "source_capture_packets": 1293,
+  "description": "Redacted transcription of two original packets, not a PCAP or independently verifiable FCS proof.",
+  "address_roles": {
+    "272.destination": "client",
+    "272.source": "AP",
+    "272.bssid": "AP",
+    "273.receiver": "AP"
+  },
+  "redaction": "xx marks a withheld byte; the FCS checks above were made on the unchanged private original.",
+  "packets": [
+    {
+      "packet": 272,
+      "captured_bytes": 66,
+      "radiotap_bytes": 36,
+      "radiotap_hex": "00 00 24 00 2f 40 00 a0 20 08 00 00 00 00 00 00 80 a7 cd 9c 00 00 00 00 10 02 85 09 a0 00 b8 00 00 00 b8 00",
+      "radiotap_present_hex": "0xa000402f",
+      "radiotap_second_present_hex": "0x00000820",
+      "tsft_us": 2630723456,
+      "rate_mbps": 1.0,
+      "short_preamble": false,
+      "frequency_mhz": 2437,
+      "ieee80211_bytes_including_fcs": 30,
+      "ieee80211_redacted_hex": "c0 00 3a 01 xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx xx 00 3f 03 00 xx xx xx xx",
+      "redacted_ranges": [
+        {
+          "start": 4,
+          "end_exclusive": 22,
+          "field": "addresses"
+        },
+        {
+          "start": 26,
+          "end_exclusive": 30,
+          "field": "FCS"
+        }
+      ],
+      "duration_us": 314,
+      "original_fcs_verified": true
+    },
+    {
+      "packet": 273,
+      "captured_bytes": 50,
+      "radiotap_bytes": 36,
+      "radiotap_hex": "00 00 24 00 2f 40 00 a0 20 08 00 00 00 00 00 00 3a a9 cd 9c 00 00 00 00 10 02 85 09 a0 00 b4 00 00 00 b4 00",
+      "radiotap_present_hex": "0xa000402f",
+      "radiotap_second_present_hex": "0x00000820",
+      "tsft_us": 2630723898,
+      "rate_mbps": 1.0,
+      "short_preamble": false,
+      "frequency_mhz": 2437,
+      "ieee80211_bytes_including_fcs": 14,
+      "ieee80211_redacted_hex": "d4 00 00 00 xx xx xx xx xx xx xx xx xx xx",
+      "redacted_ranges": [
+        {
+          "start": 4,
+          "end_exclusive": 10,
+          "field": "receiver address"
+        },
+        {
+          "start": 10,
+          "end_exclusive": 14,
+          "field": "FCS"
+        }
+      ],
+      "duration_us": 0,
+      "original_fcs_verified": true
+    }
+  ],
+  "tsft_delta_us": 442,
+  "pcap_delivery_delta_us": 210,
+  "timing": {
+    "deauth_exchange_us": "192 + 30*8 + 10 = 442",
+    "reserved_ack_exchange_us": "10 + 192 + 14*8 = 314",
+    "assumptions": "1 Mbps; long preamble/header 192 us; SIFS 10 us; FCS included in byte counts"
+  },
+  "limits": [
+    "The ACK has no explicit transmitter address; sender attribution is inferred.",
+    "Redacted address and FCS bytes prevent independent FCS recomputation from this file.",
+    "The observed Duration/ID change does not identify the software or firmware layer that made it.",
+    "Requested off-channel duration is not a measured dwell time."
+  ]
+}

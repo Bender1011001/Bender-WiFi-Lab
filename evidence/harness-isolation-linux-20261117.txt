@@ -1,0 +1,26 @@
+test_binding_false_success (__main__.IsolationTests.test_binding_false_success) ... ok
+test_command_exit_is_preserved (__main__.IsolationTests.test_command_exit_is_preserved) ... ok
+test_existing_mount_refused (__main__.IsolationTests.test_existing_mount_refused) ... ok
+test_failure_after_one_binding (__main__.IsolationTests.test_failure_after_one_binding) ... ok
+test_missing_executable (__main__.IsolationTests.test_missing_executable) ... ok
+test_missing_target_refused (__main__.IsolationTests.test_missing_target_refused) ... ok
+test_nested_mount_refused (__main__.IsolationTests.test_nested_mount_refused) ... ok
+test_parallel_children (__main__.IsolationTests.test_parallel_children) ... ok
+test_process_killed (__main__.IsolationTests.test_process_killed) ... ok
+test_propagation_error (__main__.IsolationTests.test_propagation_error) ... ok
+test_propagation_false_success (__main__.IsolationTests.test_propagation_false_success) ... ok
+test_publicly_writable_target_refused (__main__.IsolationTests.test_publicly_writable_target_refused) ... ok
+test_root_symlink_refused (__main__.IsolationTests.test_root_symlink_refused) ... ok
+test_shared_parent_success (__main__.IsolationTests.test_shared_parent_success) ... ok
+test_spaces_in_path (__main__.IsolationTests.test_spaces_in_path) ... ok
+test_success (__main__.IsolationTests.test_success) ... ok
+test_target_symlink_refused (__main__.IsolationTests.test_target_symlink_refused) ... ok
+test_unshare_error (__main__.IsolationTests.test_unshare_error) ... ok
+test_unshare_false_success (__main__.IsolationTests.test_unshare_false_success) ... ok
+test_untrusted_ancestor_pinned (__main__.IsolationTests.test_untrusted_ancestor_pinned) ... ok
+test_untrusted_target_refused (__main__.IsolationTests.test_untrusted_target_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 1.126s
+
+OK

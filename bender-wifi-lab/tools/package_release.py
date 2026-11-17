@@ -51,7 +51,7 @@ def source_inputs():
     for name in ('app/src', 'runtime', 'engine/bender_engine', 'tests', 'gradle/wrapper', 'third_party/pixiewps/src'):
         files.extend((ROOT / name).rglob('*'))
     files.extend((ROOT / 'research').glob('*.spec.json'))
-    files.extend(ROOT / name for name in ('third_party/pixiewps/LICENSE.md','third_party/pixiewps-build.json','tools/build_pixie.py','tools/pixie_stdin.c'))
+    files.extend(ROOT / name for name in ('third_party/pixiewps/LICENSE.md','third_party/pixiewps-build.json','tools/build_pixie.py','tools/pixie_stdin.c','tools/build_device_vendors.py'))
     for name in ('third_party/hostap/src', 'third_party/hostap/wpa_supplicant', 'third_party/libnl-tiny/include'):
         files.extend((ROOT/name).rglob('*'))
     files.extend((ROOT/'third_party/libnl-tiny').glob('*.c'))

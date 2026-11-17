@@ -13,8 +13,8 @@ android {
         applicationId = "dev.sir.benderwifi"
         minSdk = 30
         targetSdk = 35
-        versionCode = 15
-        versionName = "0.5.2-device-count-preview2"
+        versionCode = 17
+        versionName = "0.5.4-device-hints-preview1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
@@ -30,7 +30,7 @@ android {
 val provenanceSources = rootProject.fileTree(rootProject.projectDir) {
     include("app/src/**", "runtime/**", "engine/bender_engine/**", "tests/**", "research/*.spec.json")
     include("app/build.gradle.kts", "build.gradle.kts", "settings.gradle.kts", "gradle.properties", "gradle/wrapper/**", "gradlew", "gradlew.bat", "runtime-bundle/manifest.json", "tools/package_runtime.py")
-    include("third_party/pixiewps/src/**", "third_party/pixiewps/LICENSE.md", "third_party/pixiewps-build.json", "tools/build_pixie.py", "tools/pixie_stdin.c")
+    include("third_party/pixiewps/src/**", "third_party/pixiewps/LICENSE.md", "third_party/pixiewps-build.json", "tools/build_pixie.py", "tools/pixie_stdin.c", "tools/build_device_vendors.py")
     include("third_party/hostap/COPYING", "third_party/hostap/src/**", "third_party/hostap/wpa_supplicant/**", "third_party/libnl-tiny/*.c", "third_party/libnl-tiny/include/**", "third_party/LGPL-2.1.txt", "third_party/wps-build.json", "tools/build_wps.py", "tools/wps_hooks.c")
     exclude("**/__pycache__/**", "**/*.pyc", "third_party/hostap/wpa_supplicant/src/**")
 }

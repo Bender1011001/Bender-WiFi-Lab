@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-17",
+  "scope": "Offline replacement for the terminal experiment mount wrapper, not an app runtime update.",
+  "original_experiment": "2026-11-16; executed originals preserved unchanged",
+  "linux": {
+    "kernel": "6.6.87.2-microsoft-standard-WSL2",
+    "tests": 21,
+    "passed": 21,
+    "failed": 0,
+    "skipped": 0,
+    "parent_mount_table_unchanged": true,
+    "cases": [
+      "success",
+      "shared parent",
+      "concurrent children",
+      "command error",
+      "exec failure",
+      "SIGKILL",
+      "unshare error/no-op",
+      "propagation error/no-op",
+      "partial setup failure",
+      "bind false success",
+      "existing/nested mount refusal",
+      "symlink refusal",
+      "missing target",
+      "directory permissions",
+      "shell-owned ancestor",
+      "path spaces"
+    ]
+  },
+  "android_build": {
+    "schema_version": 1,
+    "ndk": "27.2.12479018",
+    "target": "aarch64-linux-android30",
+    "source_sha256": "39d6992288c8218914c382b9f83664fb40a3014214f7e384b74133de805fb438",
+    "binary_sha256": "98b810f86ce36fed872e654e3b45fb9723faacf6ef05872853f958827c58b069",
+    "binary_bytes": 15696,
+    "handset_execution": "Subsequent read-only handset qualification passed; see harness-isolation-phone-20261117.json.",
+    "flags": [
+      "--target=aarch64-linux-android30",
+      "-std=c11",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-fPIE",
+      "-pie",
+      "-Wl,-z,relro,-z,now",
+      "-Wl,-z,max-page-size=16384",
+      "-ffile-prefix-map=<source directory>=."
+    ]
+  },
+  "linux_test_log": "harness-isolation-linux-20261117.txt",
+  "linux_test_log_sha256": "7e020156535d350f41f169e781da97802f118403e5711b489a773cc3510825d4",
+  "handset_execution": "Three read-only probe cases passed on CPH2655: exit0, exit23, forced termination.",
+  "source_sha256": {
+    "build_android.py": "a26b31ff010d5d7480d1d6c530035f94bb271efdb1636dfcef7397db7213bfee",
+    "isolated-runtime.c": "39d6992288c8218914c382b9f83664fb40a3014214f7e384b74133de805fb438",
+    "test_faults.c": "15a7ce5f5205c4c377e95a3935c8bf6e937fb2cb54cb66da04e11586356ef82e",
+    "test_isolation.py": "ff6dbd5f26b4266c85ec1470c14fac28146c7bb49acb172a74e8895ad73d6d1c",
+    "test_probe.c": "5396a5b9f3648b43a6c14a31312de92cd538351af4790dbda7ce079fa012ca7b"
+  },
+  "original_harness_hashes_verified": true,
+  "limitations": [
+    "Handset tests cover normal completion, command failure and forced termination; syscall fault injection was host-only.",
+    "The child remains privileged; this is not a security sandbox.",
+    "Descendants or retained namespace references can keep private mounts alive.",
+    "Original shell failure mechanism was not fully established."
+  ],
+  "subsequent_handset_validation": "harness-isolation-phone-20261117.json"
+}

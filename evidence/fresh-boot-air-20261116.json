@@ -1,0 +1,210 @@
+{
+  "schema": 1,
+  "date_local": "2026-11-16",
+  "timezone": "America/Los_Angeles",
+  "provenance": "One maintainer-operated lab; independent receive radio, not an independent laboratory replication. Labels replace private network identifiers.",
+  "environment": {
+    "model": "CPH2655",
+    "android_build": "CPH2655_16.0.8.301(EX01)",
+    "root": true,
+    "internal_driver_sha256": "d6bd3fac600aaeba858e83292df167bc410457c07e422047c1a181c31d24d3df",
+    "ordinary_connection_frequency_mhz": 6135,
+    "trial_frequency_mhz": 2437,
+    "trial_channel": 6,
+    "transmitter": "OnePlus 13 internal Qualcomm radio",
+    "receiver": "ALFA AWUS036ACS on PC/WSL, receive only",
+    "phone_usb_connected": true,
+    "phone_external_adapter": false,
+    "phone_internal_monitor_setup_after_reboot": false,
+    "phone_firmware_staging_after_reboot": false,
+    "installed_root_modules_present": true
+  },
+  "fresh_boot": {
+    "new_boot_id_verified": true,
+    "uptime_at_submission_seconds": 131.4,
+    "driver_and_firmware_hashes_unchanged": true,
+    "boot_scripts_unchanged": true,
+    "mode": 0,
+    "firmware_override_empty": true,
+    "external_alfa_boot_module_present": true,
+    "external_boot_module_no_qca_staging_observed": true
+  },
+  "tx": {
+    "kernel_accepted": true,
+    "matching_ack": true,
+    "userspace_submissions": 1,
+    "status_matches": [
+      "sequence_assigned"
+    ],
+    "cookies": [
+      256
+    ],
+    "uptime_at_submission": 131.4
+  },
+  "rf": {
+    "packet_count": 1293,
+    "capture_span_seconds": 101.21640181541443,
+    "pcap_bytes": 490668,
+    "pcap_sha256": "7979f08c36b420d76b9de15b373fffed1fbaf3cf5986532350bf0954c739dc4a",
+    "kernel_capture_drops": 0,
+    "deauth_packet": 272,
+    "deauth_count": 1,
+    "frequency_mhz": 2437,
+    "source": "Lab AP",
+    "bssid": "Lab AP",
+    "destination": "WiZ client",
+    "source_differs_from_phone_interface_address": true,
+    "reason_code": 3,
+    "protected": false,
+    "retry_flag": false,
+    "sequence_number": 1008,
+    "duration_field_us": 314,
+    "rate_mbps": 1,
+    "long_preamble": true,
+    "deauth_fcs_crc32_valid": true,
+    "request_to_air_changes": [
+      "Duration/ID assigned to 314 microseconds",
+      "Sequence number assigned to 1008"
+    ],
+    "tx_status_to_air_changes": [
+      "Duration/ID differs; status retained zero"
+    ],
+    "ack_packet": 273,
+    "ack_receiver": "Lab AP",
+    "ack_fcs_crc32_valid": true,
+    "ack_tsft_start_delta_us": 442,
+    "ack_airtime_interpretation": "442 us matches 192 us long preamble + 240 us deauth body/FCS + 10 us SIFS. ACK sender is inferred; ACK contains no transmitter address.",
+    "reconnect": [
+      {
+        "packet": 351,
+        "capture_relative_seconds": 7.008094,
+        "event": "Authentication request",
+        "status": "0x0000"
+      },
+      {
+        "packet": 354,
+        "capture_relative_seconds": 7.014069,
+        "event": "Authentication request",
+        "status": "0x0000"
+      },
+      {
+        "packet": 355,
+        "capture_relative_seconds": 7.016429,
+        "event": "Authentication response",
+        "status": "0x0000"
+      },
+      {
+        "packet": 357,
+        "capture_relative_seconds": 7.018586,
+        "event": "Association request",
+        "status": null
+      },
+      {
+        "packet": 358,
+        "capture_relative_seconds": 7.022959,
+        "event": "Association response",
+        "status": "0x0000"
+      },
+      {
+        "packet": 361,
+        "capture_relative_seconds": 7.027611,
+        "event": "EAPOL message 1",
+        "status": null
+      },
+      {
+        "packet": 363,
+        "capture_relative_seconds": 7.02986,
+        "event": "EAPOL message 2",
+        "status": null
+      },
+      {
+        "packet": 364,
+        "capture_relative_seconds": 7.03425,
+        "event": "EAPOL message 3",
+        "status": null
+      },
+      {
+        "packet": 366,
+        "capture_relative_seconds": 7.042819,
+        "event": "EAPOL message 4",
+        "status": null
+      }
+    ],
+    "handshake": {
+      "messages": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "replay_counters": {
+        "1": 1,
+        "2": 1,
+        "3": 2,
+        "4": 2
+      },
+      "anonce_m1_matches_m3": true,
+      "mic_not_verified": true,
+      "password_not_recovered": true
+    },
+    "selected_ap_beacons": 981,
+    "alfa_tx_packets": 0
+  },
+  "observations": {
+    "clean_queries_at_submission_window_start": 21,
+    "total_queries": 51,
+    "successful_queries": 43,
+    "consecutive_failed_queries": 8,
+    "failure_samples": [
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "timeout_seconds": 0.7,
+    "nominal_interval_seconds": 1,
+    "first_failed_query_start_relative_seconds": 0.849651575088501,
+    "last_failed_query_start_relative_seconds": 7.918500185012817,
+    "first_recovery_query_start_relative_seconds": 8.925291538238525,
+    "last_ten_queries_successful": true,
+    "exact_outage_duration_established": false
+  },
+  "restoration": {
+    "phone_managed": true,
+    "phone_firmware_override_empty": true,
+    "stock_driver_and_firmware_hashes_verified": true,
+    "phone_gateway_replies": "3/3",
+    "runtime_mounts_remaining": 0,
+    "cleanup_reboot_required": true,
+    "alfa_returned_to_windows": true,
+    "alfa_original_connection_restored": true,
+    "temporary_receiver_modules_removed": true,
+    "wsl_firmware_parameter_restored_exactly": true
+  },
+  "limitations": [
+    "One fresh-boot active trial on one handset/build and one client; no success-rate estimate.",
+    "Phone was USB-connected; this is not an unplugged demonstration or a hardware power-cycle test.",
+    "Rooted configuration includes installed Magisk modules; do not call it a pristine stock OS.",
+    "ACK sender inferred from exchange timing, not an explicit ACK transmitter-address field.",
+    "One captured deauth does not prove absence of uncaptured firmware retries.",
+    "Capture timestamps are receiver delivery times; TSFT interpretation was checked for this frame pair only.",
+    "Claims apply only to the tested AP/client configuration; no security-boundary bypass is established.",
+    "Four EAPOL messages, matching replay-counter pairs and matching M1/M3 ANonce observed; MICs not verified and no password recovered.",
+    "No router log was acquired for this trial; Chrome inspection was blocked by Computer Use URL verification.",
+    "Raw private PCAP retained locally; hashes are provenance references, not independent proof without the original.",
+    "No current APK transmit qualification or general monitor injection established by this terminal-harness trial."
+  ],
+  "artifact_hashes": {
+    "harness-sha256.json": "40dee4be0367627baf2a50687591b56aa3995af7f288de55de88c7044e696143",
+    "fresh-boot-comparison.json": "98b00a14fbc48d11c97495628fbdb8d78f061bef002adaff6fe7158c2f9defd8",
+    "host-trial-01/phone-execute.stdout.private.json": "9c2ed8acaf8453357eaa6684c8cdce5dfabf968db18f81fca52dacf8d1b7f3fa",
+    "host-trial-01/bulb-observation.private.jsonl": "0b503f19c4e3dd5ef4ef97fc49802a3ee5eb38d2046e8785dc586829db364060",
+    "analysis/handshake-validation.json": "4675abe9502e7a77ce1cddec10d628915f5039a96db2c97458850c260686a96b",
+    "final-recovery.json": "720f8e60d5c6652240f3850705a78745ec46abe910c301f005607ded17fe09a1",
+    "alfa/restore.json": "4cf84d72ace93979c4ab4b82ea6da5a801ef5488e504fd0355f2834a307d0ed2"
+  }
+}
