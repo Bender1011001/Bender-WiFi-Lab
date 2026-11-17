@@ -41,6 +41,7 @@ interface LabDao {
     @Query("SELECT * FROM network_notes WHERE networkId=:id") fun networkNote(id:String):Flow<NetworkNoteEntity?>
     @Query("SELECT * FROM credentials WHERE id=:id") suspend fun credential(id:String):CredentialEntity?
     @Query("SELECT * FROM observations ORDER BY id DESC") suspend fun observations():List<ObservationEntity>
+    @Query("SELECT * FROM observations WHERE sessionId=:sessionId AND kind IN ('network','client') ORDER BY id") fun sessionInventory(sessionId:String):Flow<List<ObservationEntity>>
     @Query("SELECT * FROM experiments ORDER BY createdAt DESC") suspend fun experimentSnapshot():List<ExperimentEntity>
     @Insert(onConflict=OnConflictStrategy.REPLACE) suspend fun putNetwork(value:NetworkEntity)
     @Insert(onConflict=OnConflictStrategy.REPLACE) suspend fun putClient(value:ClientEntity)

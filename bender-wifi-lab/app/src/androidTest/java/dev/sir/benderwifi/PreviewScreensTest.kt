@@ -39,8 +39,8 @@ class PreviewScreensTest {
                 assertEquals("Screenshots are enabled",0,activity.window.attributes.flags and WindowManager.LayoutParams.FLAG_SECURE)
             }
             compose.waitForIdle()
-            compose.onNodeWithTag("network-list").performScrollToNode(hasText("No networks yet. Scan or import a capture from Tools."))
-            compose.onNodeWithText("No networks yet. Scan or import a capture from Tools.").assertIsDisplayed()
+            compose.onNodeWithTag("network-list").performScrollToNode(hasText("No scan results to display."))
+            compose.onNodeWithText("No scan results to display.").assertIsDisplayed()
             compose.onNodeWithTag("network-list").performScrollToIndex(0)
             compose.onNodeWithText("Scan networks & devices").assertIsDisplayed()
             capture(File(directory,"radar.png"))

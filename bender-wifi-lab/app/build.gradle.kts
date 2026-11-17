@@ -13,8 +13,8 @@ android {
         applicationId = "dev.sir.benderwifi"
         minSdk = 30
         targetSdk = 35
-        versionCode = 17
-        versionName = "0.5.4-device-hints-preview1"
+        versionCode = 18
+        versionName = "0.5.5-latest-scan-preview1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }

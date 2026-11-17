@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dev.sir.benderwifi.data.ClientEntity
 import dev.sir.benderwifi.data.NetworkEntity
+import dev.sir.benderwifi.data.ScanInventory
 import dev.sir.benderwifi.data.advertisedStationCount
 
 /** Navigation and observed inventory only. Opening a target never runs a radio operation. */
@@ -31,7 +32,8 @@ internal fun WifiNetworks(
     onNetwork:(String?)->Unit, onDevice:(String?)->Unit,
     onScan:()->Unit, onTools:()->Unit, onCapture:()->Unit, onHandshake:()->Unit,
     onDeauth:()->Unit, onEvidence:(String)->Unit, onUnavailable:(CatalogAction)->Unit,
-    savedWork:@Composable (String)->Unit,onWps:()->Unit={}
+    savedWork:@Composable (String)->Unit,onWps:()->Unit={},
+    inventoryScope:String="Latest scan",onInventoryScope:(String)->Unit={},latestScan:ScanInventory=ScanInventory()
 ) {
     val pages=rememberSaveableStateHolder()
     BackHandler(enabled=device!=null||selected!=null) {
@@ -44,15 +46,16 @@ internal fun WifiNetworks(
         selected!=null -> pages.SaveableStateProvider(selected.id) {NetworkPage(selected,clients.filter {it.apId==selected.id},catalog,
             busy,recovery,onBack={onNetwork(null)},onDevice=onDevice,
             onCapture=onCapture,onHandshake=onHandshake,onEvidence=onEvidence,
-            onUnavailable=onUnavailable,savedWork=savedWork,onWps=onWps)}
-        else -> pages.SaveableStateProvider("index") {NetworkIndex(networks,clients,busy,recovery,onNetwork,onDevice,onScan,onTools)}
+            onUnavailable=onUnavailable,savedWork=savedWork,onWps=onWps,inventoryScope=inventoryScope)}
+        else -> pages.SaveableStateProvider("index:$inventoryScope") {NetworkIndex(networks,clients,busy,recovery,onNetwork,onDevice,onScan,onTools,inventoryScope,onInventoryScope,latestScan)}
     }
 }
 
 @Composable
 private fun NetworkIndex(
     networks:List<NetworkEntity>,clients:List<ClientEntity>,busy:Boolean,recovery:Boolean,
-    onNetwork:(String?)->Unit,onDevice:(String?)->Unit,onScan:()->Unit,onTools:()->Unit
+    onNetwork:(String?)->Unit,onDevice:(String?)->Unit,onScan:()->Unit,onTools:()->Unit,
+    inventoryScope:String,onInventoryScope:(String)->Unit,latestScan:ScanInventory
 ) {
     var query by rememberSaveable {mutableStateOf("")}
     var band by rememberSaveable {mutableStateOf("All bands")}
@@ -71,6 +74,7 @@ private fun NetworkIndex(
         else->matching.sortedByDescending {it.lastSeen}
     }
     LazyColumn(Modifier.testTag("network-list"),verticalArrangement=Arrangement.spacedBy(10.dp)) {
+        item {ChoiceRow(listOf("Latest scan","Saved history"),inventoryScope,onInventoryScope)}
         item {
             Card(Modifier.fillMaxWidth(),colors=CardDefaults.cardColors(containerColor=MaterialTheme.colorScheme.surface)) {Column(Modifier.padding(14.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
                 Button(enabled=!busy&&!recovery,onClick=onScan,modifier=Modifier.fillMaxWidth()) {Text("Scan networks & devices")}
@@ -79,12 +83,18 @@ private fun NetworkIndex(
                 TextButton(onClick=onTools) {Text("Radio setup & tools")}
             }}
         }
-        item {Text("${networks.size} networks · ${clients.size} saved device address${if(clients.size==1)"" else "es"}",fontWeight=FontWeight.Bold)}
+        item {Text("${networks.size} network${if(networks.size==1)"" else "s"} · ${clients.size} ${if(inventoryScope=="Latest scan")"observed" else "saved"} device address${if(clients.size==1)"" else "es"}",fontWeight=FontWeight.Bold)}
+        item {Text(if(inventoryScope=="Saved history")"All saved observations, including older scans and imports. These devices may no longer be nearby." else when {
+            latestScan.attempt==null -> "No live scan yet. Run a scan, or open Saved history for earlier captures and imports."
+            latestScan.session==null && latestScan.attempt.state=="running" -> "Scanning… results appear after capture and analysis. Earlier observations remain in Saved history."
+            latestScan.session==null -> "The latest scan has no available results. Check its record in Evidence. Earlier observations remain in Saved history."
+            else -> "${if(latestScan.isSurvey)"All-band scan" else "Selected-channel capture"}${if(latestScan.attempt.state=="completed")"" else " (partial)"} started ${stamp(latestScan.attempt.createdAt/1000.0)}. Only observations from this capture; scan again to refresh."
+        },fontSize=12.sp)}
         item {Text("AP totals come from captured beacons when available. Identified addresses come from observed traffic; quiet devices may be missed. Each BSSID stays separate, even with the same network name.",fontSize=12.sp)}
         item {OutlinedTextField(query,{query=it},label={Text("Search networks, BSSID or security")},singleLine=true,modifier=Modifier.fillMaxWidth())}
         item {ChoiceRow(listOf("All bands","2.4 GHz","5 GHz","6 GHz"),band){band=it}}
         item {ChoiceRow(listOf("Last seen","Signal","Devices"),order){order=it}}
-        if(displayed.isEmpty())item {Text(if(networks.isEmpty())"No networks yet. Scan or import a capture from Tools." else "No matching networks.")}
+        if(displayed.isEmpty())item {Text(if(networks.isNotEmpty())"No matching networks." else if(inventoryScope=="Saved history")"No saved networks yet." else if(latestScan.session!=null)"No networks observed in this scan." else "No scan results to display.")}
         items(displayed,key={it.id}) {n ->
             NetworkSummary(n,counts[n.id]?:0,onClick={onNetwork(n.id)})
         }
@@ -105,7 +115,7 @@ private fun NetworkIndex(
 private fun NetworkPage(
     network:NetworkEntity,devices:List<ClientEntity>,catalog:List<CatalogAction>,busy:Boolean,recovery:Boolean,
     onBack:()->Unit,onDevice:(String?)->Unit,onCapture:()->Unit,onHandshake:()->Unit,
-    onEvidence:(String)->Unit,onUnavailable:(CatalogAction)->Unit,savedWork:@Composable (String)->Unit,onWps:()->Unit
+    onEvidence:(String)->Unit,onUnavailable:(CatalogAction)->Unit,savedWork:@Composable (String)->Unit,onWps:()->Unit,inventoryScope:String
 ) {
     var section by rememberSaveable(network.id){mutableStateOf("Actions")}
     Column {
@@ -126,7 +136,7 @@ private fun NetworkPage(
                         items(catalog.filter {"ap" in it.targets&&it.operation==null},key={it.id}) {a->ActionCard(a){onUnavailable(a)}}
                     }
                     "Devices" -> {
-                        item {Text("${devices.size} identified address${if(devices.size==1)"" else "es"} · latest saved relationships",fontWeight=FontWeight.Bold)}
+                        item {Text("${devices.size} identified address${if(devices.size==1)"" else "es"} · ${if(inventoryScope=="Latest scan")"this scan" else "latest saved relationships"}",fontWeight=FontWeight.Bold)}
                         item {Text("Select a device to see its actions. Addresses may be randomized; this is not a count of physical devices currently connected.",fontSize=12.sp)}
                         item {Text("Device guesses combine offline vendor prefixes with captured names, models and service clues. Encrypted or quiet traffic may reveal only an address.",fontSize=12.sp)}
                         item {StationCount(network)}

@@ -1,11 +1,11 @@
 # Install Bender Wi-Fi Lab preview
 
-This is a rooted-phone research preview, package `dev.sir.benderwifi`, version `0.5.4-device-hints-preview1` (17). The exact APK passed build, lint, emulator and package checks, then an in-place OnePlus installation, runtime check and full passive survey on November 17. See [handset scope and results](HANDSET-VALIDATION-054.md). The directed-transmission findings use separate terminal tooling; they are not active-feature qualification of this APK.
+This is a rooted-phone research preview, package `dev.sir.benderwifi`, version `0.5.5-latest-scan-preview1` (18). The exact APK passed build, lint, emulator and package checks, then an in-place OnePlus installation and inventory-tab/count checks on November 17; a new survey started, but USB disconnected before its final outcome could be collected. See [handset scope and results](HANDSET-VALIDATION-055.md). The directed-transmission findings use separate terminal tooling; they are not active-feature qualification of this APK.
 
 ## Download and install
 
-1. Download [the APK](https://github.com/Bender1011001/Bender-WiFi-Lab/releases/download/v0.5.4-device-hints-preview1/Bender-WiFi-Lab-0.5.4-device-hints-preview1.apk). The APK includes its ARM64 runtime, so first setup needs about 1 GB free storage and no runtime download.
-2. Verify its SHA-256 against [SHA256SUMS](../SHA256SUMS). On Windows, `Get-FileHash .\Bender-WiFi-Lab-0.5.4-device-hints-preview1.apk -Algorithm SHA256` should return `f5aa6eb977501427773635a13f87a608821f19e397fba58b6e8db1c00aa8f5c2`.
+1. Download [the APK](https://github.com/Bender1011001/Bender-WiFi-Lab/releases/download/v0.5.5-latest-scan-preview1/Bender-WiFi-Lab-0.5.5-latest-scan-preview1.apk). The APK includes its ARM64 runtime, so first setup needs about 1 GB free storage and no runtime download.
+2. Verify its SHA-256 against [SHA256SUMS](../SHA256SUMS). On Windows, `Get-FileHash .\Bender-WiFi-Lab-0.5.5-latest-scan-preview1.apk -Algorithm SHA256` should return `db4c4d45ac487a9172d33d63c44452dd4fdc19a5c8b42c427051cc0859673649`.
 3. Open the APK on the phone and allow installation from that source when Android asks. It installs alongside Hijacker/NetHunter. For an existing Bender installation, install as an update; do not uninstall to resolve a signing mismatch, because uninstalling removes app data.
 4. Open **Tools → Install runtime**, grant root and wait for completion. Existing compatible NetHunter users can try **Check radio** first. Then run **Check radio** and check any recovery banner before proceeding.
 
@@ -13,9 +13,9 @@ The Wi-Fi backend targets the OnePlus `qca_cld3_peach_v2` interface. Other drive
 
 ## First useful workflow
 
-Open **Networks → Scan networks & devices**, then select an AP. Scanning temporarily changes radio mode and can interrupt the phone's Wi-Fi connection. The dossier contains **Actions, Devices, Saved work and Details**.
+Open **Networks → Scan networks & devices**. **Latest scan** shows only that capture; **Saved history** contains older networks and devices. Select an AP from either view. Scanning temporarily changes radio mode and can interrupt the phone's Wi-Fi connection. The dossier contains **Actions, Devices, Saved work and Details**.
 
-- **Devices → Look for devices** listens on the selected channel for up to 120 seconds; **Finish & save** ends it early. AP-reported station totals and identified addresses are distinct, timestamped observations. Scan again after this update to populate newly decoded fields.
+- **Devices → Look for devices** listens on the selected channel for up to 120 seconds; **Finish & save** ends it early. AP-reported station totals and identified addresses are distinct, timestamped observations. A targeted capture becomes the latest snapshot and is labeled **Selected-channel capture**. Run a full scan again for wider coverage.
 - Select a device to see its best available vendor/name/type clue and the evidence behind it. Unknown or conflicting identities remain visible; an observed address is not necessarily a unique physical device.
 - **WPS · Pixie Dust** now shows actual collector/solver stages, elapsed time, deadlines and stall information. A progress event does not prove a successful recovery. Live WPS recovery remains experimental.
 - **Capture handshake** listens for authentication traffic. Reconnect an owned client after the app says **Listening**. The app saves the capture and separately identified exchanges under the selected network. Message coverage alone does not establish a usable password-checking capture. WPA wordlist cracking is not implemented in this preview.
@@ -34,4 +34,4 @@ An older oversized capture may show **Saved observations need attention** after 
 
 ## Source
 
-The [publication source archive](https://github.com/Bender1011001/Bender-WiFi-Lab/releases/download/v0.5.4-device-hints-preview1/Bender-WiFi-Lab-0.5.4-device-hints-preview1-public-source.zip) contains the app, runtime source, tests, pinned native dependency sources and build instructions. Every build input is checked against the APK manifest. The complete source ZIP includes the bundled runtime image omitted from Git, pinned dependency sources, notices and build instructions. The current validation and handset reports distinguish software coverage from live hardware observations.
+The [publication source archive](https://github.com/Bender1011001/Bender-WiFi-Lab/releases/download/v0.5.5-latest-scan-preview1/Bender-WiFi-Lab-0.5.5-latest-scan-preview1-public-source.zip) contains the app, runtime source, tests, pinned native dependency sources and build instructions. Every build input is checked against the APK manifest. The complete source ZIP includes the bundled runtime image omitted from Git, pinned dependency sources, notices and build instructions. The current validation and handset reports distinguish software coverage from live hardware observations.

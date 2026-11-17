@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-17",
+  "status": "passed",
+  "handset_validation_complete": false,
+  "scope": "Verified in-place installation, startup, latest/history counts and clearing stale results while a passive scan runs. Completion/restoration not collected after USB disconnected.",
+  "app": {
+    "package": "dev.sir.benderwifi",
+    "version": "0.5.5-latest-scan-preview1",
+    "version_code": 18,
+    "apk_sha256": "db4c4d45ac487a9172d33d63c44452dd4fdc19a5c8b42c427051cc0859673649",
+    "installed_hash_matches": true,
+    "upgraded_from": "0.5.4-device-hints-preview1"
+  },
+  "checks": {
+    "in_place_installation": true,
+    "installed_apk_hash": true,
+    "startup": true,
+    "latest_counts_match_immutable_session": true,
+    "history_counts_match_accumulated_inventory": true,
+    "both_inventory_tabs": true,
+    "old_results_hidden_while_scanning": true,
+    "pending_results_explained": true
+  },
+  "inventory_scopes": {
+    "latest": {
+      "networks": 16,
+      "clients": 9
+    },
+    "history": {
+      "networks": 100,
+      "clients": 59
+    },
+    "matches_immutable_session": true,
+    "both_tabs_work": true
+  },
+  "passive_scan": {
+    "started": true,
+    "completion_collected": false
+  },
+  "pending_checks": [
+    "Completed new-capture import and replacement counts on the phone.",
+    "Final radio, privacy and connectivity restoration after the new scan.",
+    "Post-scan saved-record ID preservation."
+  ],
+  "historical_warning": {
+    "count": 1,
+    "reason": "An older capture retains its existing Evidence JSON node budget exceeded import warning.",
+    "new_capture_affected": null
+  },
+  "limits": [
+    "Current counts describe captured addresses, not all nearby or physically distinct devices.",
+    "USB disconnected during the new passive survey; its final outcome is not claimed.",
+    "No new active transmission or credential-recovery test was performed.",
+    "The preceding 0.5.4 handset survey/restoration record belongs to that dated build."
+  ]
+}

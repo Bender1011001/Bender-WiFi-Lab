@@ -1,17 +1,16 @@
 # Published source snapshot
 
-This directory contains the reviewed 0.5.4 source. The
-[complete source ZIP](https://github.com/Bender1011001/Bender-WiFi-Lab/releases/download/v0.5.4-device-hints-preview1/Bender-WiFi-Lab-0.5.4-device-hints-preview1-public-source.zip)
+This directory contains the reviewed 0.5.5 source. The
+[complete source ZIP](https://github.com/Bender1011001/Bender-WiFi-Lab/releases/download/v0.5.5-latest-scan-preview1/Bender-WiFi-Lab-0.5.5-latest-scan-preview1-public-source.zip)
 also includes `runtime-bundle/rootfs.tar.gz`, which is omitted from Git.
-[Current handset validation](https://github.com/Bender1011001/Bender-WiFi-Lab/blob/main/docs/HANDSET-VALIDATION-054.md) and
+[Current handset validation](https://github.com/Bender1011001/Bender-WiFi-Lab/blob/main/docs/HANDSET-VALIDATION-055.md) and
 [release notes](https://github.com/Bender1011001/Bender-WiFi-Lab/blob/main/docs/RELEASE-NOTES.md) supersede historical pending-status notes.
 
-This update adds real WPS progress stages, elapsed/deadline/stall reporting and
-qualified device-identity clues. It preserves the previous root/driver, target,
-privacy, vault and screenshot choices. The APK was upgraded in place and passed
-a full passive scan, saved-ID preservation, vendor-guess display and restoration
-on November 17. An older oversized capture still produces a retained import
-warning; no live WPS password recovery is claimed.
+Latest scan now shows only the most recent live capture. Saved history retains
+older networks and devices with their saved work. A running, failed or empty scan
+does not silently display previous observations as current. Targeted captures
+are labeled with their narrower scope. Existing WPS progress, qualified device
+hints, encrypted storage and preview-4 choices are retained.
 
 # Bender Wi-Fi Lab
 

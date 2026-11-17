@@ -1,14 +1,14 @@
 {
   "schema_version": 2,
   "release_date": "2026-11-17",
-  "scope": "Prepared 0.5.4 app/source release with November 17 handset qualification and consolidated fresh-boot research evidence.",
+  "scope": "Prepared 0.5.5 app/source release with scoped November 17 handset inventory checks and consolidated fresh-boot research evidence.",
   "repository": "https://github.com/Bender1011001/Bender-WiFi-Lab",
-  "tag": "v0.5.4-device-hints-preview1",
+  "tag": "v0.5.5-latest-scan-preview1",
   "radio_evidence_version": "V61 terminal, 2026-11-13; fresh-boot managed TX with independent Alfa reception, 2026-11-16",
-  "app_version": "0.5.4-device-hints-preview1",
-  "app_version_code": 17,
+  "app_version": "0.5.5-latest-scan-preview1",
+  "app_version_code": 18,
   "latest_apk_handset_install_pending": false,
-  "handset_evidence": "evidence/handset-preview054-20261117.json",
+  "handset_evidence": "evidence/handset-preview055-20261117.json",
   "files": [
     {
       "file": ".gitignore",
@@ -27,8 +27,8 @@
     },
     {
       "file": "bender-wifi-lab/app/build.gradle.kts",
-      "bytes": 6462,
-      "sha256": "b4d3ca3bd5298952a38c02d1c345a7b3a32073da6f0188bbca2b1a7212749650"
+      "bytes": 6461,
+      "sha256": "75c8246f607bf9d03638f8a6cafd07b38a2704a47a31a6a7a28b0628e8c7c363"
     },
     {
       "file": "bender-wifi-lab/app/src/androidTest/assets/pixie-synthetic.json",
@@ -82,8 +82,8 @@
     },
     {
       "file": "bender-wifi-lab/app/src/androidTest/java/dev/sir/benderwifi/NetworkWorkflowTest.kt",
-      "bytes": 4923,
-      "sha256": "0b796b990d85cefa6dc32155ffa1e0c20afd150cbadd09b6c198ae5f16255ed4"
+      "bytes": 5086,
+      "sha256": "3b4378789abb40ae5045f5c1619f3e4d6501ba51115c05c682508529ae462452"
     },
     {
       "file": "bender-wifi-lab/app/src/androidTest/java/dev/sir/benderwifi/NetworkWorkTest.kt",
@@ -107,8 +107,8 @@
     },
     {
       "file": "bender-wifi-lab/app/src/androidTest/java/dev/sir/benderwifi/PreviewScreensTest.kt",
-      "bytes": 3904,
-      "sha256": "1223b2fb7a0e88e9d101a2a067116593f9d8fdb13df4e281d5f8792db26ab6c1"
+      "bytes": 3852,
+      "sha256": "8661e86d9144139f8e2648385734e27cdfb820affbc932554f7079edf55c59d3"
     },
     {
       "file": "bender-wifi-lab/app/src/androidTest/java/dev/sir/benderwifi/RecoveryBannerTest.kt",
@@ -197,13 +197,13 @@
     },
     {
       "file": "bender-wifi-lab/app/src/main/java/dev/sir/benderwifi/data/LabDatabase.kt",
-      "bytes": 6873,
-      "sha256": "684f00ae48e10105c4c70fcf660c75674a07060f2dcc24e18db96dbaf1f5d42a"
+      "bytes": 7055,
+      "sha256": "3183a95f82a1991dce1c2b77c2e2156ec21fe6a02e295b9ef34f9aac64fb90f5"
     },
     {
       "file": "bender-wifi-lab/app/src/main/java/dev/sir/benderwifi/data/LabRepository.kt",
-      "bytes": 13281,
-      "sha256": "cc04967c63fb788ca37db6c55c953d83f63e6bee93c06dad00c6cb25c4964173"
+      "bytes": 14368,
+      "sha256": "ae92019d51fd5f88114477d4f677c15d328b0d1bcc9c5f7857ad5450703014e3"
     },
     {
       "file": "bender-wifi-lab/app/src/main/java/dev/sir/benderwifi/data/NetworkWork.kt",
@@ -282,8 +282,8 @@
     },
     {
       "file": "bender-wifi-lab/app/src/main/java/dev/sir/benderwifi/ui/LabApp.kt",
-      "bytes": 41745,
-      "sha256": "969eac7f1a8b60d95327cbd25196fb66c7dd63e196aad91c4ab9ea5978684a52"
+      "bytes": 42332,
+      "sha256": "d0dede4b3a3477fa7aa4536841942be7e8d09f7126a0a06d96d847308e9d972e"
     },
     {
       "file": "bender-wifi-lab/app/src/main/java/dev/sir/benderwifi/ui/NetworkWorkspace.kt",
@@ -302,8 +302,8 @@
     },
     {
       "file": "bender-wifi-lab/app/src/main/java/dev/sir/benderwifi/ui/WifiNetworks.kt",
-      "bytes": 15415,
-      "sha256": "0464d657fbe2a4f48f2b44374786bd81c996e7e200f214985d968dc26f547a4c"
+      "bytes": 17060,
+      "sha256": "0207fd2c662018b4ad54723ee8df41758a2c9f5765481a204798abc779fbf82e"
     },
     {
       "file": "bender-wifi-lab/app/src/main/java/dev/sir/benderwifi/wps/LiveWpsBridge.kt",
@@ -447,8 +447,8 @@
     },
     {
       "file": "bender-wifi-lab/CHECKPOINT.md",
-      "bytes": 498,
-      "sha256": "60c26b2c664a8782f5c1d8dc0296f4beb47bc11bc138a682e2e44d19c7ce777e"
+      "bytes": 521,
+      "sha256": "cad0945b1a600f65f69cc46121a81314963a372829ae042bad14daaf5fa167b9"
     },
     {
       "file": "bender-wifi-lab/CONTRACT.md",
@@ -522,8 +522,8 @@
     },
     {
       "file": "bender-wifi-lab/README.md",
-      "bytes": 19531,
-      "sha256": "869d2512bdbf070c9494de897d9a1953d6f56894d953c2d076481446b5328427"
+      "bytes": 19460,
+      "sha256": "7486178067b7548fb50d772facfed0ee6868a1bd460df2867478dcee865bf64e"
     },
     {
       "file": "bender-wifi-lab/research/__init__.py",
@@ -13157,8 +13157,8 @@
     },
     {
       "file": "docs/CLAIMS.md",
-      "bytes": 3375,
-      "sha256": "cc8f2189ef147983bc98561d545c6c39bce594f6362daf335e2242d1b4c9a237"
+      "bytes": 3624,
+      "sha256": "0fbd2cb1c3e9e7f922338a439b2d10afb96b5b1404855976a8a35c7d0944bcc0"
     },
     {
       "file": "docs/HANDSET-VALIDATION.md",
@@ -13167,8 +13167,8 @@
     },
     {
       "file": "docs/INSTALL.md",
-      "bytes": 5595,
-      "sha256": "431fb48ec2ea87d8223998dc6bd44f273571edf7cd6c03e5af467841b1411cdd"
+      "bytes": 5848,
+      "sha256": "f1c94ad1fb216306b1bb995c1fe1c1ab28e224db77abe1611e214525bc3b9780"
     },
     {
       "file": "docs/PRIOR-WORK.md",
@@ -13177,8 +13177,8 @@
     },
     {
       "file": "docs/RELEASE-NOTES.md",
-      "bytes": 3246,
-      "sha256": "80a9dd3fa257e183cc6fb958ba73884f31549b46b5429ec421b717f2635d7d9d"
+      "bytes": 3615,
+      "sha256": "d144b105883409092e34774f2bd308dab708e61599c31a6add18e4739f8ae919"
     },
     {
       "file": "docs/REPRODUCTION.md",
@@ -13267,8 +13267,8 @@
     },
     {
       "file": "README.md",
-      "bytes": 8605,
-      "sha256": "1f98e659efe453ec4f91ace5a0a57d2361e3fee50c08541089fe279e898e8705"
+      "bytes": 9461,
+      "sha256": "514b7a88600f29c43a409fe02e212a179de619fce8ce6b63425c58fa77a60420"
     },
     {
       "file": "docs/TECHNICAL-WRITEUP.md",
@@ -13342,8 +13342,8 @@
     },
     {
       "file": "SHA256SUMS",
-      "bytes": 810,
-      "sha256": "1884a56c20882b05376a4a663b32aee060c7e81c0ea9596b27c4b8edaa30996a"
+      "bytes": 1050,
+      "sha256": "e4a825430b6c67bf07eaecd72cabacf2049a2b027c3d91f2e1d6aa1344abcf0d"
     },
     {
       "file": "bender-wifi-lab/VALIDATION-0.5.4-device-hints-preview1.md",
@@ -13429,27 +13429,67 @@
       "file": "evidence/harness-isolation-phone-20261117.json",
       "bytes": 1239,
       "sha256": "f054ee081f01789ce1bf857178538db6fe2696567e2816b3cc072004d93bc93a"
+    },
+    {
+      "file": "bender-wifi-lab/VALIDATION-0.5.5-latest-scan-preview1.md",
+      "bytes": 2689,
+      "sha256": "41b81e3ca6bccc93e1b8fdd8a396c0b59682e6bd961285c5297480763d13e5d3"
+    },
+    {
+      "file": "bender-wifi-lab/app/src/androidTest/java/dev/sir/benderwifi/LatestScanWorkflowTest.kt",
+      "bytes": 5806,
+      "sha256": "46ef970a0f972c34c1632fe983bee12c129caf01e3efeb73e80e58cd8787397c"
+    },
+    {
+      "file": "bender-wifi-lab/app/src/main/java/dev/sir/benderwifi/data/ScanInventory.kt",
+      "bytes": 3093,
+      "sha256": "754502346b52b1a7ca54098f749251741589062821eb88ca49dbdfa448698a91"
+    },
+    {
+      "file": "bender-wifi-lab/app/src/test/java/dev/sir/benderwifi/data/ScanInventoryTest.kt",
+      "bytes": 2869,
+      "sha256": "05f54ec37c62d70262eb96392ac3e974f25d1fb92953167047a8311c8b8ffacd"
+    },
+    {
+      "file": "docs/HANDSET-VALIDATION-055.md",
+      "bytes": 1849,
+      "sha256": "10fbb25a8d4c641b3b6aa4a3055572939c1614498f8b24e59dd019f70271f8ef"
+    },
+    {
+      "file": "evidence/bender-validation-055.json",
+      "bytes": 1350,
+      "sha256": "4aca009d4dee611d3e40e4f8c1661b8ab01627c765416faef155e802a3025c6d"
+    },
+    {
+      "file": "evidence/handset-preview055-20261117.json",
+      "bytes": 2018,
+      "sha256": "4e5dd9e74f5a2851794a5de3b6b7dcd6d6d43677e718353bb58f0c21726fe042"
+    },
+    {
+      "file": "evidence/retained-backend-tests-055.json",
+      "bytes": 4041,
+      "sha256": "32102fc34dec7bf31e1134679d5483cfe2db13896723d828c4ee377d67248899"
     }
   ],
   "distribution_layout": "Repository holds findings and browseable source. Large downloads are release assets; complete source ZIP includes runtime omitted from Git.",
   "assets": [
     {
-      "name": "Bender-WiFi-Lab-0.5.4-device-hints-preview1.apk",
-      "bytes": 212436152,
-      "sha256": "f5aa6eb977501427773635a13f87a608821f19e397fba58b6e8db1c00aa8f5c2",
-      "url": "https://github.com/Bender1011001/Bender-WiFi-Lab/releases/download/v0.5.4-device-hints-preview1/Bender-WiFi-Lab-0.5.4-device-hints-preview1.apk"
+      "name": "Bender-WiFi-Lab-0.5.5-latest-scan-preview1.apk",
+      "bytes": 212522529,
+      "sha256": "db4c4d45ac487a9172d33d63c44452dd4fdc19a5c8b42c427051cc0859673649",
+      "url": "https://github.com/Bender1011001/Bender-WiFi-Lab/releases/download/v0.5.5-latest-scan-preview1/Bender-WiFi-Lab-0.5.5-latest-scan-preview1.apk"
     },
     {
-      "name": "Bender-WiFi-Lab-0.5.4-device-hints-preview1-public-source.zip",
-      "bytes": 164192773,
-      "sha256": "80b069ec94870efa6fec9c8e3fd3dc05dc7bcd380e7483dcb2f90e3e895a70d4",
-      "url": "https://github.com/Bender1011001/Bender-WiFi-Lab/releases/download/v0.5.4-device-hints-preview1/Bender-WiFi-Lab-0.5.4-device-hints-preview1-public-source.zip"
+      "name": "Bender-WiFi-Lab-0.5.5-latest-scan-preview1-public-source.zip",
+      "bytes": 164199697,
+      "sha256": "2981641a20af99531df2fd0eb043e8f2c67e012f34c6fd795f0b448948fe3f82",
+      "url": "https://github.com/Bender1011001/Bender-WiFi-Lab/releases/download/v0.5.5-latest-scan-preview1/Bender-WiFi-Lab-0.5.5-latest-scan-preview1-public-source.zip"
     },
     {
-      "name": "SHA256SUMS-0.5.4-device-hints-preview1.txt",
-      "bytes": 242,
-      "sha256": "58b3c757647708b32419aa691f04bb3d3e83e033f9a02c1b0b2bd1440f7e8cff",
-      "url": "https://github.com/Bender1011001/Bender-WiFi-Lab/releases/download/v0.5.4-device-hints-preview1/SHA256SUMS-0.5.4-device-hints-preview1.txt"
+      "name": "SHA256SUMS-0.5.5-latest-scan-preview1.txt",
+      "bytes": 240,
+      "sha256": "ad988d7fbd1927d835c80c80913b242de6359072f8c2bc770bae4513032712a0",
+      "url": "https://github.com/Bender1011001/Bender-WiFi-Lab/releases/download/v0.5.5-latest-scan-preview1/SHA256SUMS-0.5.5-latest-scan-preview1.txt"
     }
   ],
   "documentation_update": {

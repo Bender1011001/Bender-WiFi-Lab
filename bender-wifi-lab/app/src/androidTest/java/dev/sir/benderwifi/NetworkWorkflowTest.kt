@@ -33,6 +33,8 @@ class NetworkWorkflowTest {
             }
             compose.setContent {LabApp(repo)}
             compose.waitForIdle()
+            compose.onNodeWithTag("network-list").performScrollToNode(hasText("Saved history"))
+            compose.onNodeWithText("Saved history").performClick()
             compose.onNodeWithTag("network-list").performScrollToNode(hasText("2 networks · 1 saved device address"))
             compose.onNodeWithText("2 networks · 1 saved device address").assertIsDisplayed()
             compose.onNodeWithTag("network-list").performScrollToNode(hasText("WORKSPACE ONE"))

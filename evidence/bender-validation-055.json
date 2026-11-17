@@ -1,0 +1,32 @@
+{
+  "version": "0.5.5-latest-scan-preview1",
+  "version_code": 18,
+  "sha256": "db4c4d45ac487a9172d33d63c44452dd4fdc19a5c8b42c427051cc0859673649",
+  "bytes": 212522529,
+  "signer_sha256": "efbaf95d8b014651c1b7480b6e0a424b8a6e904d9313c9abc6e0d11eef1c5fc7",
+  "same_update_signer": true,
+  "source_inputs_verified": 1158,
+  "packaged_assets_verified": 27,
+  "tests": {
+    "runtime": 205,
+    "engine": 48,
+    "jvm": 96,
+    "emulator": 62
+  },
+  "lint_errors": 0,
+  "lint_warnings": 18,
+  "prepared_utc": "2026-11-17T15:46:21.919679+00:00",
+  "backend_tests_rerun": false,
+  "backend_test_provenance": "retained-backend-tests-055.json",
+  "phone_installation_verified": true,
+  "live_radio_test_performed": true,
+  "handset_validation_complete": false,
+  "handset_scope": "In-place update and latest/history tabs verified; new passive scan started, USB disconnected before completion verification.",
+  "handset_validation": "handset-preview055-20261117.json",
+  "live_radio_scope": "Verified in-place installation, startup, latest/history counts and clearing stale results while a passive scan runs. Completion/restoration not collected after USB disconnected.",
+  "historical_warning": {
+    "count": 1,
+    "reason": "An older capture retains its existing Evidence JSON node budget exceeded import warning.",
+    "new_capture_affected": null
+  }
+}

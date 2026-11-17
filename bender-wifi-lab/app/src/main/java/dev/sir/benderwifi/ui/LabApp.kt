@@ -68,6 +68,7 @@ fun LabApp(repository:LabRepository?=null) {
     val experiments by repo.experiments.collectAsState(initial=emptyList())
     val credentials by repo.credentials.collectAsState(initial=emptyList())
     val sessions by repo.sessions.collectAsState(initial=emptyList())
+    val latestScan by repo.latestScan.collectAsState(initial=dev.sir.benderwifi.data.ScanInventory())
     val radio by RadioController.state.collectAsState()
     val runtimeReport by RadioController.runtimeState.collectAsState()
     var identityNow by remember {mutableStateOf(System.currentTimeMillis()/1000.0)}
@@ -77,6 +78,7 @@ fun LabApp(repository:LabRepository?=null) {
     var tab by rememberSaveable {mutableStateOf("Networks")}
     var apId by rememberSaveable {mutableStateOf<String?>(null)}
     var clientId by rememberSaveable {mutableStateOf<String?>(null)}
+    var inventoryScope by rememberSaveable {mutableStateOf("Latest scan")}
     var message by remember {mutableStateOf<String?>(null)}
     var raw by remember {mutableStateOf<String?>(null)}
     var deauthConfirm by remember {mutableStateOf(false)}
@@ -89,8 +91,10 @@ fun LabApp(repository:LabRepository?=null) {
     val reveals=remember(lifecycle) {VaultRevealController({lifecycle.lifecycle.currentState.isAtLeast(Lifecycle.State.STARTED)},{revealed=it})}
     var newSecret by remember {mutableStateOf(false)}
     var pendingAuth by remember {mutableStateOf<(() -> Unit)?>(null)}
-    val selected=networks.firstOrNull {it.id==apId}
-    val selectedClient=clients.firstOrNull {it.id==clientId}
+    val visibleNetworks=if(inventoryScope=="Latest scan")latestScan.networks else networks
+    val visibleClients=if(inventoryScope=="Latest scan")latestScan.clients else clients
+    val selected=visibleNetworks.firstOrNull {it.id==apId}
+    val selectedClient=visibleClients.firstOrNull {it.id==clientId}
     val catalog=remember {loadCatalog(context)}
     val auth=rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()){result->
         val action=pendingAuth;pendingAuth=null
@@ -191,16 +195,17 @@ fun LabApp(repository:LabRepository?=null) {
                     Text(when(tab){"Networks"->"Scan. Choose a network or device. Take action.";"Tools"->"Setup, imports and the full capability catalog.";"Vault"->"Encrypted credentials. Reveal and copy.";else->"Capture origins, experiments and raw observations."},color=Muted,fontSize=13.sp,modifier=Modifier.padding(top=4.dp,bottom=14.dp))
                 }
                 when(tab){
-                    "Networks"->WifiNetworks(networks,clients,selected,selectedClient,catalog,radio.busy,radio.recoveryRequired,
+                    "Networks"->WifiNetworks(visibleNetworks,visibleClients,selected,selectedClient,catalog,radio.busy,radio.recoveryRequired,
                         onNetwork={apId=it;clientId=null},
-                        onDevice={id->clientId=id;if(id!=null)apId=clients.firstOrNull {it.id==id}?.apId},
-                        onScan={run("capture",JSONObject().put("bands",JSONArray(listOf("2.4","5","6"))).put("duration_seconds",120).put("purpose","survey"))},
+                        onDevice={id->clientId=id;if(id!=null)apId=visibleClients.firstOrNull {it.id==id}?.apId},
+                        onScan={inventoryScope="Latest scan";apId=null;clientId=null;run("capture",JSONObject().put("bands",JSONArray(listOf("2.4","5","6"))).put("duration_seconds",120).put("purpose","survey"))},
                         onTools={tab="Tools"},
                         onCapture={selected?.let {n->run("capture",JSONObject().put("bssid",n.bssid.lowercase()).put("frequency",n.frequencyMhz).put("channel",n.channel).put("duration_seconds",120).put("bands",JSONArray(listOf(runtimeBand(n.frequencyMhz))))) }},
                         onHandshake={handshakeConfirm=true},onDeauth={deauthConfirm=true},onEvidence={raw=it},
                         onUnavailable={a->message="${a.title}\n\n${a.description}\n\n${a.blocker}"},
                         savedWork={networkId->NetworkWorkspace(networkId,repo,onEvidence={raw=it},onExportCapture={origin->exportSession=origin;exportPcap.launch("bender-capture-${System.currentTimeMillis()}.pcap")},onMessage={message=it})},
-                        onWps={context.startActivity(Intent(context,dev.sir.benderwifi.wps.WpsActivity::class.java).putExtra("network_id",selected?.id))})
+                        onWps={context.startActivity(Intent(context,dev.sir.benderwifi.wps.WpsActivity::class.java).putExtra("network_id",selected?.id))},
+                        inventoryScope=inventoryScope,onInventoryScope={inventoryScope=it;apId=null;clientId=null},latestScan=latestScan)
                     "Tools"->LazyColumn(modifier=Modifier.testTag("workshop-list"),verticalArrangement=Arrangement.spacedBy(12.dp)) {
                         item {OutlinedButton(onClick={importJson.launch(arrayOf("application/json","text/plain","application/octet-stream"))}){Text("Import observations JSON")}}
                         item {SetupPanel(runtimeReport,radio.busy,onSetup={run("setup")},onProbe={run("probe")})}

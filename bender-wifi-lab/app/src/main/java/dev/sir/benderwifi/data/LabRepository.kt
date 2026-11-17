@@ -4,6 +4,11 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.withTransaction
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
@@ -13,6 +18,14 @@ class LabRepository internal constructor(private val db:LabDatabase,private val 
     private constructor(context:Context):this(Room.databaseBuilder(context.applicationContext,LabDatabase::class.java,"bender-lab.db").addMigrations(LabDatabase.MIGRATION_1_2).build(),SecretVault(context.applicationContext))
     private val dao=db.dao()
     val networks=dao.networks(); val clients=dao.clients(); val experiments=dao.experiments(); val credentials=dao.credentials(); val sessions=dao.sessions()
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val latestScan=combine(experiments,sessions,clients) {records,captures,knownClients->
+        val attempt=ScanInventory.latestCapture(records)
+        Triple(attempt,captures.firstOrNull {it.id==attempt?.id},knownClients)
+    }.flatMapLatest {(attempt,session,knownClients)->
+        if(attempt==null || session==null)flowOf(ScanInventory(attempt))
+        else dao.sessionInventory(session.id).map {ScanInventory.from(attempt,session,it,knownClients)}
+    }
     suspend fun getNetwork(id:String)=dao.network(id)
     suspend fun getClient(id:String)=dao.client(id)
     fun networkExperiments(id:String)=dao.networkExperiments(id)
@@ -88,9 +101,16 @@ class LabRepository internal constructor(private val db:LabDatabase,private val 
         val previous=dao.experiment(id)
         val created=previous?.createdAt?:createdAt?:System.currentTimeMillis()
         var saved=result
+        // Keep the original requested scope even while a capture is running.
+        // This lets the UI distinguish a new survey from a targeted capture.
+        if(request!=null) {
+            val value=runCatching {JSONObject(saved)}.getOrDefault(JSONObject())
+            value.put("request",request)
+            saved=value.toString()
+        }
         if(preserveExistingEvidence && previous!=null){
             val old=runCatching {JSONObject(previous.result)}.getOrDefault(JSONObject())
-            val current=runCatching {JSONObject(result)}.getOrDefault(JSONObject())
+            val current=runCatching {JSONObject(saved)}.getOrDefault(JSONObject())
             for(key in listOf("request","result","attempt","radio","identity","privacy","analysis")){
                 if(current.optJSONObject(key)?.length()==0 && old.optJSONObject(key)!=null)current.put(key,old.getJSONObject(key))
             }
