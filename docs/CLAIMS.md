@@ -1,20 +1,13 @@
-# Claim and evidence map
+# App evidence by release
 
-Updated November 17, 2026. Each result belongs to its recorded artifact, build and experiment.
+These records describe the Android preview. November 17 measurements apply to `0.5.5-latest-scan-preview1` (version code 18) unless another build is named.
 
-| Claim | Evidence | Boundary |
-|---|---|---|
-| Managed-interface directed deauth reached the air after reboot | [Fresh-boot record](../evidence/fresh-boot-air-20261116.json) and [two-packet appendix](../evidence/two-packet-appendix-20261116.json): one request, independent Alfa reception, ACK, target reconnection exchange and client-query interruption/recovery | One rooted CPH2655/build and target; separate terminal tooling, not this APK's active-feature qualification. The ACK has no transmitter address. |
-| Three earlier clients had separate router corroboration | [November 13 trials](../evidence/router-corroborated-20261113.json): matching ACKs and router disconnect/reconnect events, with suitable client probes for WiZ and Roku | Different experiments from the fresh-boot capture; no new router log in the November 16 trial and no success-rate study |
-| 0.5.5 passes its software/package checks | [Build record](../evidence/bender-validation-055.json): 96 JVM and 62 emulator tests; 253 prior backend passes retained with unchanged inputs; 1,158 source inputs and 27 assets verified | Retained backend suites were not rerun; software coverage is not hardware interoperability |
-| The APK has current installation and inventory-view evidence | [November 17 phone record](../evidence/handset-preview055-20261117.json): in-place update, both tab counts and clearing stale results while scanning | USB disconnected before new-scan completion; final counts and restoration remain unverified |
-| Latest scan excludes historical presence | Immutable session queries, JVM/Room/UI tests and phone tab/count checks | Observations are time-bounded; quiet devices can be missed and previously seen devices can leave |
-| Device hints have explicit provenance | Vendor registry, parser exclusions and UI tests in the matching source; vendor display checked on phone | Prefix owner may be a module maker; captured fields are self-reported, services may be proxied, and no retail model was independently verified |
-| Observed addresses and AP totals are different | [Retained replay](../evidence/device-count-replay.json), decoder tests and timestamped UI fields | Neither a complete physical-device census nor proof that an AP's report is correct |
-| WPS progress reflects collector/solver stages | Runtime/JVM/emulator tests and matching source | Visible activity is not a recovered PIN/password or successful AP enrollment |
-| General injection remains unresolved | [Diagnostic](../evidence/general-injection-summary.json): a send reached firmware and completed DISCARD with ACK false | Exact rejecting branch and a working firmware change remain unknown |
-| Corrected terminal-harness mounts stay isolated in tested cases | [21 Linux tests](../evidence/harness-isolation-linux-20261117.txt) and [three phone exit cases](../evidence/harness-isolation-phone-20261117.json), unchanged parent/init mount tables | Not a privilege sandbox or proof about every descendant lifetime; it does not retroactively change the original harness |
+| Observation | Evidence and scope |
+| --- | --- |
+| Installed over 0.5.4 on the rooted CPH2655 | The installed APK matched the release digest. Both inventory views opened. [Handset record](HANDSET-VALIDATION-055.md) |
+| Latest scan and saved history matched the database | The preceding survey showed 16 networks and 9 observed device addresses. History showed 100 networks and 59 addresses. A new survey displayed its pending state. USB disconnected before completion and restoration could be checked. [Dated observations](../evidence/handset-preview055-20261117.json) |
+| Software coverage | 96 JVM and 62 emulator tests passed. Results for 253 earlier backend checks were retained for unchanged inputs. [Build record](../evidence/bender-validation-055.json) · [Retained checks](../evidence/retained-backend-tests-055.json) |
+| Device hints and counts | Hints have a recorded source. Vendor prefixes can identify a component maker, and observed addresses depend on traffic within the capture window. [Release notes](RELEASE-NOTES.md) |
+| Earlier handset survey | The 0.5.4 survey and its restoration have their own dated [handset record](HANDSET-VALIDATION-054.md). |
 
-The original fresh-boot trial used an earlier wrapper that left duplicate mounts and required a cleanup reboot. The write-up retains that failure and the final restoration evidence. The corrected helper is qualified separately.
-
-The 0.5.2 release and its dated evidence remain available. Source hashes identify bytes; they do not independently authenticate experimental observations. Redacted summaries cannot replace private originals when investigating a discrepancy.
+One historical capture still reports an evidence-size warning and retains its raw evidence. The November 17 handset session tested inventory and scan startup. It did not qualify credential recovery or app-driven deauthentication. [Full observations and limitations](HANDSET-VALIDATION-055.md)

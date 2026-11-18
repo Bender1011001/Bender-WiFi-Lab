@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "release_date": "2026-11-17",
-  "scope": "Prepared 0.5.5 app/source release with scoped November 17 handset inventory checks and consolidated fresh-boot research evidence.",
+  "scope": "Bender Wi-Fi Lab preview 0.5.5, its software and handset validation, and current app repository documentation.",
   "repository": "https://github.com/Bender1011001/Bender-WiFi-Lab",
   "tag": "v0.5.5-latest-scan-preview1",
   "radio_evidence_version": "V61 terminal, 2026-11-13; fresh-boot managed TX with independent Alfa reception, 2026-11-16",
@@ -13157,8 +13157,8 @@
     },
     {
       "file": "docs/CLAIMS.md",
-      "bytes": 3624,
-      "sha256": "0fbd2cb1c3e9e7f922338a439b2d10afb96b5b1404855976a8a35c7d0944bcc0"
+      "bytes": 1650,
+      "sha256": "36f178b4beddb5778b4ad05f3ac399dc746613f3f359cb45f08aa67a7c4ec2cf"
     },
     {
       "file": "docs/HANDSET-VALIDATION.md",
@@ -13172,18 +13172,18 @@
     },
     {
       "file": "docs/PRIOR-WORK.md",
-      "bytes": 2227,
-      "sha256": "03c4dfa6a682ee02a29c61bcc5e76331ffebe065b4d7ea6c3f2fb7b4194f369a"
+      "bytes": 589,
+      "sha256": "57046916492edacaa3a44eb15db44a36e18e4544c0c798b5b5eb551340787f1b"
     },
     {
       "file": "docs/RELEASE-NOTES.md",
-      "bytes": 3615,
-      "sha256": "d144b105883409092e34774f2bd308dab708e61599c31a6add18e4739f8ae919"
+      "bytes": 2906,
+      "sha256": "73fbd0807dd9dfc2972535a26872d93998abce6f78b3ebcbf720fcfbf0afc0de"
     },
     {
       "file": "docs/REPRODUCTION.md",
-      "bytes": 2508,
-      "sha256": "403673a1838624f3145d413ed0678bccb9fcc018e2330d3c2fea8b278e658020"
+      "bytes": 902,
+      "sha256": "677567d7b9a69b7c8aedb18115e74d642322d1b3dee2565a968bc51c7bb4749a"
     },
     {
       "file": "docs/RUNTIME-SOURCES.md",
@@ -13252,8 +13252,8 @@
     },
     {
       "file": "figures/README.md",
-      "bytes": 925,
-      "sha256": "d117486dd06cb312b59b60049ee3784752a6199e898d606c76ab3b89a30f5794"
+      "bytes": 686,
+      "sha256": "fb1794f7e79a0bb4ef5788fdb70de14e14ffb574e0135e15e893c751a68040df"
     },
     {
       "file": "figures/router-evidence.png",
@@ -13267,13 +13267,13 @@
     },
     {
       "file": "README.md",
-      "bytes": 9461,
-      "sha256": "514b7a88600f29c43a409fe02e212a179de619fce8ce6b63425c58fa77a60420"
+      "bytes": 2751,
+      "sha256": "b59cb0869261964f201fc30c1ee83e22249d34a857d091222acab282aceb861e"
     },
     {
       "file": "docs/TECHNICAL-WRITEUP.md",
-      "bytes": 22224,
-      "sha256": "11fda6870c916b8593e0f784290de469f11bac9b032ac6d1f65be00fe35f6fd3"
+      "bytes": 1180,
+      "sha256": "c7fbec6e6a493463fc73fc80826cc20b59628ba0da9677f1413aa415686c02f9"
     },
     {
       "file": "evidence/fresh-boot-air-20261116.json",
@@ -13471,7 +13471,7 @@
       "sha256": "32102fc34dec7bf31e1134679d5483cfe2db13896723d828c4ee377d67248899"
     }
   ],
-  "distribution_layout": "Repository holds findings and browseable source. Large downloads are release assets; complete source ZIP includes runtime omitted from Git.",
+  "distribution_layout": "The app source and app evidence are browsable here. Release assets and their original manifest remain at the published tag. Historical radio-evidence paths remain available for existing citations.",
   "assets": [
     {
       "name": "Bender-WiFi-Lab-0.5.5-latest-scan-preview1.apk",
@@ -13494,16 +13494,13 @@
   ],
   "documentation_update": {
     "date": "2026-11-17",
-    "status": "prepared_and_validated",
-    "report": "docs/TECHNICAL-WRITEUP.md",
-    "evidence": "evidence/fresh-boot-air-20261116.json",
-    "packet_appendix": "evidence/two-packet-appendix-20261116.json",
-    "harness_correction": "evidence/harness-isolation-20261117.json",
-    "harness_handset": "evidence/harness-isolation-phone-20261117.json",
-    "app_source_changed": true,
-    "new_apk_release": true,
+    "status": "documentation_only",
+    "report": "https://github.com/Bender1011001/oneplus13-internal-wifi-research/blob/main/docs/TECHNICAL-WRITEUP.md",
+    "original_release_manifest": "https://github.com/Bender1011001/Bender-WiFi-Lab/blob/v0.5.5-latest-scan-preview1/manifest.json",
+    "app_source_changed": false,
+    "new_apk_release": false,
     "previous_release_assets_changed": false,
-    "handset_used_for_update": true
+    "handset_used_for_update": false
   },
   "previous_release": "https://github.com/Bender1011001/Bender-WiFi-Lab/releases/tag/v0.5.2-device-count-preview2"
 }

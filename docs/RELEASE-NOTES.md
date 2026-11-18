@@ -28,12 +28,6 @@ See the [current handset report](HANDSET-VALIDATION-055.md) and
 capture retains its evidence-node-budget warning; this change does not alter
 that importer limit.
 
-## Research update
+## Validation scope
 
-The [consolidated write-up](TECHNICAL-WRITEUP.md) adds a fresh-boot managed-interface transmission, independent Alfa reception, client observations and a two-packet appendix with original lengths, redacted bytes, FCS verification results and timing calculations. The phone transmitted internally; the separate Alfa was a receiver on the PC. Raw captures remain private.
-
-The experimental terminal harness now uses a private mount namespace before creating runtime bind mounts. Its 21 Linux tests passed; phone probes for normal exit, exit 23 and forced termination left both caller and Android-init mount tables unchanged. The helper and its [qualification](../tools/isolated-runtime/README.md) are published separately. This corrects the research harness and is not a change to the APK's runtime implementation.
-
-General injection remains unresolved. App-driven deauth, live WPS recovery and Bluetooth interoperability were not tested in this handset pass. The terminal experiment does not transfer those qualifications to the APK.
-
-Install as an update when signatures match. See [installation](INSTALL.md), [claim boundaries](CLAIMS.md) and [upstream credit](PRIOR-WORK.md).
+The November 17 handset pass covered installation, inventory and the start of a passive survey. The terminal experiment documented in the [OnePlus 13 radio report](https://github.com/Bender1011001/oneplus13-internal-wifi-research/blob/main/docs/TECHNICAL-WRITEUP.md) has its own evidence. The [tagged release notes](https://github.com/Bender1011001/Bender-WiFi-Lab/blob/v0.5.5-latest-scan-preview1/docs/RELEASE-NOTES.md) retain the record as published on November 17.
